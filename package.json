@@ -11,7 +11,13 @@
     "preview": "astro preview",
     "check": "astro check",
     "astro": "astro",
-    "placeholders": "node scripts/generate-placeholders.mjs"
+    "placeholders": "node scripts/generate-placeholders.mjs",
+    "images": "node scripts/process-incoming.mjs",
+    "images:dry": "node scripts/process-incoming.mjs --dry",
+    "contact-sheet": "node scripts/contact-sheet.mjs",
+    "audit:seo": "node scripts/audit-seo.mjs",
+    "check:contrast": "node scripts/check-contrast.mjs",
+    "logo": "node scripts/build-header-logo.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^3.1.9",

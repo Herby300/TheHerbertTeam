@@ -15,7 +15,7 @@ export const solutions: Solution[] = [
     heroImage: '/images/solutions/atm-mortgage.webp',
     seoTitle: 'ATM Mortgage | First-Lien HELOC in Texas',
     seoDescription:
-      'The ATM Mortgage is a first-lien HELOC that turns your home equity into an on-demand line of credit. See how the sweep mechanic works, who it fits, and the honest risks.',
+      'The ATM Mortgage is a first-lien HELOC that turns your home equity into an on-demand line of credit. How the sweep works, who it fits, and the honest risks.',
     heroHeading: 'Your Equity. On Demand.',
     intro:
       'A traditional mortgage is a one-way street: you send money in and you cannot get it back without refinancing or opening a second lien. A first-lien HELOC replaces that mortgage entirely with a revolving line of credit secured in first position. Your paycheck goes into the account and immediately lowers the balance that interest is charged on. When you need the money, you draw it back out. This is a powerful tool for the right borrower and a poor fit for the wrong one, so this page includes both sides.',
@@ -124,9 +124,9 @@ export const solutions: Solution[] = [
       'The classic move-up trap: you cannot buy until you sell, and you cannot sell until you know where you are going. Buy Before You Sell breaks the loop by letting you make a strong, non-contingent offer on the next house first.',
     image: '/images/solutions/buy-before-you-sell.webp',
     heroImage: '/images/solutions/buy-before-you-sell.webp',
-    seoTitle: 'Buy Before You Sell in Texas | Non-Contingent Offers',
+    seoTitle: 'Buy Before You Sell in Texas',
     seoDescription:
-      'Buy your next home before selling your current one. Make a non-contingent offer, move on your schedule, and sell without pressure. How the program works, costs, and eligibility.',
+      'Buy your next home before selling your current one. Make a non-contingent offer, move on your schedule, and sell without pressure. Costs and eligibility.',
     heroHeading: 'Make a Non-Contingent Offer Without Selling First.',
     intro:
       'A home sale contingency is the weakest thing you can attach to an offer. When a seller compares your contingent offer against a clean one at the same price, yours loses — every time. Buy Before You Sell removes the contingency, so you shop with the strength of a cash-like buyer, move once, and sell your current home empty and staged instead of scrambling.',
@@ -235,9 +235,9 @@ export const solutions: Solution[] = [
       'Texas has grant and second-lien programs that can cover most or all of a down payment, and many buyers who qualify never hear about them because the lender they called does not offer them.',
     image: '/images/solutions/down-payment-assistance.webp',
     heroImage: '/images/solutions/down-payment-assistance.webp',
-    seoTitle: 'Down Payment Assistance Texas | TSAHC & TDHCA Programs',
+    seoTitle: 'Down Payment Assistance in Texas | TSAHC',
     seoDescription:
-      'Texas down payment assistance explained: TSAHC and TDHCA grants, forgivable second liens, city programs, income limits, and how to stack assistance with FHA or conventional financing.',
+      'Texas down payment assistance explained: TSAHC and TDHCA grants, forgivable second liens, city programs, income limits, and stacking with FHA or conventional.',
     heroHeading: 'The Down Payment Is Smaller Than You Think.',
     intro:
       'The single most common reason people delay buying is the belief that they need 20% down. In Texas, between statewide programs through TSAHC and TDHCA, city and county programs, and lender-funded assistance, a meaningful share of buyers can get into a home with a fraction of that — sometimes with almost nothing out of pocket beyond earnest money and inspections.',
@@ -346,9 +346,9 @@ export const solutions: Solution[] = [
       'Buying your first home is mostly an information problem. Once you know what the numbers are, what the steps are, and what each one costs, the fear drops away and it becomes a project you can manage.',
     image: '/images/solutions/first-time-homebuyers.webp',
     heroImage: '/images/solutions/first-time-homebuyers.webp',
-    seoTitle: 'First Time Home Buyer Texas | Programs & Guidance',
+    seoTitle: 'First Time Home Buyer Programs in Texas',
     seoDescription:
-      'A first-time homebuyer guide for Texas: how much cash you really need, the seven-step process, down payment assistance, and answers to the fears that keep buyers renting.',
+      'A first-time homebuyer guide for Texas: how much cash you really need, the seven-step process, down payment assistance, and the fears that keep buyers renting.',
     heroHeading: 'Your First Home, Without the Guesswork.',
     intro:
       'Nobody teaches this. You are expected to make the largest financial decision of your life using advice from a coworker and a rate you saw in an ad. My approach with first-time buyers is education first: we talk through your budget, your credit, your timeline, and your options before anyone fills out an application. There is no pressure to buy right now — if the right answer is to wait six months and fix two things, I will say so.',

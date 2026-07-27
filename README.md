@@ -20,7 +20,13 @@ Built with Astro 4 (static output), Tailwind CSS 3, and TypeScript in strict mod
 | `npm run build` | Production build into `dist/` |
 | `npm run preview` | Serve the built output locally |
 | `npm run check` | `astro check` — TypeScript and template diagnostics |
-| `npm run placeholders` | Regenerate every placeholder image, logo, badge, favicon, and `robots.txt` |
+| `npm run placeholders` | Regenerate the compliance badges and `robots.txt`, and assert every delivered image is present. No longer generates placeholder photography — none is left |
+| `npm run logo` | Rebuild `images/logo.svg`, `favicon.svg`, and `apple-touch-icon.png` from the brand mark in `design-assets/` |
+| `npm run images` | Convert originals in `design-assets/incoming/` to the exact size and format each template expects, writing to `public/images/` |
+| `npm run images:dry` | Same, but report only — shows source dimensions and warns about crops and upscales before anything is written |
+| `npm run contact-sheet` | Build grids of the processed imagery in `design-assets/previews/` so a whole group can be reviewed at once |
+| `npm run audit:seo` | Audit `dist/` for title/description length, duplicates, canonicals, `h1` count, and missing alt text. Exits non-zero on a blocker, so it can gate a deploy. Run after `npm run build`. |
+| `npm run check:contrast` | Verify WCAG AA text contrast in the homepage "Two Futures" panels, where a photo composited at low opacity changes the effective background. Exits non-zero on a failure |
 
 ---
 
@@ -68,6 +74,15 @@ src/
 
 scripts/
   generate-placeholders.mjs  Builds every placeholder asset with sharp
+  process-incoming.mjs       Delivered originals -> sized, cropped, WebP
+  contact-sheet.mjs          Review grids of the processed imagery
+  retouch-va-sign.mjs        Removes the rate claim from the VA artwork
+  audit-seo.mjs              Checks dist/ against the SEO rules below
+
+design-assets/               Masters, versioned but never deployed
+  incoming/                  Delivered originals, untouched
+  retouched/                 Edited overrides; preferred by npm run images
+  previews/                  Contact sheets (gitignored, regenerate on demand)
 ```
 
 ### Three rules worth keeping
@@ -84,8 +99,60 @@ scripts/
 | `jason-headshot-large.webp` (1000×1250) | Real — transparent cutout |
 | `jason-headshot-hero.webp` (1100×1467) | Real — transparent cutout, homepage hero |
 | `logo-on-dark.webp` (709×180) | Real — silver-on-navy lockup, footer only |
-| `logo.svg` | Placeholder — awaiting a light-background logo export |
-| Everything else under `images/` | Placeholder |
+| `logo.svg` (1442×336) | Real — navy-ink header lockup, cut from the brand mark |
+| `favicon.svg` / `apple-touch-icon.png` | Real — HT monogram, cut from the same mark |
+| `hero/*.webp` (1672×941) | Real — six page heroes |
+| `programs/*.webp` (1200×800) | Real — eight loan program images |
+| `solutions/*.webp` (1200×800) | Real — four solution images |
+| `resources/*.webp` (800×500) | Real — six guide covers |
+| `two-futures/*.webp` (1000×750) | Real — homepage contrast pair |
+| `blog/placeholder.webp` (1200×675) | Real — fallback for posts without their own image |
+| `og-default.jpg` (1200×630) | Real — social share card, JPEG on purpose |
+
+**No placeholder imagery remains.** `scripts/generate-placeholders.mjs` still
+exists, but its image list is empty; it now only emits the compliance badges and
+`robots.txt`, and asserts that every delivered asset is present. If you add a new
+image slot, put a temporary entry back in its `images` array and remove it the
+moment real artwork lands — otherwise the next run overwrites the real file.
+
+The page heroes were delivered at 1672×941, already 16:9, and are kept at that
+size rather than upscaled to 1920×1080; interpolating up costs bytes without
+adding detail, and the hero `<img>` is absolutely positioned with `object-cover`
+so its intrinsic size never drives layout.
+
+### The header logo and favicon are derived, not hand-drawn
+
+`design-assets/new-hbt-logo.svg` is an auto-traced **inverted** silhouette: its
+52 paths are the navy backing plate, and the wordmark is the negative space
+between them. Recolouring those paths produces a solid block, which is why the
+logo looked unusable at first.
+
+`scripts/build-header-logo.mjs` uses the plate as a *mask* instead, painting navy
+ink wherever the plate is absent — which is exactly the wordmark. It then trims
+the viewBox to the ink, drops the third line ("THE MORTGAGE SOLUTION EXPERT",
+roughly 3px tall and visibly rough at header size), and cuts the HT monogram out
+on its own for the favicon and Apple touch icon. Re-run it with
+`npm run logo` if the brand mark is ever re-exported.
+
+**Two things to know about the delivered program artwork.** Seven of the eight
+are composed graphics with marketing copy rendered into the pixels rather than
+plain photographs. That copy cannot be read by a screen reader or a search
+engine, cannot be edited when a guideline changes, and has to be reviewed by
+compliance as advertising. The VA image originally carried a
+"COMPETITIVE INTEREST RATES" bullet; it was removed by
+`scripts/retouch-va-sign.mjs`, which also promoted the bullet below it so the
+list stays evenly spaced. Flag the rest to Primis explicitly during review.
+
+Separately, `hero/programs-hero.webp` has icon labels baked in. One reads
+**"Land & Ranch Financing"**, and the image omits Jumbo, Self-Employed, and
+Refinance.
+
+This is a deliberate decision, not an oversight: Jason does originate land and
+ranch loans, so the artwork is accurate and raises no compliance issue, and he
+does not want a dedicated page for it. Leave the image alone. The only cost is
+that a visitor who notices the label has nothing to click — if that ever turns
+into a real question from callers, the cheapest fix is a sentence on
+`/loan-programs` pointing land and ranch enquiries at `/contact`.
 
 The delivered headshots are cutouts with a transparent background, which is why the templates that display them set an explicit background (`bg-gradient-to-b from-silver-light to-white`) rather than relying on the photo. Keep that in mind when swapping in any replacement that has its own backdrop.
 
@@ -93,15 +160,29 @@ The delivered headshots are cutouts with a transparent background, which is why 
 
 ## Remaining TODOs, in priority order
 
-1. **A light-background logo export.** The delivered logo is silver ink on navy, which is unreadable on the white header, so it is currently used in the footer only and the header still shows a placeholder wordmark. What is needed is a transparent-background version with dark or navy ink. Note that `design-assets/new-hbt-logo.svg` is an auto-traced monochrome silhouette — a single full-canvas black rectangle with the artwork knocked out of it — so it is not usable as a vector logo. A real vector export would be ideal.
-2. **Primis marketing compliance sign-off on the full site**, including the plain-English federal-charter explanatory note on `/licensing`. They may prescribe specific disclaimer wording, logo usage rules, or limits on experience claims and testimonials.
-3. **Confirm with Primis whether the Texas Consumer Complaint and Recovery Fund Notice is required** on a bank loan officer's marketing site. If it is, add it to `/licensing` using their supplied wording.
-4. **Real photography** for the remaining placeholders: eight program photos, four solution photos, six section heroes, six resource covers, the two-futures pair, and the blog fallback. Every `<img>` already carries correct dimensions and real descriptive alt text, so this is a straight file-for-file replacement in `public/images/` — no code changes.
-5. **Blog post hero images.** All six seed posts currently point at `/images/blog/placeholder.webp`; update the `image` field in each post's frontmatter.
-5. **Re-verify the state license table** on `/licensing` against https://primisbank.com/disclosures/ at launch. License numbers change.
-6. **Confirm the GHL form-submission message payload.** `Layout.astro` listens for `message` events from `https://link.pivotpointcrm.com` to fire lead conversions. The payload shape varies by GoHighLevel version — open the console on a live form, submit a test, and match on whatever actually arrives.
-7. **Real PDFs in `public/downloads/`.** The seven lead magnets are currently delivered by Pivot Point after email capture; if you switch to direct download links, drop the files here.
-8. **Video embeds.** `/about` and `/reviews` have marked slots for video testimonials and Jason's intro video.
+Primis marketing compliance has signed off on the site and confirmed the
+licensing verbiage, and all photography has been delivered and integrated. What
+is left is operational rather than build work.
+
+### Must happen before the site goes live
+
+1. **Upload the six lead-magnet PDFs into Pivot Point** and attach each to the matching form automation. The filenames the copy promises are listed in `src/data/resources.ts` under `fileName`. Nothing on the site links to these directly, so an unfinished automation fails silently — the visitor submits the form and simply never receives anything.
+2. **Confirm the GHL form-submission message payload.** `Layout.astro` listens for `message` events from `https://link.pivotpointcrm.com` to fire lead conversions. The payload shape varies by GoHighLevel version, so open the console on a live form, submit a real test, and match on whatever actually arrives. Until this is verified, form conversions may not reach Meta or GA4 even though the forms themselves work.
+3. **Pick a host, connect the GitHub repo, and point DNS** so the site serves from `www.theherbertteam.com` with the apex domain redirecting to it. The canonical URLs, sitemap, and `robots.txt` all assume that hostname.
+4. **Verify the Common Ninja widget renders real Google reviews on the live domain.** Widgets of this kind are frequently domain-locked and will look fine locally while showing nothing in production.
+
+### Soon after launch
+
+5. **Re-verify the state license table** on `/licensing` against https://primisbank.com/disclosures/. License numbers change, and this table is the kind of page nobody re-reads for years.
+6. **Measure Lighthouse against the deployed URL.** The targets are 95+ on performance, accessibility, best practices, and SEO. Local numbers are not representative.
+7. **Nothing further on `hero/programs-hero.webp`.** Its "Land & Ranch Financing" label was reviewed and deliberately kept — the product is real, it just has no page. Recorded here so it is not "fixed" by a future contributor. See the image inventory above.
+
+### When the material exists
+
+8. **Client video testimonials.** Add entries to `videoTestimonials` in `src/data/testimonials.ts` and the section appears on `/reviews`; leave it empty and the section stays hidden. Each entry needs a YouTube ID, a title, and an attribution.
+9. **Jason's intro video** on `/about`, which currently shows a YouTube channel promo card in its place.
+10. **Per-post blog images.** All six seed posts fall back to `/images/blog/placeholder.webp`, which is a real branded card, so this is polish rather than a gap. Set the `image` field in a post's frontmatter to override it.
+11. **Attributed testimonials.** The written testimonials on `/reviews` are anonymised by role and city. Real names, with written permission on file, are considerably more persuasive.
 
 ---
 
@@ -112,6 +193,7 @@ Create a `.mdx` file in `src/content/blog/`. The filename becomes the URL slug (
 ```mdx
 ---
 title: 'Why Your DTI Matters More Than Your Credit Score'
+seoTitle: 'Why DTI Beats Your Credit Score'
 description: 'A 150-character summary that also serves as the meta description for search results and social shares.'
 pubDate: 2026-03-14
 category: 'Buying'
@@ -125,6 +207,8 @@ Body copy starts here. Use `##` for section headings — `#` is reserved for the
 page title, which the layout renders.
 ```
 
+- `seoTitle` is optional and only affects the `<title>` tag. Use it when the headline is too long to stay under 60 characters once ` | The Herbert Team` is appended, which leaves 41 characters. The `h1`, cards, and Article JSON-LD always use the full `title`, so the headline can stay as compelling as you like. `npm run audit:seo` flags any post that needs one.
+- `description` should land between 140 and 160 characters — long enough to fill the search snippet, short enough that Google does not truncate it.
 - `category` must be one of the values in the schema: `Buying`, `Refinancing`, `VA`, `Self-Employed`, `Investing`, `Austin Market`, `Rates`. Categories drive the filter chips on `/blog`.
 - `featured: true` promotes the post to the large card at the top of `/blog`. Keep exactly one post featured.
 - Read time is calculated automatically from word count.
@@ -191,3 +275,16 @@ Pivot Point form IDs for contact, the four partner tracks, guide downloads, and 
 This is a bank-affiliated mortgage lending site. Every page footer carries dual NMLS identification, Equal Housing Lender, Member FDIC, and the "not a commitment to lend" disclosure. Program language is intentionally conditional throughout, no specific rates are quoted anywhere, and the testimonial disclaimer appears wherever testimonials render. Keep it that way when editing copy.
 
 Full detail lives on `/licensing`, `/privacy-policy`, and `/terms`.
+
+**Primis marketing compliance has reviewed and signed off on the site as it
+stands, and confirmed the licensing verbiage.** That sign-off covers the current
+copy. Material new claims — a new loan program, a rate or fee figure, a named
+testimonial, a new lead magnet — are outside it and should go back for review.
+
+One item to keep in mind: seven of the eight loan-program images carry marketing
+copy rendered into the pixels rather than set as HTML. That text is advertising,
+but it cannot be edited when a guideline changes without re-exporting the
+artwork, and it is invisible to screen readers and search engines. The VA image
+originally read "COMPETITIVE INTEREST RATES" and was retouched to remove it (see
+`scripts/retouch-va-sign.mjs`). Should a guideline change, budget for artwork
+edits, not copy edits.

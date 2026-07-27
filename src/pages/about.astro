@@ -78,7 +78,7 @@ const schema = combineSchema(personSchema, breadcrumbSchema(crumbs));
 
 <PageLayout
   title="About Jason Herbert, Mortgage Advisor"
-  description="Meet Jason Herbert, a Georgetown, TX mortgage advisor with 20+ years of experience solving financing problems for self-employed buyers, veterans, investors, and first-time homeowners."
+  description="Meet Jason Herbert, a Georgetown, TX mortgage advisor solving financing problems for self-employed buyers, veterans, investors, and first-time homeowners."
   heroEyebrow="About"
   heroTitle="20 Years of Saying “Here’s How We Do It” Instead of “No.”"
   heroSubtitle="I am not the lender with the flashiest rate ad. I am the one people call after somebody else turned them down — and the one smart buyers call first so they never hear no in the first place."
@@ -280,16 +280,15 @@ const schema = combineSchema(personSchema, breadcrumbSchema(crumbs));
 
       <div>
         <div
-          class="flex aspect-video w-full flex-col items-center justify-center rounded-card border-2 border-dashed border-silver bg-white p-8 text-center"
+          class="flex aspect-video w-full flex-col items-center justify-center rounded-card bg-navy p-8 text-center shadow-card"
         >
-          <span class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-brandblue-soft text-brandblue">
+          <span class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-brandblue text-white">
             <Icon name="play" size={30} />
           </span>
-          <p class="mt-5 font-heading text-lg font-bold text-navy">Video introduction</p>
-          <p class="mt-2 max-w-sm text-sm text-graytext">
-            {/* TODO: Replace with the embedded YouTube introduction video once final footage is available. */}
-            A short introduction video will live here. Until then, the YouTube channel has dozens of full-length
-            mortgage explainers.
+          <p class="mt-5 font-heading text-lg font-bold text-white">Watch Me Explain It Instead</p>
+          <p class="mt-2 max-w-sm text-sm text-silver-light">
+            Dozens of full-length mortgage explainers — bank statement loans, VA entitlement, DSCR math — walked through
+            end to end on the YouTube channel.
           </p>
           <Button href={site.social.youtube} variant="primary" size="sm" class="mt-5" external icon="arrow-right">
             Visit the channel

@@ -19,7 +19,7 @@ interface Props {
 }
 
 const { post, readingMinutes, related } = Astro.props;
-const { title, description, pubDate, updatedDate, category, image, imageAlt, author } = post.data;
+const { title, seoTitle, description, pubDate, updatedDate, category, image, imageAlt, author } = post.data;
 
 const crumbs = [
   { label: 'Home', href: '/' },
@@ -40,7 +40,7 @@ const schema = combineSchema(
 );
 ---
 
-<Layout title={title} description={description} image={image} type="article" schema={schema}>
+<Layout title={seoTitle ?? title} description={description} image={image} type="article" schema={schema}>
   <article>
     <header class="border-b border-silver-light bg-offwhite py-10 md:py-14">
       <Container>

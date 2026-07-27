@@ -39,5 +39,21 @@ export const testimonialCategories = [
   'Refinance',
 ] as const;
 
+export type VideoTestimonial = {
+  /** YouTube video ID, the part after `v=`. */
+  youtubeId: string;
+  title: string;
+  author: string;
+  role: string;
+};
+
+/**
+ * Client video reviews for /reviews.
+ *
+ * Empty until footage is filmed and cleared. The section renders only when this
+ * has entries, so an empty list hides it rather than showing empty slots.
+ */
+export const videoTestimonials: VideoTestimonial[] = [];
+
 export const testimonialDisclaimer =
   'Testimonials reflect individual experiences. Results vary and are not a guarantee of future outcomes.';

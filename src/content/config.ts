@@ -4,6 +4,9 @@ const blog = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
+    // Search-result title, used when the headline is too long to fit under 60
+    // characters once the site name is appended.
+    seoTitle: z.string().optional(),
     description: z.string(),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),

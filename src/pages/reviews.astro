@@ -7,8 +7,15 @@ import GoogleReviews from '../components/ui/GoogleReviews.astro';
 import StatBar from '../components/ui/StatBar.astro';
 import Icon from '../components/ui/Icon.astro';
 import Button from '../components/Button.astro';
-import { testimonials, testimonialCategories, testimonialDisclaimer } from '../data/testimonials';
+import {
+  testimonials,
+  testimonialCategories,
+  testimonialDisclaimer,
+  videoTestimonials,
+} from '../data/testimonials';
 import { breadcrumbSchema } from '../utils/seo';
+
+const hasVideo = videoTestimonials.length > 0;
 
 const crumbs = [
   { label: 'Home', href: '/' },
@@ -33,7 +40,7 @@ const partnerTestimonials = [
 
 <PageLayout
   title="Client Reviews & Testimonials"
-  description="Read reviews for Jason Herbert and The Herbert Team. Five-star Google ratings from first-time buyers, self-employed borrowers, veterans, and move-up buyers across Texas."
+  description="Read reviews for The Herbert Team. Five-star Google ratings from first-time buyers, self-employed borrowers, veterans, and move-up buyers across Texas."
   heroEyebrow="Social Proof"
   heroTitle="Thousands of Closings. Here’s What They Said."
   heroSubtitle="Twenty years of files, and the feedback that means the most is almost never about the rate. It is about being answered, being explained to, and being told the truth."
@@ -104,27 +111,35 @@ const partnerTestimonials = [
   </Section>
 
   <Section bg="offwhite">
-    <div class="grid gap-8 lg:grid-cols-2 lg:gap-12">
-      <div>
-        <SectionHeading eyebrow="Video Reviews" title="Coming Soon" align="left" class="mb-6" />
-        <div class="grid gap-5 sm:grid-cols-2">
-          {
-            [1, 2].map((slot) => (
-              <div class="flex aspect-video flex-col items-center justify-center rounded-card border-2 border-dashed border-silver bg-white p-6 text-center">
-                <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brandblue-soft text-brandblue">
-                  <Icon name="play" size={24} />
-                </span>
-                <p class="mt-3 text-sm text-graytext">
-                  {/* TODO: Embed client video testimonial once footage is delivered. */}
-                  Video testimonial slot {slot}
-                </p>
-              </div>
-            ))
-          }
-        </div>
-      </div>
+    <div class={hasVideo ? 'grid gap-8 lg:grid-cols-2 lg:gap-12' : ''}>
+      {
+        hasVideo && (
+          <div>
+            <SectionHeading eyebrow="Video Reviews" title="In Their Own Words" align="left" class="mb-6" />
+            <div class="grid gap-5 sm:grid-cols-2">
+              {videoTestimonials.map((video) => (
+                <figure>
+                  <div class="aspect-video overflow-hidden rounded-card bg-navy shadow-card">
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}`}
+                      title={video.title}
+                      loading="lazy"
+                      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                      class="h-full w-full border-0"
+                    />
+                  </div>
+                  <figcaption class="mt-3 text-sm text-graytext">
+                    <span class="font-semibold text-navy">{video.author}</span> — {video.role}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        )
+      }
 
-      <div>
+      <div class={hasVideo ? '' : 'mx-auto max-w-3xl'}>
         <SectionHeading eyebrow="From Partners" title="What Agents and Advisors Say" align="left" class="mb-6" />
         <div class="space-y-5">
           {partnerTestimonials.map((item) => <TestimonialCard {...item} />)}
