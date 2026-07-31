@@ -10,6 +10,7 @@ export type TrackEvent =
   | 'email_click'
   | 'begin_application'
   | 'view_loan_program'
+  | 'open_guide_form'
   | 'download_guide'
   | 'newsletter_signup';
 
@@ -25,6 +26,9 @@ const EVENTS: Record<TrackEvent, EventMap> = {
   email_click: { meta: 'Contact', ga4: 'email_click' },
   begin_application: { meta: 'SubmitApplication', ga4: 'begin_application' },
   view_loan_program: { meta: 'ViewContent', ga4: 'view_loan_program' },
+  // Opening the guide form is interest, not a lead. `download_guide` is reserved
+  // for the submission itself, so Meta never optimises against a mere click.
+  open_guide_form: { meta: 'ViewContent', ga4: 'open_guide_form' },
   download_guide: { meta: 'Lead', ga4: 'download_guide' },
   newsletter_signup: { meta: 'CompleteRegistration', ga4: 'newsletter_signup' },
 };

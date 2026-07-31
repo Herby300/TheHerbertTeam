@@ -54,8 +54,7 @@ const panelId = `resource-${slug}`;
             aria-expanded="false"
             aria-controls={panelId}
             data-resource-trigger
-            data-track="download_guide"
-            data-track-params={JSON.stringify({ guide_name: title })}
+            data-guide-name={title}
           >
             <Icon name="download" size={16} />
             Get the free guide
@@ -73,6 +72,8 @@ const panelId = `resource-${slug}`;
 </article>
 
 <script>
+  import { track } from '../../utils/tracking';
+
   document.querySelectorAll<HTMLButtonElement>('[data-resource-trigger]').forEach((trigger) => {
     trigger.addEventListener('click', () => {
       const panel = trigger.parentElement?.querySelector<HTMLElement>('[data-resource-panel]');
@@ -80,6 +81,14 @@ const panelId = `resource-${slug}`;
       const expanded = trigger.getAttribute('aria-expanded') === 'true';
       trigger.setAttribute('aria-expanded', String(!expanded));
       panel.classList.toggle('hidden', expanded);
+
+      // Tracked here rather than via data-track so collapsing does not fire too.
+      if (!expanded) {
+        track('open_guide_form', {
+          guide_name: trigger.dataset.guideName,
+          source_page: window.location.pathname,
+        });
+      }
     });
   });
 </script>
