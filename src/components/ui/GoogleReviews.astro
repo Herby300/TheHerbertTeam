@@ -31,16 +31,27 @@ const { class: className = '', minHeight = '420px' } = Astro.props;
 {/*
   Load EmbedSocial only on pages that render this component. The script id guard
   matches EmbedSocial's own snippet so a second instance on the same page is a no-op.
+  After load, dispatch resize so the widget recalculates width; a second resize
+  covers the async review render. Resize is scheduled only from the loader that
+  injects the script — never from duplicate mounts.
 */}
 <script is:inline>
   (function (d, s, id) {
-    var js;
     if (d.getElementById(id)) {
       return;
     }
-    js = d.createElement(s);
+
+    function dispatchResize() {
+      window.dispatchEvent(new Event('resize'));
+    }
+
+    var js = d.createElement(s);
     js.id = id;
     js.src = 'https://embedsocial.com/cdn/ht.js';
+    js.onload = function () {
+      dispatchResize();
+      window.setTimeout(dispatchResize, 850);
+    };
     d.getElementsByTagName('head')[0].appendChild(js);
   })(document, 'script', 'EmbedSocialHashtagScript');
 </script>
