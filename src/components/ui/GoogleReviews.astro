@@ -44,3 +44,17 @@ const { class: className = '', minHeight = '420px' } = Astro.props;
     d.getElementsByTagName('head')[0].appendChild(js);
   })(document, 'script', 'EmbedSocialHashtagScript');
 </script>
+
+<style>
+  .google-reviews-embed {
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  .google-reviews-embed :global(.embedsocial-hashtag) {
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+  }
+</style>
