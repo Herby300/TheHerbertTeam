@@ -14,58 +14,5 @@ const { class: className = '', minHeight = '420px' } = Astro.props;
   style={`min-height:${minHeight}`}
   aria-label="Google Reviews for The Herbert Team"
 >
-  <div class="embedsocial-hashtag" data-ref={site.googleReviewsWidgetId}>
-    <a
-      class="feed-powered-by-es feed-powered-by-es-feed-img es-widget-branding"
-      href="https://embedsocial.com/"
-      target="_blank"
-      rel="noopener noreferrer"
-      title="Widget by EmbedSocial"
-    >
-      <img src="https://embedsocial.com/cdn/icon/embedsocial-logo.webp" alt="EmbedSocial" width="20" height="20" />
-      <div class="es-widget-branding-text">Widget by EmbedSocial</div>
-    </a>
-  </div>
+  <div class={`commonninja_component pid-${site.googleReviewsWidgetId}`}></div>
 </div>
-
-{/*
-  Load EmbedSocial only on pages that render this component. The script id guard
-  matches EmbedSocial's own snippet so a second instance on the same page is a no-op.
-  After load, dispatch resize so the widget recalculates width; a second resize
-  covers the async review render. Resize is scheduled only from the loader that
-  injects the script — never from duplicate mounts.
-*/}
-<script is:inline>
-  (function (d, s, id) {
-    if (d.getElementById(id)) {
-      return;
-    }
-
-    function dispatchResize() {
-      window.dispatchEvent(new Event('resize'));
-    }
-
-    var js = d.createElement(s);
-    js.id = id;
-    js.src = 'https://embedsocial.com/cdn/ht.js';
-    js.onload = function () {
-      dispatchResize();
-      window.setTimeout(dispatchResize, 850);
-    };
-    d.getElementsByTagName('head')[0].appendChild(js);
-  })(document, 'script', 'EmbedSocialHashtagScript');
-</script>
-
-<style>
-  .google-reviews-embed {
-    width: 100%;
-    max-width: 100%;
-    overflow: visible;
-  }
-
-  .google-reviews-embed :global(.embedsocial-hashtag) {
-    width: 100%;
-    max-width: 100%;
-    overflow: visible;
-  }
-</style>

@@ -42,8 +42,8 @@ export const site = {
     gtm: '', // not in use
   },
 
-  // EmbedSocial Google Reviews widget (data-ref)
-  googleReviewsWidgetId: '64fac06832007f6c96f7898193dcf62c64d53077',
+  // Common Ninja Google Reviews widget
+  googleReviewsWidgetId: '6786a943-440c-4d63-bf8b-4c9152088c39',
 } as const;
 
 // Pivot Point (GHL) form IDs
