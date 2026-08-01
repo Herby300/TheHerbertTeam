@@ -58,6 +58,30 @@ const selfEmployedDocs = [
   showHeroCtas={false}
   schema={breadcrumbSchema(crumbs)}
 >
+  <Section bg="white" padding="sm">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="text-body-lg text-charcoal">
+        Ready to get started? Begin your secure online application now.
+      </p>
+      <div class="mt-6 flex justify-center">
+        <Button
+          href={site.applyUrl}
+          variant="primary"
+          size="lg"
+          icon="external-link"
+          external
+          track="begin_application"
+          trackParams={{ cta_location: 'apply_page_top' }}
+        >
+          Start Your Mortgage Application
+        </Button>
+      </div>
+      <p class="mt-5 text-sm leading-relaxed text-graytext">
+        Not quite ready? Continue scrolling to learn how the approval process works and what to expect.
+      </p>
+    </div>
+  </Section>
+
   <Section bg="offwhite">
     <div class="mx-auto max-w-4xl">
       <div class="flex gap-4 rounded-card border-l-4 border-brandblue bg-white p-6 shadow-card md:p-8">
