@@ -43,7 +43,7 @@ export const site = {
   },
 
   // Common Ninja Google Reviews widget
-  googleReviewsWidgetId: '6786a943-440c-4d63-bf8b-4c9152088c39',
+  googleReviewsWidgetId: 'fb5ecfcb-806d-4364-988d-97e1cbb83543',
 } as const;
 
 // Pivot Point (GHL) form IDs
