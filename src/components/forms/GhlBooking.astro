@@ -25,6 +25,14 @@ const title = 'Schedule a Free Mortgage Strategy Consultation';
     data-layout-iframe-id={`${bookingId}_booking`}
     data-form-id={bookingId}
     title={title}
-    scrolling="no"
-    loading="lazy"></iframe>
+    loading="eager"></iframe>
+  <p class="px-5 pb-5 pt-3 text-center text-sm text-graytext">
+    Calendar not loading?{' '}
+    <a
+      href={site.calendlyUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="font-semibold text-brandblue hover:underline">Open it in a new tab</a
+    >.
+  </p>
 </div>

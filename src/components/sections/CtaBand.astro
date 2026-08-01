@@ -15,6 +15,10 @@ const {
   subtitle = 'Apply online in about 12 minutes, or grab a free 20-minute strategy call. Either way, you\u2019ll leave knowing more than you do right now.',
   class: className = '',
 } = Astro.props;
+
+// Visitors already on /schedule are looking at the calendar, so a button back to
+// it would only reload the page. Trailing slashes are stripped so both forms match.
+const isSchedulePage = Astro.url.pathname.replace(/\/+$/, '') === '/schedule';
 ---
 
 <section class={`bg-navy py-16 md:py-20 ${className}`}>
@@ -34,9 +38,13 @@ const {
         >
           Apply Online
         </Button>
-        <Button href="/schedule" variant="outline-white" size="lg" track="schedule">
-          Schedule Free Consultation
-        </Button>
+        {
+          !isSchedulePage && (
+            <Button href="/schedule" variant="outline-white" size="lg" track="schedule">
+              Schedule Free Consultation
+            </Button>
+          )
+        }
       </div>
       <p class="mt-6">
         <a
