@@ -8,24 +8,49 @@ interface Props {
   class?: string;
   /** Labels the form for the submission tracking listener in Layout.astro. */
   formType?: string;
+  /** iframe loading strategy. Defaults to lazy so existing embeds keep current behavior. */
+  loading?: 'lazy' | 'eager';
+  /**
+   * Skip GHL form_embed.js handshake attributes and render a plain iframe.
+   * Defaults to false so every existing form keeps current embed behavior.
+   */
+  plainIframe?: boolean;
 }
 
-const { formId, title, height = '560', class: className = '', formType } = Astro.props;
+const {
+  formId,
+  title,
+  height = '560',
+  class: className = '',
+  formType,
+  loading = 'lazy',
+  plainIframe = false,
+} = Astro.props;
+
+const src = `${formBase}${formId}`;
+const frameStyle = `width:100%; height:${height}px; border:none; border-radius:0.875rem;`;
 ---
 
 <div class={`ghl-form-wrap ${className}`} data-ghl-active={formType ?? title}>
-  <iframe
-    src={`${formBase}${formId}`}
-    style={`width:100%; height:${height}px; border:none; border-radius:0.875rem;`}
-    id={`inline-${formId}`}
-    data-layout="{'id':'INLINE'}"
-    data-trigger-type="alwaysShow"
-    data-activation-type="alwaysActivated"
-    data-deactivation-type="neverDeactivate"
-    data-form-name={title}
-    data-height={height}
-    data-layout-iframe-id={`inline-${formId}`}
-    data-form-id={formId}
-    title={title}
-    loading="lazy"></iframe>
+  {
+    plainIframe ? (
+      <iframe src={src} title={title} style={frameStyle} loading="eager" />
+    ) : (
+      <iframe
+        src={src}
+        style={frameStyle}
+        id={`inline-${formId}`}
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-activation-type="alwaysActivated"
+        data-deactivation-type="neverDeactivate"
+        data-form-name={title}
+        data-height={height}
+        data-layout-iframe-id={`inline-${formId}`}
+        data-form-id={formId}
+        title={title}
+        loading={loading}
+      />
+    )
+  }
 </div>
