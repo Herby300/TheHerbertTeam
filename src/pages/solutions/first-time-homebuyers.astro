@@ -8,6 +8,7 @@ import AccordionItem from '../../components/ui/AccordionItem.astro';
 import Icon from '../../components/ui/Icon.astro';
 import Button from '../../components/Button.astro';
 import { getSolution } from '../../data/solutions';
+import { formIds } from '../../data/site';
 
 const solution = getSolution('first-time-homebuyers');
 
@@ -76,6 +77,7 @@ const glossary = [
   <LeadMagnetStrip
     slot="after-intro"
     bg="soft"
+    formId={formIds.firstTimeHomebuyerGuide}
     title="Start With the Free First-Time Homebuyer Guide"
     description="Everything on this page, expanded — plus a printable checklist, a budget worksheet, and the document list underwriting will ask for. Read it before you talk to anyone, including me."
     bullets={[

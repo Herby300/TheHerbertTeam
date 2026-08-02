@@ -10,6 +10,8 @@ interface Props {
   bullets?: string[];
   bg?: 'offwhite' | 'white' | 'soft';
   class?: string;
+  /** Defaults to the generic Website Guide Download form. */
+  formId?: string;
 }
 
 const {
@@ -22,6 +24,7 @@ const {
   ],
   bg = 'offwhite',
   class: className = '',
+  formId = formIds.guideDownload,
 } = Astro.props;
 
 const backgrounds: Record<string, string> = {
@@ -53,7 +56,7 @@ const backgrounds: Record<string, string> = {
         <p class="mt-5 text-sm text-graytext">No cost, no obligation, and your email is never sold or shared.</p>
       </div>
       <div class="overflow-hidden rounded-card border border-silver-light bg-offwhite p-2">
-        <GhlForm formId={formIds.guideDownload} title="Free Homebuyer Guide Download" formType="guide_download" height="420" />
+        <GhlForm formId={formId} title="Free Homebuyer Guide Download" formType="guide_download" height="420" />
       </div>
     </div>
   </Container>
