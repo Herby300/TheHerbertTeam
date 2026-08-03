@@ -42,8 +42,8 @@ export const site = {
     gtm: '', // not in use
   },
 
-  // Common Ninja Google Reviews widget
-  googleReviewsWidgetId: 'fb5ecfcb-806d-4364-988d-97e1cbb83543',
+  // Elfsight Google Reviews widget
+  elfsightReviewsAppId: '911fd532-32b6-49fb-ae5e-cf0206de114f',
 } as const;
 
 // Pivot Point (GHL) form IDs

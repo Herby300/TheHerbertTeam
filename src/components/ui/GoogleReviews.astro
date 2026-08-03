@@ -14,5 +14,23 @@ const { class: className = '', minHeight = '420px' } = Astro.props;
   style={`min-height:${minHeight}`}
   aria-label="Google Reviews for The Herbert Team"
 >
-  <div class={`commonninja_component pid-${site.googleReviewsWidgetId}`}></div>
+  <div class={`elfsight-app-${site.elfsightReviewsAppId}`} data-elfsight-app-lazy></div>
 </div>
+
+{/*
+  Load Elfsight only on pages that render this component. The script id guard
+  ensures a second instance on the same page is a no-op.
+*/}
+<script is:inline>
+  (function (d, s, id) {
+    var js;
+    if (d.getElementById(id)) {
+      return;
+    }
+    js = d.createElement(s);
+    js.id = id;
+    js.src = 'https://elfsightcdn.com/platform.js';
+    js.async = true;
+    d.getElementsByTagName('head')[0].appendChild(js);
+  })(document, 'script', 'elfsight-platform');
+</script>
