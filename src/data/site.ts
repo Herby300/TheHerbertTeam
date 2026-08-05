@@ -48,7 +48,7 @@ export const site = {
 
 // Pivot Point (GHL) form IDs
 export const formIds = {
-  contact:                 'sBP5YbCcAUi9XgLwfjgc',
+  contact:                 'CEGdqOqO0yIyXFNQBQKd',
   realtor:                 'LLXntLqMfWRwciDFbS6Z',
   financialAdvisor:        'RZ3es9vh27Zi3qN9emCW',
   divorceAttorney:         'uCv1pcJrjwy0KKbDSCe9',
