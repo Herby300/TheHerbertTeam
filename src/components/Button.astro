@@ -38,7 +38,8 @@ const base =
   'inline-flex items-center justify-center gap-2 font-heading font-semibold rounded-lg transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandblue disabled:opacity-60';
 
 const variants: Record<string, string> = {
-  primary: 'bg-brandblue text-white shadow-cta hover:bg-brandblue-hover hover:-translate-y-0.5 active:translate-y-0',
+  primary:
+    'bg-brandblue-cta text-white shadow-cta hover:bg-brandblue-cta-hover hover:-translate-y-0.5 active:translate-y-0 active:bg-brandblue-cta-hover',
   secondary: 'bg-white text-navy border-2 border-navy hover:bg-navy hover:text-white',
   white: 'bg-white text-navy shadow-card hover:bg-offwhite hover:-translate-y-0.5',
   'outline-white': 'bg-transparent text-white border-2 border-white hover:bg-white hover:text-navy',

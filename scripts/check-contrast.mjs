@@ -103,11 +103,15 @@ for (const panel of PANELS) {
 
 console.log(failed ? '\nContrast check failed.' : '\nAll roles clear WCAG AA at every pixel.');
 
-// Flat token pairs for text/links on white (performance-foundation a11y pass).
+// Flat token pairs for text/links/CTAs (performance-foundation a11y pass).
 const FLAT = [
   { name: 'brandblue-text on white', fg: '#0369A1', bg: '#FFFFFF', need: 4.5 },
+  { name: 'brandblue-text on offwhite', fg: '#0369A1', bg: '#F7F7F6', need: 4.5 },
   { name: 'brandblue-text-hover on white', fg: '#075985', bg: '#FFFFFF', need: 4.5 },
-  { name: 'brandblue fill on white (decorative/large only)', fg: '#0698F8', bg: '#FFFFFF', need: 3 },
+  { name: 'white on brandblue-cta (primary button)', fg: '#FFFFFF', bg: '#0369A1', need: 4.5 },
+  { name: 'white on brandblue-cta-hover', fg: '#FFFFFF', bg: '#075985', need: 4.5 },
+  { name: 'brandblue on navy (decorative/invert)', fg: '#0698F8', bg: '#010E71', need: 4.5 },
+  { name: 'bright brandblue on white (icons/large only)', fg: '#0698F8', bg: '#FFFFFF', need: 3 },
 ];
 
 console.log('\nFlat token pairs');

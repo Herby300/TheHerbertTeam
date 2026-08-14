@@ -28,8 +28,9 @@ const outcomes = [
 
 <section class="relative isolate overflow-hidden bg-navy">
   <div class="absolute inset-0 bg-gradient-to-br from-navy-light via-navy to-navy-dark" aria-hidden="true"></div>
+  {/* Decorative blur is desktop-only — filter:blur on a large layer can postpone LCP paint on mobile. */}
   <div
-    class="pointer-events-none absolute -right-32 top-1/2 h-[34rem] w-[34rem] -translate-y-1/2 rounded-full bg-brandblue/20 blur-3xl"
+    class="pointer-events-none absolute -right-32 top-1/2 hidden h-[34rem] w-[34rem] -translate-y-1/2 rounded-full bg-brandblue/20 blur-3xl lg:block"
     aria-hidden="true"
   >
   </div>
@@ -72,6 +73,10 @@ const outcomes = [
         </div>
       </div>
 
+      {/*
+        LCP: no opacity/reveal, sync decode, no CSS filter on the image.
+        box-shadow (shadow-2xl) replaces drop-shadow-2xl so paint is not gated on filter rasterization.
+      */}
       <div class="mt-10 lg:col-span-5 lg:col-start-8 lg:row-span-2 lg:row-start-1 lg:mt-0 lg:self-end">
         <Image
           src={heroHeadshot}
@@ -82,10 +87,10 @@ const outcomes = [
           height={1467}
           loading="eager"
           fetchpriority="high"
-          decoding="async"
+          decoding="sync"
           format="webp"
           quality={82}
-          class="mx-auto block w-full max-w-[17rem] drop-shadow-2xl sm:max-w-[20rem] lg:max-w-none"
+          class="mx-auto block w-full max-w-[17rem] shadow-2xl sm:max-w-[20rem] lg:max-w-none"
         />
       </div>
 

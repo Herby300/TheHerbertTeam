@@ -25,7 +25,9 @@ const {
 
 const alignment = align === 'center' ? 'text-center mx-auto' : 'text-left';
 const titleSize = Tag === 'h1' ? 'text-display' : 'text-h2';
-const eyebrowTone = eyebrowColor === 'gold' ? 'text-gold' : invert ? 'text-brandblue' : 'text-brandblue';
+// Light surfaces need AA text blue; navy/invert can keep bright brandblue.
+const eyebrowTone =
+  eyebrowColor === 'gold' ? 'text-gold' : invert ? 'text-brandblue' : 'text-brandblue-text';
 ---
 
 <div class={`${alignment} max-w-3xl ${className}`}>

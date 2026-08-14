@@ -16,6 +16,9 @@ export default {
           // AA-compliant text/link tones on white (≥4.5:1). Keep DEFAULT for fills/icons.
           text: '#0369A1',
           'text-hover': '#075985',
+          // AA-compliant solid CTA fill with white label text (≥4.5:1).
+          cta: '#0369A1',
+          'cta-hover': '#075985',
         },
         silver: {
           DEFAULT: '#C5C4C3',

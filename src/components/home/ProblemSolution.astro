@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import Section from '../Section.astro';
 import Button from '../Button.astro';
 import { site } from '../../data/site';
+import headshotLarge from '../../assets/images/jason-headshot-large.webp';
 ---
 
 <Section bg="offwhite" id="why-me">
@@ -46,19 +48,27 @@ import { site } from '../../data/site';
       </Button>
     </div>
 
-    <div class="reveal relative mx-auto w-full max-w-md lg:max-w-none">
+    {/*
+      No .reveal here: opacity:0 + IntersectionObserver was delaying paint of this large
+      headshot (and can dominate mobile LCP). Image stays lazy; visible as soon as it loads.
+    */}
+    <div class="relative mx-auto w-full max-w-md lg:max-w-none">
       <div
         class="absolute -bottom-5 -left-5 h-full w-full rounded-card bg-navy sm:-bottom-6 sm:-left-6"
         aria-hidden="true"
       >
       </div>
-      <img
-        src="/images/jason-headshot-large.webp"
+      <Image
+        src={headshotLarge}
         alt={`${site.advisor}, ${site.positioning}, in Georgetown, Texas`}
-        width="1000"
-        height="1250"
+        widths={[372, 480, 744, 1000]}
+        sizes="(max-width: 1024px) min(100vw - 2.5rem, 28rem), min(40vw, 28rem)"
+        width={1000}
+        height={1250}
         loading="lazy"
         decoding="async"
+        format="webp"
+        quality={82}
         class="relative aspect-[4/5] w-full rounded-card bg-gradient-to-b from-silver-light to-white object-cover shadow-card-hover"
       />
       <div
