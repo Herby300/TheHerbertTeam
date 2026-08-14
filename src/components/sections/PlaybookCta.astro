@@ -1,0 +1,90 @@
+---
+import Container from '../Container.astro';
+import Button from '../Button.astro';
+import Icon from '../ui/Icon.astro';
+import { playbook } from '../../data/site';
+
+interface Props {
+  bg?: 'offwhite' | 'white' | 'navy' | 'soft';
+  class?: string;
+  /** Skip outer section/container — for placing inside an existing layout column. */
+  embedded?: boolean;
+}
+
+const { bg = 'soft', class: className = '', embedded = false } = Astro.props;
+
+const backgrounds: Record<string, string> = {
+  offwhite: 'bg-offwhite',
+  white: 'bg-white',
+  navy: 'bg-navy',
+  soft: 'bg-brandblue-soft',
+};
+
+const isNavy = bg === 'navy';
+const cardClass = `grid items-center gap-6 rounded-card border p-6 shadow-card md:p-8 lg:grid-cols-[1.2fr_auto] lg:gap-8 ${
+  isNavy ? 'border-white/15 bg-navy-light/40' : 'border-silver-light bg-white'
+} ${embedded ? className : ''}`;
+const iconWrapClass = `inline-flex h-12 w-12 items-center justify-center rounded-lg ${
+  isNavy ? 'bg-white/10 text-brandblue' : 'bg-brandblue-soft text-brandblue'
+}`;
+const titleClass = `mt-5 text-h3 font-bold ${isNavy ? 'text-white' : 'text-navy'}`;
+const copyClass = `mt-3 max-w-2xl leading-relaxed ${isNavy ? 'text-silver-light' : 'text-graytext'}`;
+---
+
+{
+  embedded ? (
+    <div class={cardClass}>
+      <div>
+        <span class={iconWrapClass}>
+          <Icon name="book-open" size={24} />
+        </span>
+        <h2 class={titleClass}>Buying Your First Home?</h2>
+        <p class={copyClass}>
+          Download the First-Time Home Buyer&rsquo;s Playbook and get a clear roadmap from preapproval to closing.
+        </p>
+      </div>
+      <div class="lg:justify-self-end">
+        <Button
+          href={playbook.href}
+          variant="primary"
+          size="lg"
+          icon="arrow-right"
+          fullWidth
+          track="playbook_cta_click"
+          trackParams={{ guide_name: playbook.title, cta_location: 'playbook_cta' }}
+        >
+          Get the Free Playbook
+        </Button>
+      </div>
+    </div>
+  ) : (
+    <section class={`${backgrounds[bg]} py-14 md:py-16 ${className}`}>
+      <Container>
+        <div class={cardClass}>
+          <div>
+            <span class={iconWrapClass}>
+              <Icon name="book-open" size={24} />
+            </span>
+            <h2 class={titleClass}>Buying Your First Home?</h2>
+            <p class={copyClass}>
+              Download the First-Time Home Buyer&rsquo;s Playbook and get a clear roadmap from preapproval to closing.
+            </p>
+          </div>
+          <div class="lg:justify-self-end">
+            <Button
+              href={playbook.href}
+              variant="primary"
+              size="lg"
+              icon="arrow-right"
+              fullWidth
+              track="playbook_cta_click"
+              trackParams={{ guide_name: playbook.title, cta_location: 'playbook_cta' }}
+            >
+              Get the Free Playbook
+            </Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+  )
+}

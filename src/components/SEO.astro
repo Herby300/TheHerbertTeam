@@ -5,6 +5,9 @@ interface Props {
   title: string;
   description: string;
   image?: string;
+  /** When both are set, emit accurate og:image width/height. Otherwise omit them. */
+  imageWidth?: number;
+  imageHeight?: number;
   canonical?: string;
   type?: 'website' | 'article' | 'profile';
   noindex?: boolean;
@@ -15,6 +18,8 @@ const {
   title,
   description,
   image = '/images/og-default.jpg',
+  imageWidth,
+  imageHeight,
   canonical,
   type = 'website',
   noindex = false,
@@ -25,6 +30,20 @@ const base = Astro.site ?? new URL(site.url);
 const canonicalUrl = canonical ? new URL(canonical, base).toString() : new URL(Astro.url.pathname, base).toString();
 const imageUrl = new URL(image, base).toString();
 const fullTitle = `${title} | ${site.name}`;
+const resolvedWidth =
+  typeof imageWidth === 'number' && imageWidth > 0
+    ? imageWidth
+    : image === '/images/og-default.jpg'
+      ? 1200
+      : undefined;
+const resolvedHeight =
+  typeof imageHeight === 'number' && imageHeight > 0
+    ? imageHeight
+    : image === '/images/og-default.jpg'
+      ? 630
+      : undefined;
+const hasImageDimensions =
+  typeof resolvedWidth === 'number' && typeof resolvedHeight === 'number';
 ---
 
 <title>{fullTitle}</title>
@@ -41,8 +60,8 @@ const fullTitle = `${title} | ${site.name}`;
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={imageUrl} />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
+{hasImageDimensions && <meta property="og:image:width" content={String(resolvedWidth)} />}
+{hasImageDimensions && <meta property="og:image:height" content={String(resolvedHeight)} />}
 <meta property="og:image:alt" content={`${site.name} — ${site.tagline}`} />
 <meta property="og:site_name" content={site.name} />
 <meta property="og:locale" content="en_US" />

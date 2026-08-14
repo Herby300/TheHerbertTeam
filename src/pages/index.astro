@@ -7,6 +7,7 @@ import Testimonials from '../components/home/Testimonials.astro';
 import Services from '../components/home/Services.astro';
 import TwoFutures from '../components/home/TwoFutures.astro';
 import FaqCta from '../components/home/FaqCta.astro';
+import PlaybookCta from '../components/sections/PlaybookCta.astro';
 import { homepageFaqs } from '../data/faqs';
 import { faqSchema } from '../utils/seo';
 
@@ -21,6 +22,7 @@ const schema = faqSchema(homepageFaqs.map((faq) => ({ q: faq.q, a: faq.a })));
   <Hero />
   <ProblemSolution />
   <Benefits />
+  <PlaybookCta bg="soft" />
   <Testimonials />
   <Services />
   <TwoFutures />

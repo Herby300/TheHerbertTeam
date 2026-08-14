@@ -3,6 +3,7 @@ import ProgramLayout from '../../layouts/ProgramLayout.astro';
 import Section from '../../components/Section.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import LeadMagnetStrip from '../../components/sections/LeadMagnetStrip.astro';
+import PlaybookCta from '../../components/sections/PlaybookCta.astro';
 import Accordion from '../../components/ui/Accordion.astro';
 import AccordionItem from '../../components/ui/AccordionItem.astro';
 import Icon from '../../components/ui/Icon.astro';
@@ -176,4 +177,6 @@ const glossary = [
       </Button>
     </div>
   </Section>
+
+  <PlaybookCta slot="before-faq" bg="white" />
 </ProgramLayout>

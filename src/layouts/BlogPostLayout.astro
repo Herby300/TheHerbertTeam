@@ -4,6 +4,7 @@ import Container from '../components/Container.astro';
 import Section from '../components/Section.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import CtaBand from '../components/sections/CtaBand.astro';
+import PlaybookCta from '../components/sections/PlaybookCta.astro';
 import BlogCard from '../components/ui/BlogCard.astro';
 import Button from '../components/Button.astro';
 import Icon from '../components/ui/Icon.astro';
@@ -20,6 +21,9 @@ interface Props {
 
 const { post, readingMinutes, related } = Astro.props;
 const { title, seoTitle, description, pubDate, updatedDate, category, image, imageAlt, author } = post.data;
+
+const playbookCtaSlugs = ['first-time-buyer-mistakes', 'how-much-house-should-i-buy'];
+const showPlaybookCta = playbookCtaSlugs.includes(post.slug);
 
 const crumbs = [
   { label: 'Home', href: '/' },
@@ -89,6 +93,12 @@ const schema = combineSchema(
           <div class="prose mt-10 max-w-none">
             <slot />
           </div>
+
+          {showPlaybookCta && (
+            <div class="mt-12">
+              <PlaybookCta embedded />
+            </div>
+          )}
 
           <aside class="mt-12 rounded-card border border-silver-light bg-offwhite p-6 md:p-8">
             <div class="flex flex-col gap-5 sm:flex-row sm:items-start">

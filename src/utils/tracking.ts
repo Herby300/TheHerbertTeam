@@ -12,7 +12,11 @@ export type TrackEvent =
   | 'view_loan_program'
   | 'open_guide_form'
   | 'download_guide'
-  | 'newsletter_signup';
+  | 'newsletter_signup'
+  | 'playbook_landing_view'
+  | 'playbook_cta_click'
+  | 'playbook_form_submit'
+  | 'playbook_download_click';
 
 type EventMap = {
   meta: string;
@@ -31,6 +35,10 @@ const EVENTS: Record<TrackEvent, EventMap> = {
   open_guide_form: { meta: 'ViewContent', ga4: 'open_guide_form' },
   download_guide: { meta: 'Lead', ga4: 'download_guide' },
   newsletter_signup: { meta: 'CompleteRegistration', ga4: 'newsletter_signup' },
+  playbook_landing_view: { meta: 'ViewContent', ga4: 'playbook_landing_view' },
+  playbook_cta_click: { meta: 'ViewContent', ga4: 'playbook_cta_click' },
+  playbook_form_submit: { meta: 'Lead', ga4: 'playbook_form_submit' },
+  playbook_download_click: { meta: 'ViewContent', ga4: 'playbook_download_click' },
 };
 
 declare global {

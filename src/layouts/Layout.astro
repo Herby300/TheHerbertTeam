@@ -10,6 +10,9 @@ interface Props {
   title: string;
   description: string;
   image?: string;
+  /** Optional OG image dimensions. Omit both to skip inaccurate width/height tags. */
+  imageWidth?: number;
+  imageHeight?: number;
   canonical?: string;
   type?: 'website' | 'article' | 'profile';
   noindex?: boolean;
@@ -21,6 +24,8 @@ const {
   title,
   description,
   image,
+  imageWidth,
+  imageHeight,
   canonical,
   type,
   noindex = false,
@@ -42,6 +47,8 @@ const { metaPixel, ga4, gtm } = site.analytics;
       title={title}
       description={description}
       image={image}
+      imageWidth={imageWidth}
+      imageHeight={imageHeight}
       canonical={canonical}
       type={type}
       noindex={noindex}
@@ -220,13 +227,21 @@ const { metaPixel, ga4, gtm } = site.analytics;
       }
 
       // GoHighLevel iframes post a message on submit. The payload shape varies by
-      // GHL release, so match loosely and log unknown shapes for verification.
+      // GHL release, so match loosely and only fire after a real GHL submit signal.
       window.addEventListener('message', (event) => {
         if (event.origin !== 'https://link.pivotpointcrm.com') return;
         const data = event.data as unknown;
         const asString = typeof data === 'string' ? data : JSON.stringify(data ?? '');
         if (/submit|submission|form_submitted|onFormSubmit/i.test(asString)) {
           const formType = document.querySelector<HTMLElement>('[data-ghl-active]')?.dataset.ghlActive;
+          if (formType === 'playbook') {
+            track('playbook_form_submit', {
+              form_type: 'playbook',
+              source_page: sourcePage,
+              crm_ok: true,
+            });
+            return;
+          }
           track('form_submit', { form_type: formType ?? 'unknown', source_page: sourcePage });
         }
       });

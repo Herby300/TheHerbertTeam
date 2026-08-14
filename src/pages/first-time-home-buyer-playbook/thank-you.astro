@@ -1,0 +1,98 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Section from '../../components/Section.astro';
+import Container from '../../components/Container.astro';
+import Icon from '../../components/ui/Icon.astro';
+import Button from '../../components/Button.astro';
+import { playbook, site } from '../../data/site';
+---
+
+<Layout
+  title="Playbook Download"
+  description="Thanks for requesting The Herbert Team First-Time Home Buyer’s Playbook. Download your copy and book a free strategy call if you want a walkthrough."
+  noindex
+  image={playbook.coverImage}
+  imageWidth={playbook.coverImageWidth}
+  imageHeight={playbook.coverImageHeight}
+>
+  <section class="bg-navy py-16 md:py-24">
+    <Container>
+      <div class="mx-auto max-w-3xl text-center">
+        <span class="inline-flex h-20 w-20 items-center justify-center rounded-full bg-success/20 text-success">
+          <Icon name="check-circle" size={40} />
+        </span>
+        <h1 class="mt-7 text-display text-white">Your Playbook Is Ready</h1>
+        <p class="mt-6 text-body-lg text-silver-light">
+          Download the First-Time Home Buyer&rsquo;s Playbook below. Read it before you tour homes — you will shop with
+          clearer numbers and fewer surprises.
+        </p>
+        <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Button
+            href={playbook.pdfHref}
+            variant="primary"
+            size="lg"
+            icon="download"
+            iconPosition="left"
+            track="playbook_download_click"
+            trackParams={{ source: 'thank_you_page' }}
+          >
+            Download the Playbook
+          </Button>
+          <Button href="/schedule" variant="outline-white" size="lg" track="schedule">
+            Book a Free Strategy Call
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <Section bg="white">
+    <div class="mx-auto grid max-w-5xl items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
+      <img
+        src={playbook.coverImage}
+        alt={playbook.coverImageAlt}
+        width="900"
+        height="1200"
+        loading="lazy"
+        decoding="async"
+        class="mx-auto w-full max-w-xs rounded-card border border-silver-light object-cover shadow-card"
+      />
+      <div>
+        <h2 class="text-h2 text-navy">What to do next</h2>
+        <ol class="mt-6 space-y-5">
+          <li class="flex gap-4">
+            <span class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-navy font-heading font-bold text-white">1</span>
+            <div>
+              <p class="font-heading font-semibold text-navy">Read the Playbook</p>
+              <p class="mt-1 text-graytext">Focus on the payment you can live with — not just the maximum approval.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-navy font-heading font-bold text-white">2</span>
+            <div>
+              <p class="font-heading font-semibold text-navy">Gather your basics</p>
+              <p class="mt-1 text-graytext">Income docs, IDs, and a rough list of monthly debts. That is enough to start.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-navy font-heading font-bold text-white">3</span>
+            <div>
+              <p class="font-heading font-semibold text-navy">Talk strategy with {site.advisor}</p>
+              <p class="mt-1 text-graytext">
+                A free 20-minute call to map your options before you fall in love with a house.
+              </p>
+            </div>
+          </li>
+        </ol>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <Button href="/solutions/first-time-homebuyers" variant="secondary" size="md" icon="arrow-right">
+            First-Time Buyer Solutions
+          </Button>
+          <Button href={site.phoneHref} variant="ghost" size="md" icon="phone" iconPosition="left">
+            {site.phone}
+          </Button>
+        </div>
+      </div>
+    </div>
+  </Section>
+</Layout>

@@ -1,0 +1,33 @@
+---
+/**
+ * First-Time Home Buyer’s Playbook lead form.
+ * Uses the proven Pivot Point / GHL iframe embed (same pattern as contact +
+ * first-time homebuyer guide). Success redirect to the thank-you page is
+ * configured on the GHL form itself.
+ */
+import GhlForm from './GhlForm.astro';
+import { playbook } from '../../data/site';
+
+interface Props {
+  class?: string;
+  height?: string;
+}
+
+const { class: className = '', height = '620' } = Astro.props;
+---
+
+<div class={`playbook-lead-form ${className}`}>
+  <GhlForm
+    formId={playbook.formId}
+    title="First-Time Home Buyer’s Playbook"
+    formType="playbook"
+    height={height}
+    plainIframe
+    loading="eager"
+  />
+  <p class="mt-4 text-xs leading-relaxed text-graytext">
+    No cost, no obligation. After you submit, you will get the Playbook download link.
+    See our
+    <a href="/privacy-policy" class="underline underline-offset-2 hover:text-brandblue">Privacy Policy</a>.
+  </p>
+</div>

@@ -58,8 +58,25 @@ export const formIds = {
   newsletter:              'a0WXAMTAItL8S1oFpkv1',
 } as const;
 
+/** Pivot Point location that owns website forms. */
+export const ghlLocationId = 'Fe5003Ja5u0FXzeKvBUd';
+
 export const formBase = 'https://link.pivotpointcrm.com/widget/form/';
+export const formSubmitUrl = 'https://backend.leadconnectorhq.com/forms/submit';
 export const bookingUrl = site.calendlyUrl;
+
+/** First-Time Home Buyer’s Playbook lead magnet. */
+export const playbook = {
+  title: 'First-Time Home Buyer’s Playbook',
+  href: '/first-time-home-buyer-playbook',
+  thankYouHref: '/first-time-home-buyer-playbook/thank-you',
+  pdfHref: '/downloads/first-time-home-buyer-playbook.pdf',
+  coverImage: '/images/lead-magnets/first-time-home-buyer-playbook-cover.png',
+  coverImageAlt: 'Cover of The Herbert Team First-Time Home Buyer’s Playbook',
+  coverImageWidth: 900,
+  coverImageHeight: 1200,
+  formId: formIds.firstTimeHomebuyerGuide,
+} as const;
 
 /** Business hours, shown on /contact and in the footer. */
 export const hours = [
