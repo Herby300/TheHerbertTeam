@@ -50,6 +50,13 @@ import { playbook, site } from '../../data/site';
     <div class="mx-auto grid max-w-5xl items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
       <img
         src={playbook.coverImage}
+        srcset={[
+          '/images/lead-magnets/first-time-home-buyer-playbook-cover-360w.webp 360w',
+          '/images/lead-magnets/first-time-home-buyer-playbook-cover-540w.webp 540w',
+          '/images/lead-magnets/first-time-home-buyer-playbook-cover-720w.webp 720w',
+          `${playbook.coverImage} 900w`,
+        ].join(', ')}
+        sizes="(max-width: 1024px) min(100vw - 2rem, 20rem), 18rem"
         alt={playbook.coverImageAlt}
         width="900"
         height="1200"

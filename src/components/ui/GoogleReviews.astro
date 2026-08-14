@@ -9,28 +9,54 @@ interface Props {
 const { class: className = '', minHeight = '420px' } = Astro.props;
 ---
 
-<div
+<section
   class={`google-reviews-embed ${className}`}
   style={`min-height:${minHeight}`}
   aria-label="Google Reviews for The Herbert Team"
 >
   <div class={`elfsight-app-${site.elfsightReviewsAppId}`} data-elfsight-app-lazy></div>
-</div>
+</section>
 
 {/*
-  Load Elfsight only on pages that render this component. The script id guard
-  ensures a second instance on the same page is a no-op.
+  Load Elfsight only when this reviews region approaches the viewport.
+  Script id guard prevents duplicate loads if multiple instances mount.
 */}
 <script is:inline>
-  (function (d, s, id) {
-    var js;
-    if (d.getElementById(id)) {
+  (function () {
+    var SCRIPT_ID = 'elfsight-platform';
+    var SRC = 'https://elfsightcdn.com/platform.js';
+
+    function loadElfsight() {
+      if (document.getElementById(SCRIPT_ID)) return;
+      var js = document.createElement('script');
+      js.id = SCRIPT_ID;
+      js.src = SRC;
+      js.async = true;
+      document.head.appendChild(js);
+    }
+
+    var roots = document.querySelectorAll('.google-reviews-embed');
+    if (!roots.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      loadElfsight();
       return;
     }
-    js = d.createElement(s);
-    js.id = id;
-    js.src = 'https://elfsightcdn.com/platform.js';
-    js.async = true;
-    d.getElementsByTagName('head')[0].appendChild(js);
-  })(document, 'script', 'elfsight-platform');
+
+    var observer = new IntersectionObserver(
+      function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          if (!entries[i].isIntersecting) continue;
+          loadElfsight();
+          observer.disconnect();
+          break;
+        }
+      },
+      { rootMargin: '200px 0px', threshold: 0.01 }
+    );
+
+    roots.forEach(function (el) {
+      observer.observe(el);
+    });
+  })();
 </script>

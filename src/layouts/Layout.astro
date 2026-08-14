@@ -58,6 +58,7 @@ const { metaPixel, ga4, gtm } = site.analytics;
     {
       metaPixel && (
         <Fragment>
+          {/* Async Pixel bootstrap — keeps PageView early without a sync network request. */}
           <script is:inline define:vars={{ pixelId: metaPixel }}>
             !(function (f, b, e, v, n, t, s) {
               if (f.fbq) return;
@@ -125,11 +126,13 @@ const { metaPixel, ga4, gtm } = site.analytics;
       )
     }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    {/* Self-hosted Inter (body). Single primary preload — Sora loads via @font-face. */}
     <link
-      href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="/fonts/inter-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -246,7 +249,5 @@ const { metaPixel, ga4, gtm } = site.analytics;
         }
       });
     </script>
-
-    <script is:inline src="https://link.pivotpointcrm.com/js/form_embed.js"></script>
   </body>
 </html>

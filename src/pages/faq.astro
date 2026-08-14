@@ -60,7 +60,7 @@ const grouped = faqCategories.map((category) => ({
           faqCategories.map((category) => (
             <a
               href={`#${category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
-              class="inline-flex min-h-[40px] items-center rounded-full border border-silver bg-white px-4 py-2 font-heading text-sm font-semibold text-navy transition-colors hover:border-brandblue hover:text-brandblue"
+              class="inline-flex min-h-[40px] items-center rounded-full border border-silver bg-white px-4 py-2 font-heading text-sm font-semibold text-navy transition-colors hover:border-brandblue hover:text-brandblue-text"
             >
               {category}
             </a>
@@ -91,7 +91,7 @@ const grouped = faqCategories.map((category) => ({
 
     <p class="mx-auto mt-10 hidden max-w-3xl rounded-card border border-silver-light bg-white p-6 text-center text-graytext" data-faq-empty>
       No questions match that search. Try a different word, or just
-      <a href="/contact" class="text-brandblue underline underline-offset-2">ask me directly</a>.
+      <a href="/contact" class="text-brandblue-text underline underline-offset-2 hover:text-brandblue-text-hover">ask me directly</a>.
     </p>
   </Section>
 

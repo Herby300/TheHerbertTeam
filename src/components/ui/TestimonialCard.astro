@@ -21,8 +21,11 @@ const { quote, author, role, category, invert = false, class: className = '' } =
   ]}
   data-category={category}
 >
-  <div class="flex items-center gap-1 text-gold" aria-label="Rated 5 out of 5 stars">
-    {[0, 1, 2, 3, 4].map(() => <Icon name="star" size={18} class="fill-current" strokeWidth={0} />)}
+  <div class="flex items-center gap-1 text-gold">
+    <span class="sr-only">Rated 5 out of 5 stars.</span>
+    {[0, 1, 2, 3, 4].map(() => (
+      <Icon name="star" size={18} class="fill-current" strokeWidth={0} />
+    ))}
   </div>
   <blockquote class="mt-4 flex-1">
     <p class="text-[1.0625rem] leading-relaxed text-charcoal">&ldquo;{quote}&rdquo;</p>

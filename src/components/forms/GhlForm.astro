@@ -1,5 +1,6 @@
 ---
 import { formBase } from '../../data/site';
+import GhlEmbedScript from './GhlEmbedScript.astro';
 
 interface Props {
   formId: string;
@@ -12,7 +13,8 @@ interface Props {
   loading?: 'lazy' | 'eager';
   /**
    * Skip GHL form_embed.js handshake attributes and render a plain iframe.
-   * Defaults to false so every existing form keeps current embed behavior.
+   * Defaults to true so form_embed.js is not required sitewide (Footer newsletter).
+   * Set false only when handshake/auto-resize behavior is required.
    */
   plainIframe?: boolean;
 }
@@ -24,7 +26,7 @@ const {
   class: className = '',
   formType,
   loading = 'lazy',
-  plainIframe = false,
+  plainIframe = true,
 } = Astro.props;
 
 const src = `${formBase}${formId}`;
@@ -34,7 +36,7 @@ const frameStyle = `width:100%; height:${height}px; border:none; border-radius:0
 <div class={`ghl-form-wrap ${className}`} data-ghl-active={formType ?? title}>
   {
     plainIframe ? (
-      <iframe src={src} title={title} style={frameStyle} loading="eager" />
+      <iframe src={src} title={title} style={frameStyle} loading={loading} />
     ) : (
       <iframe
         src={src}
@@ -54,3 +56,5 @@ const frameStyle = `width:100%; height:${height}px; border:none; border-radius:0
     )
   }
 </div>
+
+{!plainIframe && <GhlEmbedScript />}

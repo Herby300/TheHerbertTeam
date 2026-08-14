@@ -44,8 +44,8 @@ function isActive(href: string): boolean {
                   <button
                     type="button"
                     class:list={[
-                      'flex min-h-[44px] items-center gap-1 rounded-lg px-3 py-2 font-heading text-[0.9375rem] font-semibold transition-colors hover:text-brandblue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandblue',
-                      isActive(item.href) ? 'text-brandblue' : 'text-navy',
+                      'flex min-h-[44px] items-center gap-1 rounded-lg px-3 py-2 font-heading text-[0.9375rem] font-semibold transition-colors hover:text-brandblue-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandblue',
+                      isActive(item.href) ? 'text-brandblue-text' : 'text-navy',
                     ]}
                     aria-expanded="false"
                     aria-haspopup="true"
@@ -94,8 +94,8 @@ function isActive(href: string): boolean {
                   <a
                     href={item.href}
                     class:list={[
-                      'flex min-h-[44px] items-center rounded-lg px-3 py-2 font-heading text-[0.9375rem] font-semibold transition-colors hover:text-brandblue',
-                      isActive(item.href) ? 'text-brandblue' : 'text-navy',
+                      'flex min-h-[44px] items-center rounded-lg px-3 py-2 font-heading text-[0.9375rem] font-semibold transition-colors hover:text-brandblue-text',
+                      isActive(item.href) ? 'text-brandblue-text' : 'text-navy',
                     ]}
                     aria-current={isActive(item.href) ? 'page' : undefined}
                   >
@@ -111,7 +111,7 @@ function isActive(href: string): boolean {
       <div class="flex items-center gap-2 sm:gap-3">
         <a
           href={site.phoneHref}
-          class="hidden min-h-[44px] items-center gap-2 rounded-lg px-3 font-heading text-sm font-semibold text-navy transition-colors hover:text-brandblue xl:flex"
+          class="hidden min-h-[44px] items-center gap-2 rounded-lg px-3 font-heading text-sm font-semibold text-navy transition-colors hover:text-brandblue-text xl:flex"
         >
           <Icon name="phone" size={17} class="text-brandblue" />
           <span class="tabular">{site.phone}</span>

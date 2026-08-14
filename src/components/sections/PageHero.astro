@@ -37,11 +37,23 @@ const {
 } = Astro.props;
 
 const isExternalPrimary = primaryHref.startsWith('http');
+
+/** Build responsive srcset for public/images/hero/* full-bleed backgrounds. */
+function heroSrcset(src: string): string | undefined {
+  const match = src.match(/^(.*\/hero\/)([^/]+?)(\.webp)$/);
+  if (!match) return undefined;
+  const [, dir, name, ext] = match;
+  return `${dir}${name}-768w${ext} 768w, ${dir}${name}-1280w${ext} 1280w, ${src} 1672w`;
+}
+
+const srcset = heroSrcset(image);
 ---
 
 <section class="relative isolate overflow-hidden bg-navy">
   <img
     src={image}
+    srcset={srcset}
+    sizes="100vw"
     alt={imageAlt}
     width="1672"
     height="941"

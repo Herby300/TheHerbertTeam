@@ -60,10 +60,10 @@ const href = `/blog/${slug}`;
       {readTime && <span class="text-graytext">· {readTime} min read</span>}
     </div>
     <h3 class:list={['mt-4 font-heading font-bold text-navy', featured ? 'text-h3' : 'text-lg']}>
-      <a href={href} class="transition-colors hover:text-brandblue">{title}</a>
+      <a href={href} class="transition-colors hover:text-brandblue-text">{title}</a>
     </h3>
     <p class="mt-3 flex-1 text-[0.9375rem] leading-relaxed text-graytext">{description}</p>
-    <span class="mt-5 inline-flex items-center gap-1.5 font-heading text-sm font-semibold text-brandblue">
+    <span class="mt-5 inline-flex items-center gap-1.5 font-heading text-sm font-semibold text-brandblue-text">
       Read the article
       <Icon name="arrow-right" size={16} class="transition-transform duration-200 group-hover:translate-x-1" />
     </span>

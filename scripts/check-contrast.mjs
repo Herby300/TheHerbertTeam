@@ -102,4 +102,20 @@ for (const panel of PANELS) {
 }
 
 console.log(failed ? '\nContrast check failed.' : '\nAll roles clear WCAG AA at every pixel.');
+
+// Flat token pairs for text/links on white (performance-foundation a11y pass).
+const FLAT = [
+  { name: 'brandblue-text on white', fg: '#0369A1', bg: '#FFFFFF', need: 4.5 },
+  { name: 'brandblue-text-hover on white', fg: '#075985', bg: '#FFFFFF', need: 4.5 },
+  { name: 'brandblue fill on white (decorative/large only)', fg: '#0698F8', bg: '#FFFFFF', need: 3 },
+];
+
+console.log('\nFlat token pairs');
+for (const pair of FLAT) {
+  const r = contrast(parse(pair.fg), parse(pair.bg));
+  const ok = r >= pair.need;
+  if (!ok) failed = true;
+  console.log(`  ${ok ? 'PASS' : 'FAIL'}  ${pair.name}  ${r.toFixed(2)}:1  (needs ${pair.need}:1)`);
+}
+
 process.exit(failed ? 1 : 0);

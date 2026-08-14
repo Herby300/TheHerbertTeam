@@ -71,7 +71,7 @@ export const playbook = {
   href: '/first-time-home-buyer-playbook',
   thankYouHref: '/first-time-home-buyer-playbook/thank-you',
   pdfHref: '/downloads/first-time-home-buyer-playbook.pdf',
-  coverImage: '/images/lead-magnets/first-time-home-buyer-playbook-cover.png',
+  coverImage: '/images/lead-magnets/first-time-home-buyer-playbook-cover.webp',
   coverImageAlt: 'Cover of The Herbert Team First-Time Home Buyer’s Playbook',
   coverImageWidth: 900,
   coverImageHeight: 1200,

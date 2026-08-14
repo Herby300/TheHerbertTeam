@@ -1,9 +1,11 @@
 ---
+import { Image } from 'astro:assets';
 import Container from '../Container.astro';
 import Button from '../Button.astro';
 import Icon from '../ui/Icon.astro';
 import TrustBar from '../ui/TrustBar.astro';
 import { site } from '../../data/site';
+import heroHeadshot from '../../assets/images/jason-headshot-hero.webp';
 
 const outcomes = [
   {
@@ -71,14 +73,18 @@ const outcomes = [
       </div>
 
       <div class="mt-10 lg:col-span-5 lg:col-start-8 lg:row-span-2 lg:row-start-1 lg:mt-0 lg:self-end">
-        <img
-          src="/images/jason-headshot-hero.webp"
+        <Image
+          src={heroHeadshot}
           alt="Jason Herbert, mortgage advisor with The Herbert Team in Georgetown, Texas"
-          width="1100"
-          height="1467"
+          widths={[360, 540, 720, 1100]}
+          sizes="(max-width: 640px) 17rem, (max-width: 1024px) 20rem, min(40vw, 28rem)"
+          width={1100}
+          height={1467}
           loading="eager"
           fetchpriority="high"
           decoding="async"
+          format="webp"
+          quality={82}
           class="mx-auto block w-full max-w-[17rem] drop-shadow-2xl sm:max-w-[20rem] lg:max-w-none"
         />
       </div>

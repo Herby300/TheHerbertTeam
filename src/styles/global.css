@@ -1,3 +1,5 @@
+@import './fonts.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -92,12 +94,12 @@
   }
 
   .prose a {
-    @apply text-brandblue underline underline-offset-2;
+    @apply text-brandblue-text underline underline-offset-2;
     text-decoration-thickness: 1px;
   }
 
   .prose a:hover {
-    @apply text-brandblue-hover;
+    @apply text-brandblue-text-hover;
   }
 
   .prose strong {

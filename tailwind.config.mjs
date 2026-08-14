@@ -13,6 +13,9 @@ export default {
           DEFAULT: '#0698F8',
           hover: '#0480D4',
           soft: '#E6F4FE',
+          // AA-compliant text/link tones on white (≥4.5:1). Keep DEFAULT for fills/icons.
+          text: '#0369A1',
+          'text-hover': '#075985',
         },
         silver: {
           DEFAULT: '#C5C4C3',
@@ -25,8 +28,8 @@ export default {
         success: '#1F9D55',
       },
       fontFamily: {
-        heading: ['Sora', 'system-ui', 'sans-serif'],
-        body: ['Inter', 'system-ui', 'sans-serif'],
+        heading: ['Sora', 'Sora Fallback', 'system-ui', 'sans-serif'],
+        body: ['Inter', 'Inter Fallback', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         'display': ['clamp(2.25rem, 5vw, 3.75rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],

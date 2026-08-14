@@ -28,7 +28,7 @@ const { crumbs, invert = false, class: className = '' } = Astro.props;
           ) : (
             <a
               href={crumb.href}
-              class:list={['transition-colors', invert ? 'hover:text-brandblue' : 'hover:text-brandblue']}
+              class:list={['transition-colors', invert ? 'hover:text-brandblue' : 'hover:text-brandblue-text']}
             >
               {crumb.label}
             </a>

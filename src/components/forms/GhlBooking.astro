@@ -1,5 +1,6 @@
 ---
 import { site } from '../../data/site';
+import GhlEmbedScript from './GhlEmbedScript.astro';
 
 interface Props {
   height?: string;
@@ -32,7 +33,9 @@ const title = 'Schedule a Free Mortgage Strategy Consultation';
       href={site.calendlyUrl}
       target="_blank"
       rel="noopener noreferrer"
-      class="font-semibold text-brandblue hover:underline">Open it in a new tab</a
+      class="font-semibold text-brandblue-text hover:text-brandblue-text-hover hover:underline">Open it in a new tab</a
     >.
   </p>
 </div>
+
+<GhlEmbedScript />
