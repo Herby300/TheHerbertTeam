@@ -12,4 +12,11 @@ export default defineConfig({
     mdx(),
   ],
   output: 'static',
+  vite: {
+    build: {
+      // Emit one CSS file site-wide — avoids duplicate Tailwind utility chunks
+      // (about.* + _slug_.*) on the homepage critical path.
+      cssCodeSplit: false,
+    },
+  },
 });
