@@ -77,7 +77,11 @@ const { metaPixel, ga4, gtm } = site.analytics;
               s.parentNode.insertBefore(t, s);
             })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', pixelId);
-            fbq('track', 'PageView');
+            // Standard PageView once per load — never trackCustom('PageView').
+            if (!window.__herbertMetaPageView) {
+              window.__herbertMetaPageView = true;
+              fbq('track', 'PageView');
+            }
           </script>
           <noscript>
             <img
@@ -183,11 +187,14 @@ const { metaPixel, ga4, gtm } = site.analytics;
 
     <script>
       // ---------------------------------------------------------- tracking
-      import { track, type TrackEvent } from '../utils/tracking';
+      import { noteUserGesture, track, type TrackEvent } from '../utils/tracking';
 
       window.herbertTrack = track;
 
       const sourcePage = window.location.pathname;
+
+      // Capture first so delegated + element-level handlers share one gesture id.
+      document.addEventListener('click', () => noteUserGesture(), true);
 
       document.addEventListener(
         'click',

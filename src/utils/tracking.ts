@@ -21,6 +21,10 @@ export type TrackEvent =
 type EventMap = {
   meta: string;
   ga4: string;
+  /** Meta Pixel method. Custom events must use trackCustom, not track. */
+  metaMethod?: 'track' | 'trackCustom';
+  /** Merged into the Meta payload after caller params (wins on key conflicts). */
+  metaParams?: Record<string, unknown>;
 };
 
 const EVENTS: Record<TrackEvent, EventMap> = {
@@ -28,7 +32,13 @@ const EVENTS: Record<TrackEvent, EventMap> = {
   schedule: { meta: 'Schedule', ga4: 'schedule_consultation' },
   phone_click: { meta: 'Contact', ga4: 'phone_click' },
   email_click: { meta: 'Contact', ga4: 'email_click' },
-  begin_application: { meta: 'SubmitApplication', ga4: 'begin_application' },
+  // Outbound Primis apply click — not a completed application.
+  begin_application: {
+    meta: 'BeginApplication',
+    ga4: 'begin_application',
+    metaMethod: 'trackCustom',
+    metaParams: { destination: 'primis_mortgage_application' },
+  },
   view_loan_program: { meta: 'ViewContent', ga4: 'view_loan_program' },
   // Opening the guide form is interest, not a lead. `download_guide` is reserved
   // for the submission itself, so Meta never optimises against a mere click.
@@ -47,7 +57,23 @@ declare global {
     gtag?: (...args: unknown[]) => void;
     dataLayer?: unknown[];
     herbertTrack?: (event: TrackEvent, params?: Record<string, unknown>) => void;
+    /** Guards Meta standard PageView to a single fire per page load. */
+    __herbertMetaPageView?: boolean;
   }
+}
+
+/** Incremented once per user click (capture phase) so delegated + element handlers share an id. */
+let gestureId = 0;
+const gestureFired = new Set<string>();
+
+/**
+ * Call from a capture-phase click listener so every handler in the same click
+ * shares one gesture id. Prevents double Meta/GA4 fires when both a delegated
+ * `[data-track]` listener and an element-level handler call `track`.
+ */
+export function noteUserGesture(): void {
+  gestureId += 1;
+  gestureFired.clear();
 }
 
 /**
@@ -60,9 +86,15 @@ export function track(event: TrackEvent, params: Record<string, unknown> = {}): 
   const mapping = EVENTS[event];
   if (!mapping) return;
 
+  const dedupeKey = `${gestureId}:${event}`;
+  if (gestureFired.has(dedupeKey)) return;
+  gestureFired.add(dedupeKey);
+
   try {
     if (typeof window.fbq === 'function') {
-      window.fbq('track', mapping.meta, params);
+      const metaMethod = mapping.metaMethod ?? 'track';
+      const metaPayload = { ...params, ...mapping.metaParams };
+      window.fbq(metaMethod, mapping.meta, metaPayload);
     }
   } catch {
     /* tracking must never break the page */
