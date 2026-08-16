@@ -196,36 +196,55 @@ const { metaPixel, ga4, gtm } = site.analytics;
       // Capture first so delegated + element-level handlers share one gesture id.
       document.addEventListener('click', () => noteUserGesture(), true);
 
-      document.addEventListener(
-        'click',
-        (event) => {
-          const target = event.target as HTMLElement | null;
-          if (!target) return;
+      document.addEventListener('click', (event) => {
+        const target = event.target as HTMLElement | null;
+        if (!target) return;
 
-          const tracked = target.closest<HTMLElement>('[data-track]');
-          if (tracked) {
-            const name = tracked.dataset.track as TrackEvent;
-            let params: Record<string, unknown> = { source_page: sourcePage };
-            const raw = tracked.dataset.trackParams;
-            if (raw) {
-              try {
-                params = { ...params, ...JSON.parse(raw) };
-              } catch {
-                /* malformed params must not block the click */
-              }
+        const tracked = target.closest<HTMLElement>('[data-track]');
+        if (tracked) {
+          const name = tracked.dataset.track as TrackEvent;
+          let params: Record<string, unknown> = { source_page: sourcePage };
+          const raw = tracked.dataset.trackParams;
+          if (raw) {
+            try {
+              params = { ...params, ...JSON.parse(raw) };
+            } catch {
+              /* malformed params must not block the click */
             }
+          }
+
+          // Same-tab begin_application: queue Meta/GA4 before navigation unloads the page.
+          // Leave _blank (Primis) alone so popup blockers do not swallow window.open.
+          const anchor = tracked.closest('a[href]');
+          const href = anchor?.getAttribute('href');
+          const modifiedClick =
+            event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0;
+          if (
+            name === 'begin_application' &&
+            anchor &&
+            href &&
+            !href.startsWith('#') &&
+            !modifiedClick &&
+            anchor.target !== '_blank'
+          ) {
+            event.preventDefault();
             track(name, params);
+            window.setTimeout(() => {
+              window.location.assign(href);
+            }, 120);
             return;
           }
 
-          const link = target.closest<HTMLAnchorElement>('a[href^="tel:"], a[href^="mailto:"]');
-          if (link) {
-            const isPhone = link.getAttribute('href')?.startsWith('tel:');
-            track(isPhone ? 'phone_click' : 'email_click', { source_page: sourcePage });
-          }
-        },
-        { passive: true }
-      );
+          track(name, params);
+          return;
+        }
+
+        const link = target.closest<HTMLAnchorElement>('a[href^="tel:"], a[href^="mailto:"]');
+        if (link) {
+          const isPhone = link.getAttribute('href')?.startsWith('tel:');
+          track(isPhone ? 'phone_click' : 'email_click', { source_page: sourcePage });
+        }
+      });
 
       // Program and solution pages announce themselves for ViewContent.
       const programMeta = document.querySelector<HTMLElement>('[data-program-name]');

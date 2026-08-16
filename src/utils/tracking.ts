@@ -3,6 +3,8 @@
  * fbq or gtag directly, which keeps consent gating a one-file change later.
  */
 
+import { site } from '../data/site';
+
 export type TrackEvent =
   | 'form_submit'
   | 'schedule'
@@ -51,9 +53,24 @@ const EVENTS: Record<TrackEvent, EventMap> = {
   playbook_download_click: { meta: 'ViewContent', ga4: 'playbook_download_click' },
 };
 
+const META_PIXEL_ID = site.analytics.metaPixel;
+
+type FbqWithModules = ((...args: unknown[]) => void) & {
+  getFbeventsModules?: (name: string) => unknown;
+};
+
+type EventValidationConfig = {
+  unverifiedEventNames?: string[] | null;
+  restrictedEventNames?: string[] | null;
+};
+
+type ConfigStore = {
+  get?: (pixelId: string, key: string) => EventValidationConfig | null | undefined;
+};
+
 declare global {
   interface Window {
-    fbq?: (...args: unknown[]) => void;
+    fbq?: FbqWithModules;
     gtag?: (...args: unknown[]) => void;
     dataLayer?: unknown[];
     herbertTrack?: (event: TrackEvent, params?: Record<string, unknown>) => void;
@@ -77,6 +94,55 @@ export function noteUserGesture(): void {
 }
 
 /**
+ * Meta's EventValidation plugin silently drops trackCustom for names listed in
+ * pixel config `unverifiedEventNames` / `restrictedEventNames` (often as sha256).
+ * PageView and other confirmed events are unaffected.
+ */
+function isMetaEventValidationBlocked(eventName: string): boolean {
+  try {
+    const fbq = window.fbq;
+    if (typeof fbq?.getFbeventsModules !== 'function') return false;
+
+    const store = fbq.getFbeventsModules('SignalsFBEventsConfigStore') as ConfigStore | undefined;
+    const cfg = store?.get?.(META_PIXEL_ID, 'eventValidation');
+    if (!cfg) return false;
+
+    const shaMod = fbq.getFbeventsModules('sha256_with_dependencies_new');
+    const hash =
+      typeof shaMod === 'function' ? (shaMod as (value: string) => string)(eventName) : null;
+
+    const listed = (names?: string[] | null) =>
+      !!names && (names.includes(eventName) || (hash != null && names.includes(hash)));
+
+    return listed(cfg.unverifiedEventNames) || listed(cfg.restrictedEventNames);
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Documented Meta image-pixel GET. Used only when the JS EventValidation plugin
+ * would swallow trackCustom, so Test Events / Ads still receive the hit once.
+ */
+function sendMetaImagePixel(eventName: string, params: Record<string, unknown>): void {
+  const qs = new URLSearchParams({
+    id: META_PIXEL_ID,
+    ev: eventName,
+  });
+  for (const [key, value] of Object.entries(params)) {
+    if (value == null) continue;
+    qs.set(`cd[${key}]`, String(value));
+  }
+  const url = `https://www.facebook.com/tr?${qs.toString()}`;
+  try {
+    const img = new Image();
+    img.src = url;
+  } catch {
+    /* tracking must never break the page */
+  }
+}
+
+/**
  * Fires the mapped Meta and GA4 events. Never throws and never blocks
  * navigation — a failed tracking call must not cost a lead.
  */
@@ -94,7 +160,16 @@ export function track(event: TrackEvent, params: Record<string, unknown> = {}): 
     if (typeof window.fbq === 'function') {
       const metaMethod = mapping.metaMethod ?? 'track';
       const metaPayload = { ...params, ...mapping.metaParams };
+      const validationBlocked =
+        metaMethod === 'trackCustom' && isMetaEventValidationBlocked(mapping.meta);
+
       window.fbq(metaMethod, mapping.meta, metaPayload);
+
+      // When EventValidation blocks the JS send, deliver the same custom event
+      // via Meta's image pixel so ev=<name> still appears on the network once.
+      if (validationBlocked) {
+        sendMetaImagePixel(mapping.meta, metaPayload);
+      }
     }
   } catch {
     /* tracking must never break the page */
