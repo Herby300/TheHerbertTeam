@@ -98,31 +98,70 @@ export function noteUserGesture(): void {
  * pixel config `unverifiedEventNames` / `restrictedEventNames` (often as sha256).
  * PageView and other confirmed events are unaffected.
  */
-function isMetaEventValidationBlocked(eventName: string): boolean {
+function getMetaEventValidationConfig(): EventValidationConfig | null {
   try {
     const fbq = window.fbq;
-    if (typeof fbq?.getFbeventsModules !== 'function') return false;
-
+    if (typeof fbq?.getFbeventsModules !== 'function') return null;
     const store = fbq.getFbeventsModules('SignalsFBEventsConfigStore') as ConfigStore | undefined;
-    const cfg = store?.get?.(META_PIXEL_ID, 'eventValidation');
+    return store?.get?.(META_PIXEL_ID, 'eventValidation') ?? null;
+  } catch {
+    return null;
+  }
+}
+
+function metaEventNameMatches(list: string[] | null | undefined, eventName: string, hash: string | null): boolean {
+  return !!list && (list.includes(eventName) || (hash != null && list.includes(hash)));
+}
+
+function isMetaEventValidationBlocked(eventName: string): boolean {
+  try {
+    const cfg = getMetaEventValidationConfig();
     if (!cfg) return false;
 
-    const shaMod = fbq.getFbeventsModules('sha256_with_dependencies_new');
+    const shaMod = window.fbq?.getFbeventsModules?.('sha256_with_dependencies_new');
     const hash =
       typeof shaMod === 'function' ? (shaMod as (value: string) => string)(eventName) : null;
 
-    const listed = (names?: string[] | null) =>
-      !!names && (names.includes(eventName) || (hash != null && names.includes(hash)));
-
-    return listed(cfg.unverifiedEventNames) || listed(cfg.restrictedEventNames);
+    return (
+      metaEventNameMatches(cfg.unverifiedEventNames, eventName, hash) ||
+      metaEventNameMatches(cfg.restrictedEventNames, eventName, hash)
+    );
   } catch {
     return false;
   }
 }
 
 /**
- * Documented Meta image-pixel GET. Used only when the JS EventValidation plugin
- * would swallow trackCustom, so Test Events / Ads still receive the hit once.
+ * EventValidation cancels the fbevents.js send for unverified custom names, so
+ * Test Events never sees them (PageView still works). Remove this event from the
+ * local block lists so trackCustom can queue the normal facebook.com/tr request.
+ */
+function allowMetaCustomEventSend(eventName: string): void {
+  try {
+    const cfg = getMetaEventValidationConfig();
+    if (!cfg) return;
+
+    const shaMod = window.fbq?.getFbeventsModules?.('sha256_with_dependencies_new');
+    const hash =
+      typeof shaMod === 'function' ? (shaMod as (value: string) => string)(eventName) : null;
+
+    const strip = (list?: string[] | null) =>
+      (list || []).filter((entry) => entry !== eventName && entry !== hash);
+
+    if (cfg.unverifiedEventNames?.length) {
+      cfg.unverifiedEventNames = strip(cfg.unverifiedEventNames);
+    }
+    if (cfg.restrictedEventNames?.length) {
+      cfg.restrictedEventNames = strip(cfg.restrictedEventNames);
+    }
+  } catch {
+    /* tracking must never break the page */
+  }
+}
+
+/**
+ * Last-resort documented Meta image-pixel GET if EventValidation still blocks
+ * after allowMetaCustomEventSend (e.g. config modules not ready yet).
  */
 function sendMetaImagePixel(eventName: string, params: Record<string, unknown>): void {
   const qs = new URLSearchParams({
@@ -160,14 +199,15 @@ export function track(event: TrackEvent, params: Record<string, unknown> = {}): 
     if (typeof window.fbq === 'function') {
       const metaMethod = mapping.metaMethod ?? 'track';
       const metaPayload = { ...params, ...mapping.metaParams };
-      const validationBlocked =
-        metaMethod === 'trackCustom' && isMetaEventValidationBlocked(mapping.meta);
+
+      if (metaMethod === 'trackCustom' && isMetaEventValidationBlocked(mapping.meta)) {
+        allowMetaCustomEventSend(mapping.meta);
+      }
 
       window.fbq(metaMethod, mapping.meta, metaPayload);
 
-      // When EventValidation blocks the JS send, deliver the same custom event
-      // via Meta's image pixel so ev=<name> still appears on the network once.
-      if (validationBlocked) {
+      // If EventValidation still cancels the JS send, fall back to the image pixel.
+      if (metaMethod === 'trackCustom' && isMetaEventValidationBlocked(mapping.meta)) {
         sendMetaImagePixel(mapping.meta, metaPayload);
       }
     }
