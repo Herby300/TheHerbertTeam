@@ -96,7 +96,7 @@ export function noteUserGesture(): void {
 /**
  * Meta's EventValidation plugin silently drops trackCustom for names listed in
  * pixel config `unverifiedEventNames` / `restrictedEventNames` (often as sha256).
- * PageView and other confirmed events are unaffected.
+ * PageView and other confirmed events are unaffected. Strip before trackCustom.
  */
 function getMetaEventValidationConfig(): EventValidationConfig | null {
   try {
