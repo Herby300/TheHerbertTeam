@@ -217,8 +217,13 @@ const { metaPixel, ga4, gtm } = site.analytics;
           // Leave _blank (Primis) alone so popup blockers do not swallow window.open.
           const anchor = tracked.closest('a[href]');
           const href = anchor?.getAttribute('href');
+          // Treat missing button (some automation / synthetic clicks) as primary left-click.
           const modifiedClick =
-            event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0;
+            event.metaKey ||
+            event.ctrlKey ||
+            event.shiftKey ||
+            event.altKey ||
+            (typeof event.button === 'number' && event.button !== 0);
           if (
             name === 'begin_application' &&
             anchor &&
