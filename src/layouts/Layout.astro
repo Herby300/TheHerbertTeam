@@ -215,7 +215,7 @@ const { metaPixel, ga4, gtm } = site.analytics;
 
           // Same-tab begin_application: queue Meta/GA4 before navigation unloads the page.
           // Leave _blank (Primis) alone so popup blockers do not swallow window.open.
-          const anchor = tracked.closest('a[href]');
+          const anchor = tracked.closest<HTMLAnchorElement>('a[href]');
           const href = anchor?.getAttribute('href');
           // Treat missing button (some automation / synthetic clicks) as primary left-click.
           const modifiedClick =
