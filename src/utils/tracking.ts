@@ -5,7 +5,7 @@
 
 export type TrackEvent =
   | 'form_submit'
-  | 'schedule'
+  | 'schedule_click'
   | 'phone_click'
   | 'email_click'
   | 'begin_application'
@@ -19,7 +19,8 @@ export type TrackEvent =
   | 'playbook_download_click';
 
 type EventMap = {
-  meta: string;
+  /** Standard or custom Meta event. Omit when no Meta pixel call should fire. */
+  meta?: string;
   ga4: string;
   /** Meta Pixel method. Custom events must use trackCustom, not track. */
   metaMethod?: 'track' | 'trackCustom';
@@ -29,7 +30,8 @@ type EventMap = {
 
 const EVENTS: Record<TrackEvent, EventMap> = {
   form_submit: { meta: 'Lead', ga4: 'generate_lead' },
-  schedule: { meta: 'Schedule', ga4: 'schedule_consultation' },
+  // Opening the calendar is interest only — not a completed appointment.
+  schedule_click: { ga4: 'schedule_click' },
   phone_click: { meta: 'Contact', ga4: 'phone_click' },
   email_click: { meta: 'Contact', ga4: 'email_click' },
   // Outbound Primis /apply CTA — not a completed application.
@@ -96,7 +98,7 @@ export function track(event: TrackEvent, params: Record<string, unknown> = {}): 
   gestureFired.add(dedupeKey);
 
   try {
-    if (typeof window.fbq === 'function') {
+    if (mapping.meta && typeof window.fbq === 'function') {
       const metaMethod = mapping.metaMethod ?? 'track';
       const metaPayload = { ...params, ...mapping.metaParams };
       window.fbq(metaMethod, mapping.meta, metaPayload);

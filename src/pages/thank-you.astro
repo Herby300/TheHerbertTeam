@@ -139,13 +139,3 @@ const featuredResources = resources.slice(0, 3);
     </div>
   </Section>
 </Layout>
-
-<script>
-  // The external apply portal returns here, so the conversion fires on arrival.
-  import { track } from '../utils/tracking';
-
-  track('form_submit', {
-    form_type: 'thank_you_page',
-    source_page: window.location.pathname,
-  });
-</script>

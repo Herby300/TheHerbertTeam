@@ -37,6 +37,7 @@ const {
 } = Astro.props;
 
 const isExternalPrimary = primaryHref.startsWith('http');
+const secondaryTrack = secondaryHref.replace(/\/+$/, '') === '/schedule' ? 'schedule_click' : undefined;
 
 /** Build responsive srcset for public/images/hero/* full-bleed backgrounds. */
 function heroSrcset(src: string): string | undefined {
@@ -89,7 +90,7 @@ const srcset = heroSrcset(image);
             >
               {primaryLabel}
             </Button>
-            <Button href={secondaryHref} variant="outline-white" size="lg" track="schedule">
+            <Button href={secondaryHref} variant="outline-white" size="lg" track={secondaryTrack}>
               {secondaryLabel}
             </Button>
           </div>
