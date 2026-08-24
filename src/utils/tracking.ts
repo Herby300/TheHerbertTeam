@@ -32,12 +32,17 @@ const EVENTS: Record<TrackEvent, EventMap> = {
   schedule: { meta: 'Schedule', ga4: 'schedule_consultation' },
   phone_click: { meta: 'Contact', ga4: 'phone_click' },
   email_click: { meta: 'Contact', ga4: 'email_click' },
-  // Outbound Primis apply click — not a completed application.
+  // Outbound Primis /apply CTA — not a completed application.
+  // Use standard ViewContent (public fbq track). Custom ApplicationLinkClick is
+  // cancelled by Meta EventValidation before a facebook.com/tr request is sent.
   begin_application: {
-    meta: 'ApplicationLinkClick',
+    meta: 'ViewContent',
     ga4: 'begin_application',
-    metaMethod: 'trackCustom',
-    metaParams: { destination: 'primis_mortgage_application' },
+    metaMethod: 'track',
+    metaParams: {
+      content_name: 'application_portal',
+      content_category: 'application_start',
+    },
   },
   view_loan_program: { meta: 'ViewContent', ga4: 'view_loan_program' },
   // Opening the guide form is interest, not a lead. `download_guide` is reserved
