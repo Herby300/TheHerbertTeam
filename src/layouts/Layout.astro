@@ -389,6 +389,9 @@ const { metaPixel, ga4, gtm } = site.analytics;
         const dedupeKey = ghlSubmitDedupeKey(formType, event.data);
         if (!acceptGhlSubmitOnce(dedupeKey)) return;
 
+        // GHL completions are not user clicks — do not let the click-gesture
+        // dedupe (shared across form_submit) suppress a later legitimate lead.
+        noteUserGesture();
         trackGhlFormCompletion(formType);
       });
     </script>
