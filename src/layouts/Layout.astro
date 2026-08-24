@@ -188,6 +188,7 @@ const { metaPixel, ga4, gtm } = site.analytics;
     <script>
       // ---------------------------------------------------------- tracking
       import { noteUserGesture, track, type TrackEvent } from '../utils/tracking';
+      import { ghlLocationId } from '../data/site';
 
       window.herbertTrack = track;
 
@@ -231,41 +232,46 @@ const { metaPixel, ga4, gtm } = site.analytics;
 
       registerGhlIframes();
 
+      /**
+       * Live Pivot Point contact submit (2026-08) posts an array:
+       * ["set-sticky-contacts", "_ud", "<json>", locationId, sessionId]
+       * Not form_submitted. Do not broaden beyond this verified shape.
+       */
       function isValidatedGhlSubmit(data: unknown): boolean {
-        const asString = typeof data === 'string' ? data : JSON.stringify(data ?? '');
-        return /submit|submission|form_submitted|onFormSubmit/i.test(asString);
+        if (!Array.isArray(data) || data.length < 3) return false;
+        if (data[0] !== 'set-sticky-contacts') return false;
+        if (data[1] !== '_ud') return false;
+        if (typeof data[2] !== 'string' || data[2].length < 2) return false;
+        if (typeof data[3] === 'string' && data[3] !== ghlLocationId) return false;
+        return true;
+      }
+
+      /** Opaque CRM id only — never email/name/phone/message. */
+      function opaqueContactIdFromUdJson(jsonStr: string): string {
+        try {
+          const parsed = JSON.parse(jsonStr) as Record<string, unknown>;
+          const id = parsed.customer_id ?? parsed.id;
+          if (typeof id === 'string' || typeof id === 'number') return String(id);
+        } catch {
+          /* malformed payload must not throw */
+        }
+        return '';
       }
 
       /**
-       * Build a dedupe key without reading personal fields. Prefer opaque ids when
-       * present; otherwise fall back to form type + matched event token.
+       * Build a dedupe key without personal fields. Prefer opaque CRM id;
+       * otherwise location + session tokens from the verified array shape.
        */
       function ghlSubmitDedupeKey(formType: string, data: unknown): string {
-        let opaqueId = '';
-        let eventToken = 'submit';
-
-        if (data && typeof data === 'object') {
-          const record = data as Record<string, unknown>;
-          for (const key of ['submissionId', 'submission_id', 'id', 'formId', 'form_id', 'eventId']) {
-            const value = record[key];
-            if (typeof value === 'string' || typeof value === 'number') {
-              opaqueId = String(value);
-              break;
-            }
-          }
-          for (const key of ['type', 'event', 'message', 'action']) {
-            const value = record[key];
-            if (typeof value === 'string' && /submit|submission|form_submitted|onFormSubmit/i.test(value)) {
-              eventToken = value.toLowerCase();
-              break;
-            }
-          }
-        } else if (typeof data === 'string') {
-          const match = data.match(/submit|submission|form_submitted|onFormSubmit/i);
-          if (match) eventToken = match[0].toLowerCase();
+        if (Array.isArray(data)) {
+          const contactId =
+            typeof data[2] === 'string' ? opaqueContactIdFromUdJson(data[2]) : '';
+          const loc = typeof data[3] === 'string' || typeof data[3] === 'number' ? String(data[3]) : '';
+          const sid = typeof data[4] === 'string' || typeof data[4] === 'number' ? String(data[4]) : '';
+          if (contactId) return `${formType}:set-sticky-contacts:${contactId}`;
+          if (loc || sid) return `${formType}:set-sticky-contacts:${loc}:${sid}`;
         }
-
-        return opaqueId ? `${formType}:${opaqueId}:${eventToken}` : `${formType}:${eventToken}`;
+        return `${formType}:set-sticky-contacts`;
       }
 
       function acceptGhlSubmitOnce(dedupeKey: string): boolean {
