@@ -1,3 +1,5 @@
+import { site } from './site';
+
 export type NavChild = {
   label: string;
   href: string;
@@ -57,6 +59,6 @@ export const footerCompanyLinks: NavChild[] = [
   { label: 'Reviews', href: '/reviews' },
   { label: 'Partners', href: '/partners' },
   { label: 'Contact', href: '/contact' },
-  { label: 'Apply Now', href: '/apply' },
+  { label: 'Apply Now', href: site.applyUrl },
   { label: 'Schedule a Call', href: '/schedule' },
 ];

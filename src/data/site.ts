@@ -23,7 +23,7 @@ export const site = {
   institutionNmlsId: '1894879',
   institutionNmlsLookup: 'https://www.nmlsconsumeraccess.org/EntityDetails.aspx/COMPANY/1894879',
 
-  applyUrl: 'https://mortgageapp.primisbank.com/homehub/signup/jason.herbert@primisbank.com',
+  applyUrl: 'https://apply.planethomelending.com/#/loan-officers/jherbert%40planethomelending',
   calendlyUrl: 'https://link.pivotpointcrm.com/widget/booking/AzjHQG9X5fuGMWZhROT7',
 
   social: {
