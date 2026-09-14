@@ -94,7 +94,7 @@ export const faqs: Faq[] = [
     category: 'Getting Started',
     homepage: false,
     q: 'What makes you different from an online lender?',
-    a: 'You get one advisor from application through closing, not a call center queue and a different name in every email. When your file has a wrinkle — and most interesting files do — there is a person who knows your situation and can restructure it. I am also backed by Primis Bank, a federally regulated, FDIC-insured institution, which is a different level of stability than a broker-only shop.',
+    a: 'You get one advisor from application through closing, not a call center queue and a different name in every email. When your file has a wrinkle — and most interesting files do — there is a person who knows your situation and can restructure it. I originate through Planet Home Lending.',
   },
 
   // ---------------------------------------------------------------- Credit & Qualifying

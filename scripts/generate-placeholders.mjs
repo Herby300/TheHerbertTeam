@@ -124,16 +124,10 @@ function placeholderSvg({ width, height, label, path }) {
  */
 const svgFiles = {
   'images/badges/equal-housing.svg': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" width="56" height="56" role="img" aria-label="Equal Housing Lender">
-  <rect width="56" height="56" rx="6" fill="none" stroke="currentColor" stroke-width="2" opacity="0.55"/>
-  <path d="M28 13 45 26h-5v15H16V26h-5z" fill="currentColor"/>
-  <rect x="19" y="43" width="18" height="2.6" fill="currentColor"/>
-  <rect x="19" y="47.5" width="18" height="2.6" fill="currentColor"/>
-</svg>`,
-
-  'images/badges/fdic.svg': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 56" width="112" height="56" role="img" aria-label="Member FDIC">
-  <rect width="112" height="56" rx="6" fill="none" stroke="currentColor" stroke-width="2" opacity="0.55"/>
-  <text x="56" y="26" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="currentColor">MEMBER</text>
-  <text x="56" y="44" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="17" font-weight="800" letter-spacing="1.5" fill="currentColor">FDIC</text>
+  <rect width="56" height="56" rx="6" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.55"/>
+  <path d="M28 13 45 26h-5v15H16V26h-5z" fill="#ffffff"/>
+  <rect x="19" y="43" width="18" height="2.6" fill="#ffffff"/>
+  <rect x="19" y="47.5" width="18" height="2.6" fill="#ffffff"/>
 </svg>`,
 
   'images/badges/google-reviews.svg': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" width="120" height="40" role="img" aria-label="Google Reviews">

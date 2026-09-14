@@ -48,9 +48,9 @@ export const mainNav: NavItem[] = [
 ];
 
 export const footerLegalLinks: NavChild[] = [
-  { label: 'Privacy Policy', href: '/privacy-policy' },
-  { label: 'Terms of Use', href: '/terms' },
-  { label: 'Licensing & Disclosures', href: '/licensing' },
+  { label: 'Privacy Policy', href: 'https://www.planethomelending.com/privacy-policy' },
+  { label: 'Terms of Use', href: 'https://www.planethomelending.com/terms-of-use' },
+  { label: 'Licensing & Disclosures', href: 'https://www.planethomelending.com/licensing' },
 ];
 
 export const footerCompanyLinks: NavChild[] = [

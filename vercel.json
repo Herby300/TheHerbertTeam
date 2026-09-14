@@ -1,5 +1,8 @@
 {
   "redirects": [
+    { "source": "/privacy-policy", "destination": "https://www.planethomelending.com/privacy-policy", "permanent": true },
+    { "source": "/terms", "destination": "https://www.planethomelending.com/terms-of-use", "permanent": true },
+    { "source": "/licensing", "destination": "https://www.planethomelending.com/licensing", "permanent": true },
     { "source": "/solutions/atm-mortgage", "destination": "/solutions", "permanent": true }
   ],
   "headers": [

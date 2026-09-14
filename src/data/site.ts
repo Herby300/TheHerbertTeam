@@ -18,10 +18,10 @@ export const site = {
   nmlsId: '633039',
   nmlsLookup: 'https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/633039',
 
-  institution: 'Primis Mortgage Company',
-  institutionNmls: 'NMLS #1894879',
-  institutionNmlsId: '1894879',
-  institutionNmlsLookup: 'https://www.nmlsconsumeraccess.org/EntityDetails.aspx/COMPANY/1894879',
+  institution: 'Planet Home Lending',
+  institutionNmls: 'NMLS #17022',
+  institutionNmlsId: '17022',
+  institutionNmlsLookup: 'https://www.nmlsconsumeraccess.org/EntityDetails.aspx/COMPANY/17022',
 
   applyUrl: 'https://apply.planethomelending.com/#/loan-officers/jherbert%40planethomelending',
   calendlyUrl: 'https://link.pivotpointcrm.com/widget/booking/AzjHQG9X5fuGMWZhROT7',
