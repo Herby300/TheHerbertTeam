@@ -1,4 +1,7 @@
 {
+  "redirects": [
+    { "source": "/solutions/atm-mortgage", "destination": "/solutions", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/_astro/(.*)",

@@ -86,7 +86,6 @@ const MAP = [
   { from: 'programs/refinance.png', to: 'images/programs/refinance.webp', width: 1200, height: 800 },
 
   // 1200x800 signature solution cards
-  { from: 'solutions/ATM solution.png', to: 'images/solutions/atm-mortgage.webp', width: 1200, height: 800 },
   { from: 'solutions/Buy before  you sell.png', to: 'images/solutions/buy-before-you-sell.webp', width: 1200, height: 800 },
   { from: 'solutions/Down Payment Assistance.png', to: 'images/solutions/down-payment-assistance.webp', width: 1200, height: 800 },
   { from: 'solutions/First Time Home Buyer.png', to: 'images/solutions/first-time-homebuyers.webp', width: 1200, height: 800 },

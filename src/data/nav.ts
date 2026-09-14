@@ -24,7 +24,6 @@ export const loanProgramLinks: NavChild[] = [
 ];
 
 export const solutionLinks: NavChild[] = [
-  { label: 'ATM Mortgage', href: '/solutions/atm-mortgage', description: 'A first-lien HELOC for on-demand equity' },
   { label: 'Buy Before You Sell', href: '/solutions/buy-before-you-sell', description: 'Make a non-contingent offer' },
   { label: 'Down Payment Assistance', href: '/solutions/down-payment-assistance', description: 'Shrink the cash you need to close' },
   { label: 'First-Time Homebuyers', href: '/solutions/first-time-homebuyers', description: 'From preapproval to keys, guided' },

@@ -14,11 +14,6 @@ const crumbs = [
 
 const problems = [
   {
-    problem: '“You have too much equity tied up and no way to reach it.”',
-    solution: 'ATM Mortgage — a first-lien HELOC that keeps your equity liquid.',
-    href: '/solutions/atm-mortgage',
-  },
-  {
     problem: '“You will need to sell your current home before we can approve you.”',
     solution: 'Buy Before You Sell — make a non-contingent offer and move once.',
     href: '/solutions/buy-before-you-sell',
@@ -38,10 +33,10 @@ const problems = [
 
 <PageLayout
   title="Mortgage Solutions for Tough Situations"
-  description="Signature mortgage solutions from The Herbert Team: first-lien HELOC, buy before you sell, Texas down payment assistance, and first-time homebuyer guidance."
+  description="Signature mortgage solutions from The Herbert Team: buy before you sell, Texas down payment assistance, and first-time homebuyer guidance."
   heroEyebrow="Signature Solutions"
   heroTitle="The Problems Other Lenders Send You Home With."
-  heroSubtitle="These four come up constantly, and each one has a real answer. Not a workaround — a structured program built for exactly that situation."
+  heroSubtitle="These situations come up constantly, and each one has a real answer. Not a workaround — a structured program built for exactly that situation."
   heroImage="/images/hero/solutions-hero.webp"
   heroImageAlt="Couple reviewing mortgage options at a kitchen table"
   crumbs={crumbs}
@@ -50,12 +45,12 @@ const problems = [
   <Section bg="white">
     <SectionHeading
       eyebrow="Sound Familiar?"
-      title="Four Sentences You Should Never Accept as Final"
+      title="Three Sentences You Should Never Accept as Final"
       subtitle="Every one of these is a program gap, not a verdict on your finances."
       align="center"
       class="mb-12"
     />
-    <div class="grid gap-6 md:grid-cols-2">
+    <div class="grid gap-6 md:grid-cols-3">
       {
         problems.map((item) => (
           <div class="reveal flex h-full flex-col rounded-card border border-silver-light bg-white p-7 shadow-card">

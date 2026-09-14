@@ -61,7 +61,6 @@ const delivered = [
   'images/programs/self-employed.webp',
   'images/programs/refinance.webp',
 
-  'images/solutions/atm-mortgage.webp',
   'images/solutions/buy-before-you-sell.webp',
   'images/solutions/down-payment-assistance.webp',
   'images/solutions/first-time-homebuyers.webp',

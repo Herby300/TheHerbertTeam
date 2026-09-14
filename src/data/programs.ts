@@ -909,7 +909,7 @@ export const programs: Program[] = [
       author: 'Refinance Client',
       role: 'Cedar Park, TX',
     },
-    related: ['conventional', 'atm-mortgage', 'va-loans'],
+    related: ['conventional', 'va-loans'],
   },
 ];
 
