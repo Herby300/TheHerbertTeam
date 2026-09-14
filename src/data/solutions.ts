@@ -5,20 +5,20 @@ export type Solution = Program;
 export const solutions: Solution[] = [
   {
     slug: 'buy-before-you-sell',
-    name: 'Buy Before You Sell',
+    name: 'Buy Now. Sell Later.',
     href: '/solutions/buy-before-you-sell',
     icon: 'arrow-up-right',
     tagline: 'Make a non-contingent offer without selling first.',
     blurb:
-      'The classic move-up trap: you cannot buy until you sell, and you cannot sell until you know where you are going. Buy Before You Sell breaks the loop by letting you make a strong, non-contingent offer on the next house first.',
+      'The classic move-up trap: you cannot buy until you sell, and you cannot sell until you know where you are going. The Buy Now. Sell Later. program breaks the loop by letting you make a strong, non-contingent offer on the next house first.',
     image: '/images/solutions/buy-before-you-sell.webp',
     heroImage: '/images/solutions/buy-before-you-sell.webp',
-    seoTitle: 'Buy Before You Sell in Texas',
+    seoTitle: 'Buy Now. Sell Later. | Texas Homebuying',
     seoDescription:
       'Buy your next home before selling your current one. Make a non-contingent offer, move on your schedule, and sell without pressure. Costs and eligibility.',
     heroHeading: 'Make a Non-Contingent Offer Without Selling First.',
     intro:
-      'A home sale contingency is the weakest thing you can attach to an offer. When a seller compares your contingent offer against a clean one at the same price, yours loses — every time. Buy Before You Sell removes the contingency, so you shop with the strength of a cash-like buyer, move once, and sell your current home empty and staged instead of scrambling.',
+      'A home sale contingency is the weakest thing you can attach to an offer. When a seller compares your contingent offer against a clean one at the same price, yours loses — every time. The Buy Now. Sell Later. program removes the contingency, so you shop with the strength of a cash-like buyer, move once, and sell your current home empty and staged instead of scrambling.',
     forWho: [
       'Move-up buyers with substantial equity in a home they need to sell',
       'Families who cannot manage a double move or a temporary rental with kids and pets',

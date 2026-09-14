@@ -87,7 +87,7 @@ export const programs: Program[] = [
       { label: 'Minimum down payment', value: '3% for eligible first-time buyers, 5% standard' },
       { label: 'Typical credit score', value: '620 minimum, best pricing at 740+' },
       { label: 'Debt-to-income', value: 'Generally up to 45%, higher with strong compensating factors' },
-      { label: '2025 conforming loan limit', value: '$806,500 for a one-unit property in most Texas counties' },
+      { label: '2026 conforming loan limit', value: '$832,750 for a one-unit property in most Texas counties' },
       { label: 'Mortgage insurance', value: 'Required under 20% down, cancellable at 20% equity' },
       { label: 'Occupancy allowed', value: 'Primary, second home, or investment property' },
     ],
@@ -124,7 +124,7 @@ export const programs: Program[] = [
       },
       {
         q: 'What is the conforming loan limit and what happens above it?',
-        a: 'For 2025 the one-unit conforming limit is $806,500 in most Texas counties. Above that you are in jumbo territory, which has its own guidelines — and options that include 5% down and no monthly mortgage insurance for qualified borrowers.',
+        a: 'For 2026 the one-unit conforming limit is $832,750 in most Texas counties. Above that you are in jumbo territory, which has its own guidelines — and options that include 5% down and no monthly mortgage insurance for qualified borrowers.',
       },
     ],
     testimonial: {
@@ -198,7 +198,7 @@ export const programs: Program[] = [
       { label: 'Minimum down payment', value: '3.5% with a 580+ score, 10% from 500–579' },
       { label: 'Typical credit score', value: '580 for the standard program' },
       { label: 'Debt-to-income', value: 'Often approved above 50% with strong compensating factors' },
-      { label: '2025 FHA limit (most Texas counties)', value: '$524,225 for a one-unit property; higher in some metros' },
+      { label: '2026 FHA limit (low-cost areas)', value: '$541,287 for a one-unit property; county-specific limits may be higher' },
       { label: 'Mortgage insurance', value: 'Upfront premium plus annual MIP, generally for the life of the loan' },
       { label: 'Occupancy allowed', value: 'Primary residence only' },
     ],
@@ -374,7 +374,7 @@ export const programs: Program[] = [
     intro:
       'Jumbo loans are not government-backed, which means every investor writes their own guidelines. That is why one lender tells you 20% down is mandatory and another approves 5%. My value here is knowing which door to knock on for your specific profile — restricted stock, K-1 income, large asset balances, or a complex compensation structure.',
     forWho: [
-      'Buyers purchasing above the 2025 conforming limit of $806,500 in most Texas counties',
+      'Buyers purchasing above the 2026 conforming limit of $832,750 in most Texas counties',
       'Executives with bonus, RSU, or deferred compensation income that standard underwriting mishandles',
       'Physicians, attorneys, and business owners with strong assets and non-traditional income timing',
       'Buyers who have significant assets but want to keep them invested rather than liquidate for a down payment',
@@ -417,7 +417,7 @@ export const programs: Program[] = [
       },
     ],
     glance: [
-      { label: 'Loan amount', value: 'Above $806,500 in most Texas counties, up to $3M+ depending on program' },
+      { label: 'Loan amount', value: 'Above $832,750 in most Texas counties, up to $3M+ depending on program' },
       { label: 'Minimum down payment', value: '5% for eligible borrowers, 10%–20% standard' },
       { label: 'Typical credit score', value: '700+, with the strongest pricing at 760+' },
       { label: 'Debt-to-income', value: 'Generally 43%, with exceptions for high reserves' },
@@ -441,7 +441,7 @@ export const programs: Program[] = [
     faqs: [
       {
         q: 'What is the jumbo loan threshold in Texas?',
-        a: 'For 2025, any loan above $806,500 on a one-unit property is jumbo in most Texas counties. A handful of higher-cost counties nationwide have elevated limits, but the standard limit applies throughout the Austin and Georgetown area.',
+        a: 'For 2026, any loan above $832,750 on a one-unit property is jumbo in most Texas counties. A handful of higher-cost counties nationwide have elevated limits, but the standard limit applies throughout the Austin and Georgetown area.',
       },
       {
         q: 'Can I really get a jumbo loan with 5% down?',

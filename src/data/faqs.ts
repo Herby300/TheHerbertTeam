@@ -333,7 +333,7 @@ export const faqs: Faq[] = [
     homepage: true,
     homepageOrder: 5,
     q: 'Can I buy a new home before selling my current one?',
-    a: 'Yes — that\u2019s exactly what the Buy Before You Sell program is for. It lets you make a non-contingent offer, which sellers strongly prefer, and sell your current home afterward without pressure.',
+    a: 'Yes — that\u2019s exactly what the Buy Now. Sell Later. program is for. It lets you make a non-contingent offer, which sellers strongly prefer, and sell your current home afterward without pressure.',
   },
   {
     category: 'Closing',
