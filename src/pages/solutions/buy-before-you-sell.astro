@@ -3,125 +3,84 @@ import ProgramLayout from '../../layouts/ProgramLayout.astro';
 import Section from '../../components/Section.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import ComparisonTable from '../../components/ui/ComparisonTable.astro';
-import Icon from '../../components/ui/Icon.astro';
 import { getSolution } from '../../data/solutions';
 
 const solution = getSolution('buy-before-you-sell');
-
-const costs = [
-  { label: 'Equity required in current home', value: 'Typically 25%–30% or more' },
-  { label: 'Credit score', value: 'Generally 680 and above' },
-  { label: 'Property types', value: 'Most single-family and townhome purchases' },
-  { label: 'Bridge period', value: 'Commonly up to 6 months' },
-  { label: 'Program fee', value: 'Disclosed in writing before you make an offer' },
-  { label: 'Carrying cost', value: 'Short-term, tied to how long the bridge stays outstanding' },
-];
 ---
 
 <ProgramLayout program={solution} kind="solution">
   <Section slot="after-intro" bg="offwhite">
-    <div class="grid gap-10 lg:grid-cols-2 lg:gap-16">
-      <div>
-        <SectionHeading
-          eyebrow="The Problem"
-          title="Why Contingent Offers Lose"
-          align="left"
-          class="mb-6"
-        />
-        <div class="space-y-4 text-body-lg text-graytext">
-          <p>
-            A home sale contingency tells the seller that your ability to close depends on a transaction that has not
-            happened yet, with a buyer who does not exist yet, on a house they have never seen. From their side, it is
-            not an offer — it is an option.
-          </p>
-          <p>
-            So when two offers land at the same price and one has a contingency, the contingent one loses. Sellers will
-            frequently take less money for more certainty, which means your contingency is costing you real negotiating
-            power, not just convenience.
-          </p>
-          <p>
-            The alternative most families fall into is selling first, moving into a rental, and moving again months
-            later. Two moves, a lease, storage, and shopping under a deadline — all to avoid one contingency.
-          </p>
-        </div>
-      </div>
-
-      <div class="rounded-card border border-silver-light bg-white p-7 shadow-card md:p-9">
-        <h2 class="font-heading text-h3 text-navy">What Sellers Actually Rank</h2>
-        <ol class="mt-6 space-y-4">
-          {
-            [
-              'Certainty that the deal will close',
-              'Closing timeline that matches their move',
-              'Price',
-              'Concessions and repair requests',
-              'Everything else',
-            ].map((item, index) => (
-              <li class="flex items-center gap-4 rounded-lg bg-offwhite px-4 py-3">
-                <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-navy font-heading text-sm font-bold text-white tabular">
-                  {index + 1}
-                </span>
-                <span class="font-medium text-charcoal">{item}</span>
-              </li>
-            ))
-          }
+    <SectionHeading eyebrow="How It Works" title="Two Paths From Your Current Home to Your Next One" align="left" class="mb-8" />
+    <div class="mb-12 grid gap-8 lg:grid-cols-2">
+      <div class="rounded-card border border-silver-light bg-white p-7 shadow-card md:p-8">
+        <h2 class="text-h3 text-navy">Purchase EDGE: Sell to PMG Before Your Next Closing</h2>
+        <p class="mt-4 leading-relaxed text-graytext">Consider this option when coordinating a direct sale and reducing the work of listing your home are priorities. It is not available in California.</p>
+        <ol class="mt-6 list-decimal space-y-5 pl-5 text-graytext marker:font-bold marker:text-navy">
+          <li><strong class="text-navy">Review the offer and costs.</strong> Confirm eligibility, the agreed purchase price, inspection, and sale terms. You pay the inspection cost; the program fee is 2% of your home’s sale price. We’ll review other applicable costs and expected proceeds too.</li>
+          <li><strong class="text-navy">Sell your current home to PMG.</strong> Planet’s published schedule allows PMG to purchase up to seven days before you close on your next home. Review mortgage payoffs and when any proceeds will be available with the closing team.</li>
+          <li><strong class="text-navy">Close on your next home and move.</strong> Coordinate possession and moving dates in the written agreements. PMG handles listing your former home after buying it, so you are not responsible for finding its next buyer.</li>
+          <li><strong class="text-navy">Review the resale accounting.</strong> If the resale produces extra profit, Planet states that you receive 75% of that extra profit after fees and costs. Confirm the calculation and payment terms in your agreement.</li>
         </ol>
-        <p class="mt-6 text-[0.9375rem] leading-relaxed text-graytext">
-          Notice that price is third. Remove the contingency and you are competing on the two things that outrank it.
-        </p>
+      </div>
+      <div class="rounded-card border border-silver-light bg-white p-7 shadow-card md:p-8">
+        <h2 class="text-h3 text-navy">Purchase EDGE Guarantee: Market Your Home With a Backup Buyer</h2>
+        <p class="mt-4 leading-relaxed text-graytext">Consider this option when you want to buy first and pursue a sale with your own agent, supported by an agreed backup purchase.</p>
+        <ol class="mt-6 list-decimal space-y-5 pl-5 text-graytext marker:font-bold marker:text-navy">
+          <li><strong class="text-navy">Arrange the guarantee before committing.</strong> Review property and mortgage eligibility, the valuation, and the written backup purchase terms. PMG pays for the inspection. Confirm your financing and cash needs before writing an offer without a home-sale contingency.</li>
+          <li><strong class="text-navy">Close on the new home, then list promptly.</strong> Your current home must be listed within 10 business days of your new home’s closing. Coordinate that deadline and your marketing plan with your chosen agent.</li>
+          <li><strong class="text-navy">Market the home during the sale window.</strong> If you sell it, you keep the extra profit and pay the $3,500 program fee when it sells. Selling costs, mortgage payoffs, and ongoing property expenses still affect your net proceeds.</li>
+          <li><strong class="text-navy">Use the backup purchase if needed.</strong> If the home remains unsold 180 days after your new closing, PMG purchases under the program agreement. Planet states a price of 75% of estimated value and waives the $3,500 fee if PMG buys. Review the conditions and expected proceeds in advance.</li>
+        </ol>
       </div>
     </div>
+    <SectionHeading eyebrow="Compare Your Options" title="A Direct Sale or a Backup Buyer?" align="left" class="mb-8" />
+    <ComparisonTable
+      caption="Planet Home Lending program comparison — reviewed September 15, 2026. Subject to written agreements and approval."
+      headers={['Detail', 'Purchase EDGE', 'Purchase EDGE Guarantee']}
+      rows={[
+        ['PMG purchase timing', 'Up to 7 days before your next closing', 'If unsold 180 days after your next closing'],
+        ['Listing responsibility', 'PMG handles the listing', 'List within 10 business days after your next closing'],
+        ['Inspection paid by', 'Homeowner', 'PMG'],
+        ['Program fee', '2% of the home’s sale price', '$3,500 when your current home sells; waived if PMG buys'],
+        ['Resale upside', '75% of extra profit after fees and costs', '100% of extra profit if you sell'],
+      ]}
+    />
+    <aside class="mt-8 rounded-card border-l-4 border-brandblue bg-white p-7 shadow-card">
+      <h2 class="text-h3 text-navy">Understand the Backup Price</h2>
+      <p class="mt-4 leading-relaxed text-graytext">
+        Planet states that the 180-day backup purchase is at 75% of estimated value. That is not a full-market-value guarantee.
+        Review the valuation and net proceeds before committing.
+      </p>
+    </aside>
   </Section>
 
-  <Section slot="after-benefits" bg="white">
-    <SectionHeading
-      eyebrow="Contingent vs. Non-Contingent"
-      title="The Same Buyer, Two Very Different Offers"
-      align="center"
-      class="mb-10"
-    />
-    <ComparisonTable
-      headers={['Factor', 'Contingent Offer', 'Non-Contingent Offer']}
-      rows={[
-        ['How the listing agent ranks it', 'Bottom of the stack', 'Competitive with cash'],
-        ['Negotiating leverage', 'Minimal — you often pay full price and still lose', 'Strong, including on price and repairs'],
-        ['Number of moves', 'Two, if you sell first', 'One'],
-        ['Interim housing', 'Rental or family, often for months', 'None'],
-        ['Selling your current home', 'Occupied, staged around your life, under time pressure', 'Empty, staged, and shown without pressure'],
-        ['Risk of losing the house you want', 'High in any competitive market', 'Low'],
-      ]}
-      highlightColumn={2}
-    />
-
-    <div class="mt-12 grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:gap-12">
-      <div class="rounded-card border border-silver-light bg-offwhite p-7 md:p-8">
-        <h3 class="font-heading text-h3 text-navy">Eligibility &amp; Costs</h3>
-        <dl class="mt-6 divide-y divide-silver-light">
-          {
-            costs.map((item) => (
-              <div class="flex flex-col gap-1 py-3.5 sm:flex-row sm:justify-between sm:gap-6">
-                <dt class="text-graytext">{item.label}</dt>
-                <dd class="font-medium text-navy sm:text-right">{item.value}</dd>
-              </div>
-            ))
-          }
-        </dl>
-      </div>
-
-      <div class="flex gap-4 rounded-card border-l-4 border-brandblue bg-brandblue-soft p-7 md:p-8">
-        <Icon name="info" size={24} class="mt-0.5 shrink-0 text-brandblue" />
-        <div>
-          <h3 class="font-heading text-lg font-bold text-navy">Start before you tour, not after</h3>
-          <p class="mt-3 leading-relaxed text-charcoal">
-            The most common mistake is calling about this after finding the perfect house. Approval moves quickly, but
-            you want it in hand before your agent writes anything, so the offer goes out clean on day one.
-          </p>
-          <p class="mt-4 leading-relaxed text-charcoal">
-            Program terms, fees, and eligibility vary by structure and are disclosed in writing before you commit. This
-            is not a commitment to lend, and all financing is subject to underwriting approval.
-          </p>
-        </div>
-      </div>
+  <Section slot="after-benefits" bg="offwhite">
+    <SectionHeading eyebrow="Eligibility" title="Check the Property and Loan First" align="left" class="mb-6" />
+    <div class="space-y-4 leading-relaxed text-graytext">
+      <p>
+        Eligible metropolitan areas only. Both options exclude AK, D.C., HI, MA, NY, Puerto Rico, and the U.S. Virgin Islands;
+        Purchase EDGE also excludes CA. Rural properties and condos are ineligible.
+      </p>
+      <p>
+        Excluded financing includes Bond, USDA, Renovation, Jumbo, Non-QM, Down Payment Assistance, and Manufactured Housing programs.
+        Additional exclusions may apply.
+      </p>
+      <p>
+        Terms may change or end without notice; stated expiration: December 31, 2026.
+        Third-party delays remain possible. Planet recommends attorney review of agreements.
+      </p>
+      <p>
+        <a class="font-semibold text-brandblue-text underline hover:text-brandblue-text-hover" href="https://www.planethomelending.com/purchase-edge" target="_blank" rel="noopener noreferrer">Read Planet’s program details and disclosures</a>.
+        Let’s confirm your eligibility and complete costs before you make a commitment.
+      </p>
     </div>
   </Section>
 </ProgramLayout>
+
+<style is:global>
+  /* Keep this page's approved steps and benefits visible without scroll scripts. */
+  body:has([data-program-name="Buy Now. Sell Later."]) .reveal {
+    opacity: 1;
+    transform: none;
+  }
+</style>
