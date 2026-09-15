@@ -8,110 +8,61 @@ export const solutions: Solution[] = [
     name: 'Buy Now. Sell Later.',
     href: '/solutions/buy-before-you-sell',
     icon: 'arrow-up-right',
-    tagline: 'Make a non-contingent offer without selling first.',
+    tagline: 'Two options to help coordinate your next purchase and current home sale.',
     blurb:
-      'The classic move-up trap: you cannot buy until you sell, and you cannot sell until you know where you are going. The Buy Now. Sell Later. program breaks the loop by letting you make a strong, non-contingent offer on the next house first.',
+      'Ready for your next home, but still need to sell? Compare Planet Home Lending’s Purchase EDGE and Purchase EDGE Guarantee with me so we can build a move around your budget and timeline.',
     image: '/images/solutions/buy-before-you-sell.webp',
     heroImage: '/images/solutions/buy-before-you-sell.webp',
-    seoTitle: 'Buy Now. Sell Later. | Texas Homebuying',
+    seoTitle: 'Buy Now. Sell Later. | Purchase EDGE',
     seoDescription:
-      'Buy your next home before selling your current one. Make a non-contingent offer, move on your schedule, and sell without pressure. Costs and eligibility.',
-    heroHeading: 'Make a Non-Contingent Offer Without Selling First.',
+      'Compare Planet Purchase EDGE and Purchase EDGE Guarantee: fees, sale timelines, backup purchase terms, and Texas and California availability.',
+    heroHeading: 'Your Next Home. A Plan for the One You Own.',
     intro:
-      'A home sale contingency is the weakest thing you can attach to an offer. When a seller compares your contingent offer against a clean one at the same price, yours loses — every time. The Buy Now. Sell Later. program removes the contingency, so you shop with the strength of a cash-like buyer, move once, and sell your current home empty and staged instead of scrambling.',
+      'Buying and selling at the same time creates a lot of moving parts. Planet offers two different ways to coordinate those transactions through Planet Management Group (PMG), a Planet subsidiary. One involves selling your current home to PMG before your next closing; the other provides a backup buyer while you market the home. I’ll help you compare the costs, expected proceeds, and obligations before you choose.',
     forWho: [
-      'Move-up buyers with substantial equity in a home they need to sell',
-      'Families who cannot manage a double move or a temporary rental with kids and pets',
-      'Buyers relocating into Texas on a compressed timeline',
-      'Anyone competing in a market where contingent offers are routinely passed over',
-      'Downsizers who want to secure the right smaller home before listing the family house',
+      'Homeowners planning a move who need a coordinated purchase and sale',
+      'Buyers who want to evaluate an offer without a home-sale contingency',
+      'Families comparing a direct sale with listing their current home',
+      'Texas homeowners in eligible metropolitan areas',
+      'California homeowners exploring Purchase EDGE Guarantee, subject to location and program approval',
     ],
     benefits: [
-      {
-        title: 'Your offer competes on equal footing',
-        text: 'Listing agents rank offers by certainty. Removing the sale contingency moves you from the bottom of the pile to the top, often without raising your price.',
-      },
-      {
-        title: 'Move once, not twice',
-        text: 'You close on the new home, move in, then list and sell. No interim rental, no storage unit, no two moves in ninety days.',
-      },
-      {
-        title: 'Sell from a position of strength',
-        text: 'An empty, staged, professionally photographed home shows better and negotiates better than one you are living in while fielding showing requests. Sellers who are not under pressure make better decisions.',
-      },
-      {
-        title: 'Your equity unlocked early',
-        text: 'The program lets you access the equity in your current home for the down payment on the new one before that home has actually sold.',
-      },
+      { title: 'Make an offer without waiting for a sale', text: 'Purchase EDGE Guarantee supports an offer without a home-sale contingency through a backup buyer. That can give a seller more certainty about your sale timeline, although your financing still needs approval and the seller decides which offer to accept.' },
+      { title: 'Reduce the disruption of moving', text: 'Coordinating your sale and purchase can help avoid an interim rental, storage, and a second move. We’ll confirm closing and possession dates so you know when you can leave one home and enter the next.' },
+      { title: 'Choose convenience or market exposure', text: 'With Purchase EDGE, PMG purchases your home and handles its listing, reducing the need to prepare for showings while living there. With Guarantee, you and your chosen agent market the home, with a defined backup purchase if it remains unsold.' },
+      { title: 'Keep an opportunity for additional proceeds', text: 'If you sell through the Guarantee option, you retain the extra profit, subject to your transaction costs. Purchase EDGE provides 75% of extra resale profit after fees and costs. We’ll compare estimated net proceeds, not just the headline sale price.' },
     ],
     steps: [
-      {
-        title: 'Evaluate both properties',
-        text: 'We look at your current home\u2019s value and mortgage balance alongside your target purchase price to confirm the equity math works and determine your program options.',
-      },
-      {
-        title: 'Get your approval and offer strength in place',
-        text: 'You receive an underwritten approval that lets your agent write a non-contingent offer. Your agent can show the listing side documentation that supports your certainty of closing.',
-      },
-      {
-        title: 'Close on the new home and move',
-        text: 'You purchase and take possession of the new home. Your current home\u2019s equity is bridged so the down payment does not require you to have sold first.',
-      },
-      {
-        title: 'List, sell, and settle up',
-        text: 'With your family already moved, the old home hits the market empty. When it sells, the bridged amount is repaid from the proceeds and the transaction closes out.',
-      },
+      { title: 'Review your scenario', text: 'Send me your current address, approximate mortgage balance, target purchase, and timeline. We’ll check property, location, and financing eligibility.' },
+      { title: 'Compare the written terms', text: 'Review the valuation, purchase terms, fees, closing costs, and estimated proceeds for the available option. Ask questions before signing.' },
+      { title: 'Coordinate the purchase and move', text: 'Your selected program determines when your current home changes hands. We’ll coordinate that schedule with your agent and new mortgage approval.' },
+      { title: 'Follow the sale requirements', text: 'For the Guarantee option, your listing deadline and backup purchase terms matter. Keep the agreed milestones in view with your agent.' },
     ],
     glance: [
-      { label: 'Contingency required', value: 'None — offers are written without a home sale contingency' },
-      { label: 'Equity needed in current home', value: 'Typically 25%–30% or more' },
-      { label: 'Typical credit score', value: '680+' },
-      { label: 'Bridge period', value: 'Usually up to 6 months' },
-      { label: 'Cost structure', value: 'Program fee plus short-term carrying cost; disclosed in writing up front' },
-      { label: 'Moves required', value: 'One' },
+      { label: 'Program options', value: 'Purchase EDGE / Purchase EDGE Guarantee' },
+      { label: 'Texas', value: 'Eligible metropolitan areas; approval required' },
+      { label: 'California', value: 'Guarantee option only; eligible areas and approval required' },
+      { label: 'Credit and equity', value: 'Individual review; no minimum published on the corporate page' },
+      { label: 'Program expiration', value: 'December 31, 2026, unless changed or terminated earlier' },
     ],
     myths: [
-      {
-        myth: 'You have to qualify for both mortgage payments.',
-        truth: 'Depending on program structure, the departing residence payment may be excluded or offset, which is exactly what makes this work for households that could not carry both on paper.',
-      },
-      {
-        myth: 'It is only for wealthy buyers.',
-        truth: 'What it requires is equity, not a large income. Homeowners who bought five or more years ago in Central Texas frequently have more than enough.',
-      },
-      {
-        myth: 'It costs so much that it wipes out the benefit.',
-        truth: 'There is a real cost and I disclose it in writing before you commit. Weigh it against what you lose by making a contingent offer that gets rejected, or by selling first and paying rent plus two moves.',
-      },
+      { myth: 'A backup buyer means I receive full market value.', truth: 'Read the backup purchase price carefully. It can materially change your proceeds compared with a sale to a buyer on the open market.' },
+      { myth: 'An offer without a sale contingency is guaranteed to win.', truth: 'The seller still decides which offer to accept. Price, financing, inspections, and closing terms all matter.' },
+      { myth: 'The program fee is my entire cost.', truth: 'Review the complete transaction estimate, including applicable inspections, closing and selling costs, and ongoing home expenses.' },
     ],
     faqs: [
-      {
-        q: 'How much equity do I need in my current home?',
-        a: 'Generally 25% to 30% or more, though it depends on both property values and the specific program. The fastest way to find out is a ten-minute call where we look at your balance and an honest estimate of your home\u2019s value.',
-      },
-      {
-        q: 'What if my current home does not sell quickly?',
-        a: 'Programs include a defined bridge period, typically up to six months. We talk through the contingency plan and the carrying cost before you commit, so a slow sale is an inconvenience rather than a crisis.',
-      },
-      {
-        q: 'What does it cost?',
-        a: 'There is a program fee and short-term carrying cost that varies by structure and by how long the bridge stays outstanding. You get the numbers in writing before you make an offer — no surprises at closing.',
-      },
-      {
-        q: 'Is this the same as a bridge loan?',
-        a: 'It is a modern version of the same idea, with less friction. Traditional bridge loans often required qualifying for both payments and carried heavy costs. These programs are structured specifically around removing the sale contingency.',
-      },
-      {
-        q: 'How fast can this come together?',
-        a: 'Approval typically moves at the same pace as a standard preapproval — often within a couple of days once documents are in. The right time to start is before you tour homes, not after you have found the one.',
-      },
+      { q: 'Which option should I consider?', a: 'Start with your priorities: convenience, expected proceeds, timing, and comfort with marketing the home. I’ll compare the available written offers with you.' },
+      { q: 'Can I choose my real estate agent?', a: 'Planet permits you to choose your agent. With the Guarantee option, coordinate the required listing timeline; with Purchase EDGE, PMG handles the listing after purchasing.' },
+      { q: 'Is this a bridge loan?', a: 'These options involve a purchase or backup purchase by PMG. Ask for a separate financing comparison if you are also considering borrowing against your equity.' },
+      { q: 'Do I automatically qualify?', a: 'No. Your property, location, financing, and program terms require review. The corporate page does not establish a universal credit score, equity minimum, or approval turnaround.' },
+      { q: 'What should I send you to get started?', a: 'Your current home address, approximate mortgage balance, desired purchase price, and expected move date are a useful starting point. We can discuss documents through the application process.' },
     ],
     testimonial: {
       quote: 'The best mortgage experience we have ever had.',
       author: 'Move-Up Buyer',
       role: 'Georgetown, TX',
     },
-    related: ['conventional', 'jumbo', 'refinance'],
+    related: ['conventional', 'refinance'],
   },
 
   {
