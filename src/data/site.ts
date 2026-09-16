@@ -65,6 +65,13 @@ export const formBase = 'https://link.pivotpointcrm.com/widget/form/';
 export const formSubmitUrl = 'https://backend.leadconnectorhq.com/forms/submit';
 export const bookingUrl = site.calendlyUrl;
 
+/** Dedicated CRM form: require name, email, and phone; redirect after success. */
+export const divorceGuide = {
+  formId: '9unzlrGXk9VQ2ghj04H7',
+  thankYouHref: '/divorce-mortgage-planning/thank-you',
+  pdfHref: '/downloads/divorce-and-the-mortgage-guide.pdf',
+} as const;
+
 /** First-Time Home Buyer’s Playbook lead magnet. */
 export const playbook = {
   title: 'First-Time Home Buyer’s Playbook',
