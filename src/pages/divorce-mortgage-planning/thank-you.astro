@@ -1,0 +1,27 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Section from '../../components/Section.astro';
+import Button from '../../components/Button.astro';
+import { divorceGuide } from '../../data/site';
+---
+
+<PageLayout
+  title="Your Divorce & Mortgage Guide"
+  description="Download your copy of Divorce & the Mortgage from The Herbert Team."
+  heroEyebrow="Your Free Guide"
+  heroTitle="Your Divorce & Mortgage Guide Is Ready"
+  heroSubtitle="A Homeowner’s Guide to Keeping the House, Buying Out a Spouse & Buying Again"
+  showHeroCtas={false}
+  showCta={false}
+  noindex
+>
+  <Section bg="white">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="text-body-lg text-graytext">Download your copy below and explore your housing options before committing to the next step.</p>
+      <div class="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+        <Button href={divorceGuide.pdfHref} variant="primary" icon="download" external track="divorce_guide_download_click">Download the Guide</Button>
+        <Button href="/schedule" variant="secondary" track="schedule" external>Request a Mortgage Feasibility Review</Button>
+      </div>
+    </div>
+  </Section>
+</PageLayout>
