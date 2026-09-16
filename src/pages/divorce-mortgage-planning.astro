@@ -1,0 +1,352 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Section from '../components/Section.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Button from '../components/Button.astro';
+import Icon from '../components/ui/Icon.astro';
+import Accordion from '../components/ui/Accordion.astro';
+import AccordionItem from '../components/ui/AccordionItem.astro';
+import { site } from '../data/site';
+import { breadcrumbSchema, faqSchema, serviceSchema, combineSchema } from '../utils/seo';
+
+const guidePdf = '/downloads/divorce-and-the-mortgage-guide.pdf';
+const guideCover = '/images/lead-magnets/divorce-mortgage-guide-cover.webp';
+
+const crumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Divorce Mortgage Planning', href: '/divorce-mortgage-planning' },
+];
+
+const options = [
+  { icon: 'shield-check', title: 'Keep the Home', text: 'Determine whether you can qualify independently, afford the resulting payment, and complete any required equity buyout.' },
+  { icon: 'gem', title: 'Buy Out Your Spouse', text: 'Once the legal equity obligation is known, determine whether the required financing can actually be completed.' },
+  { icon: 'arrow-up-right', title: 'Sell the Home', text: 'Pay off the mortgage, divide proceeds according to the agreement, and plan each spouse’s next housing step.' },
+  { icon: 'compass', title: 'Buy Another Home', text: 'Evaluate how the existing mortgage, support, debts, assets, and timing affect qualification for your next purchase.' },
+];
+
+const reviewItems = [
+  'Income, employment, and qualifying income sources',
+  'Credit profile using a soft credit inquiry when appropriate',
+  'Assets, liabilities, and current mortgage obligations',
+  'Existing liens and proposed equity division',
+  'Child support and spousal support received or paid',
+  'Equity-buyout financing and replacement-home qualification',
+  'Your financial picture today versus after the proposed divorce terms take effect',
+];
+
+const faqs = [
+  { q: 'Can I keep my house after divorce?', a: 'Possibly. Keeping the home depends on more than who receives the property in the divorce. You also need to determine whether you can afford the home and, when financing is required, whether you can qualify for the necessary mortgage on your own.' },
+  { q: 'How do I buy my spouse out of the house?', a: 'First, the appropriate legal and financial professionals determine the equity obligation. Once the buyout amount or formula is established, the mortgage analysis determines whether the spouse retaining the home can finance that obligation.' },
+  { q: 'Does removing someone from the deed remove them from the mortgage?', a: 'Not necessarily. Title controls ownership; the mortgage note controls contractual repayment responsibility. Transferring title by itself does not guarantee that a borrower has been released from the mortgage.' },
+  { q: 'Does a divorce decree remove my ex from the mortgage?', a: 'A divorce decree can allocate responsibility between former spouses, but it does not automatically change the lender’s loan documents. Depending on the loan, a refinance, assumption, release of liability, or payoff may be needed.' },
+  { q: 'Do I have to refinance after divorce?', a: 'Not always. Refinancing is common, but some loans may have assumption or release-of-liability options. The current mortgage should be reviewed before deciding that refinancing is the only path.' },
+  { q: 'Can child support count as income for a mortgage?', a: 'Potentially. Mortgage programs can require documentation, a history of receipt, and sufficient expected continuance. The exact requirements depend on the loan program and the borrower’s circumstances.' },
+  { q: 'Can alimony or spousal support count as mortgage income?', a: 'Potentially. As with child support, the applicable loan program may require documentation of the obligation, evidence of receipt, and sufficient expected continuance before the income can be used for qualification.' },
+  { q: 'Does paying support affect how much mortgage I qualify for?', a: 'It can. Ongoing support obligations may be considered when evaluating monthly liabilities and can affect the amount of mortgage debt a borrower can qualify to carry.' },
+  { q: 'Can I buy another house before my divorce is final?', a: 'Potentially, but unresolved marital debts, ownership, assets, support obligations, and documentation can make the analysis more complicated. A mortgage review can help determine whether the timing is realistic.' },
+  { q: 'What is an owelty lien in a Texas divorce?', a: 'An owelty of partition can be used in connection with the division of a Texas homestead when one spouse owes the other money as part of the property division. Attorneys and title professionals handle the legal documents; the mortgage analysis evaluates financing based on that structure.' },
+  { q: 'Can my spouse assume our mortgage?', a: 'Possibly. Assumption rules depend on the loan type, loan documents, servicer requirements, and the financial qualifications of the spouse who would assume the obligation.' },
+  { q: 'What happens to a VA loan during divorce?', a: 'The answer depends on who used VA entitlement, who will retain the property, who is obligated on the mortgage, and whether an assumption, release of liability, refinance, or sale is appropriate.' },
+  { q: 'When should I speak with a mortgage professional during divorce?', a: 'Ideally, before the housing portion of the divorce is finalized. That gives you and your legal team time to understand whether the proposed housing arrangement appears financially achievable before deadlines and obligations are established.' },
+];
+
+const schema = combineSchema(
+  serviceSchema({
+    name: 'Divorce Mortgage Planning',
+    description: 'Mortgage planning for homeowners navigating divorce, including equity buyouts, refinance feasibility, support-income considerations, and replacement-home qualification.',
+    url: '/divorce-mortgage-planning',
+  }),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs)
+);
+---
+
+<PageLayout
+  title="Divorce Mortgage Planning | Keep the Home, Buy Out a Spouse or Buy Again"
+  description="Understand your mortgage options before finalizing a divorce. Explore equity buyouts, refinancing, support income, Texas owelty transactions, VA divorce scenarios, and buying another home."
+  heroEyebrow="Divorce Mortgage Planning"
+  heroTitle="Your Home. Your Mortgage. Your Next Chapter."
+  heroSubtitle="Whether you are trying to keep the marital home, complete an equity buyout, remove a spouse from the mortgage, or buy again, understand the mortgage impact before you commit to the housing terms."
+  crumbs={crumbs}
+  showHeroCtas={false}
+  showCta={false}
+  image={guideCover}
+  schema={schema}
+>
+  <Section bg="white" padding="sm">
+    <div class="mx-auto max-w-5xl rounded-card border border-brandblue/20 bg-brandblue-soft p-7 text-center shadow-card md:p-10">
+      <p class="text-eyebrow font-heading font-semibold uppercase tracking-wide text-brandblue">Qualify Before You Commit</p>
+      <h2 class="mt-3 text-h2 text-navy">Make sure the housing plan can actually work financially.</h2>
+      <p class="mx-auto mt-4 max-w-3xl text-body-lg leading-relaxed text-graytext">
+        A divorce decree can require a refinance or equity buyout. It cannot guarantee mortgage approval. The best time to uncover a financing problem is before the final terms make it an obligation.
+      </p>
+      <div class="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+        <Button href="/schedule" variant="primary" icon="arrow-right" track="schedule">Request a Mortgage Feasibility Review</Button>
+        <Button href={guidePdf} variant="secondary" icon="book-open" external>Download the Free Guide</Button>
+      </div>
+    </div>
+  </Section>
+
+  <Section bg="offwhite">
+    <SectionHeading
+      eyebrow="Start With the Right Questions"
+      title="The House Is Often the Biggest Financial Question in a Divorce"
+      subtitle="Before the final terms are signed, understand what the mortgage numbers actually support."
+      align="center"
+      class="mb-10"
+    />
+    <div class="mx-auto grid max-w-5xl gap-4 md:grid-cols-2">
+      {[
+        'Can I afford to keep the house on my own?',
+        'How much equity does my spouse need to receive?',
+        'Can I refinance enough to complete the equity buyout?',
+        'How do I remove my spouse from the mortgage?',
+        'Can I preserve my current interest rate?',
+        'Will child support or spousal support help me qualify?',
+        'Will support I pay reduce what I can qualify for?',
+        'Can I purchase another home after the divorce?',
+      ].map((question) => (
+        <div class="flex items-start gap-3 rounded-card border border-silver-light bg-white p-5 shadow-card">
+          <Icon name="check-circle" size={20} class="mt-0.5 shrink-0 text-brandblue" />
+          <p class="font-medium leading-relaxed text-charcoal">{question}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section bg="white">
+    <div class="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-16">
+      <div>
+        <SectionHeading
+          eyebrow="Full Qualification Review"
+          title="The Divorce Mortgage Feasibility Review"
+          subtitle="This is more than an estimated payment. It is a full mortgage analysis designed to show what you can realistically accomplish before you commit to the divorce terms."
+          align="left"
+        />
+        <ul class="mt-7 space-y-4">
+          {reviewItems.map((item) => (
+            <li class="flex items-start gap-3">
+              <Icon name="check-circle" size={20} class="mt-0.5 shrink-0 text-success" />
+              <span class="leading-relaxed text-charcoal">{item}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="mt-8">
+          <Button href="/schedule" variant="primary" icon="arrow-right" track="schedule">Schedule My Mortgage Feasibility Review</Button>
+        </div>
+      </div>
+      <div class="rounded-card border border-silver-light bg-offwhite p-7 shadow-card md:p-8">
+        <p class="text-eyebrow font-heading font-semibold uppercase tracking-wide text-brandblue">What We Want to Answer</p>
+        <div class="mt-5 space-y-4">
+          {[
+            'Can I qualify to keep the home?',
+            'Can I finance the proposed equity buyout?',
+            'How much equity can realistically be financed?',
+            'How will support payments affect qualification?',
+            'Can I qualify to purchase another property?',
+            'What do the numbers look like before and after the divorce?',
+          ].map((item) => (
+            <div class="flex items-start gap-3 border-b border-silver-light pb-4 last:border-0 last:pb-0">
+              <Icon name="compass" size={20} class="mt-0.5 shrink-0 text-brandblue" />
+              <p class="font-heading font-semibold text-navy">{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <Section bg="offwhite">
+    <SectionHeading
+      eyebrow="Compare the Paths"
+      title="Your Main Housing Options During Divorce"
+      subtitle="The goal is not to force one answer. It is to compare the realistic choices with the numbers in front of you."
+      align="center"
+      class="mb-12"
+    />
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {options.map((item) => (
+        <div class="rounded-card border border-silver-light bg-white p-6 shadow-card">
+          <span class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brandblue-soft text-brandblue">
+            <Icon name={item.icon} size={24} />
+          </span>
+          <h3 class="mt-5 font-heading text-lg font-bold text-navy">{item.title}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-graytext">{item.text}</p>
+        </div>
+      ))}
+    </div>
+    <div class="mx-auto mt-10 max-w-4xl rounded-card border-l-4 border-brandblue bg-white p-6 shadow-card">
+      <p class="font-heading text-xl font-bold text-navy">Do not ask only, “Can I keep the house?”</p>
+      <p class="mt-2 text-body-lg text-graytext">Ask, “What does keeping the house look like compared with selling and buying another one?”</p>
+    </div>
+  </Section>
+
+  <Section bg="white">
+    <div class="grid gap-10 lg:grid-cols-2 lg:gap-14">
+      <div>
+        <SectionHeading eyebrow="Ownership vs. Liability" title="The Deed and the Mortgage Are Not the Same Thing" align="left" />
+        <p class="mt-5 text-body-lg leading-relaxed text-graytext">
+          Being removed from the deed does not automatically remove someone from the mortgage. Title controls ownership; the mortgage note controls contractual repayment responsibility.
+        </p>
+        <p class="mt-4 leading-relaxed text-graytext">
+          Depending on the loan and circumstances, the path may involve a refinance, assumption, lender or servicer release of liability, or sale and payoff. The legal documents are handled by the appropriate attorneys and title professionals; the mortgage analysis focuses on financing and qualification.
+        </p>
+      </div>
+      <div class="rounded-card bg-navy p-7 text-white shadow-card md:p-8">
+        <p class="text-eyebrow font-heading font-semibold uppercase tracking-wide text-gold">Important</p>
+        <h3 class="mt-3 font-heading text-h3 text-white">A divorce decree can assign responsibility between spouses.</h3>
+        <p class="mt-4 leading-relaxed text-silver-light">It does not automatically rewrite the lender’s note or release a borrower from the mortgage obligation.</p>
+      </div>
+    </div>
+  </Section>
+
+  <Section bg="offwhite">
+    <SectionHeading eyebrow="Home Equity" title="Do Not Leave the Equity Buyout Formula Open to Interpretation" subtitle="If the intent is to divide actual remaining equity, define how that number will be calculated." align="center" class="mb-10" />
+    <div class="mx-auto max-w-4xl overflow-hidden rounded-card border border-silver-light bg-white shadow-card">
+      <div class="grid gap-1 px-6 py-5 sm:grid-cols-[1fr_auto] sm:items-center"><span class="font-heading font-semibold text-navy">Appraised Home Value</span><span class="font-heading text-xl font-bold text-brandblue">$________</span></div>
+      <div class="grid gap-1 bg-offwhite px-6 py-5 sm:grid-cols-[1fr_auto] sm:items-center"><span class="font-heading font-semibold text-navy">Less: Mortgage Balance & Applicable Liens</span><span class="font-heading text-xl font-bold text-brandblue">($________)</span></div>
+      <div class="grid gap-1 px-6 py-5 sm:grid-cols-[1fr_auto] sm:items-center"><span class="font-heading font-semibold text-navy">Remaining Equity</span><span class="font-heading text-xl font-bold text-brandblue">$________</span></div>
+    </div>
+    <div class="mx-auto mt-8 grid max-w-5xl gap-4 md:grid-cols-2">
+      {[
+        'What percentage of equity each spouse receives',
+        'How the property value will be established',
+        'Whether a third-party appraisal will control',
+        'The valuation date and mortgage balance used',
+        'Which liens or agreed costs are deducted',
+        'The exact formula and timing for the buyout',
+      ].map((item) => (
+        <div class="flex items-start gap-3 rounded-card bg-white p-5 shadow-card"><Icon name="check-circle" size={20} class="mt-0.5 shrink-0 text-brandblue" /><p class="text-sm leading-relaxed text-charcoal">{item}</p></div>
+      ))}
+    </div>
+    <p class="mx-auto mt-7 max-w-4xl text-sm leading-relaxed text-graytext">
+      Your attorney determines the appropriate legal language and structure. My role is to show how the proposed calculation affects the mortgage financing needed to complete the transaction.
+    </p>
+  </Section>
+
+  <Section bg="white">
+    <SectionHeading eyebrow="Support & Qualification" title="Support Can Change the Mortgage Outcome on Both Sides" align="center" class="mb-10" />
+    <div class="grid gap-6 lg:grid-cols-2">
+      <div class="rounded-card border border-silver-light bg-white p-7 shadow-card">
+        <h3 class="font-heading text-h3 text-navy">If You Are Paying Support</h3>
+        <p class="mt-4 leading-relaxed text-graytext">Ongoing child support or spousal support obligations may affect debt-to-income qualification and therefore the amount you can refinance or purchase.</p>
+      </div>
+      <div class="rounded-card border border-silver-light bg-white p-7 shadow-card">
+        <h3 class="font-heading text-h3 text-navy">If You Are Receiving Support</h3>
+        <p class="mt-4 leading-relaxed text-graytext">Support income may potentially help with mortgage qualification, but programs can have documentation, receipt-history, and continuance requirements before that income can be counted.</p>
+      </div>
+    </div>
+    <div class="mx-auto mt-8 max-w-4xl rounded-card border-l-4 border-brandblue bg-brandblue-soft p-6">
+      <p class="text-eyebrow font-heading font-semibold uppercase tracking-wide text-brandblue">The Six-Month Surprise</p>
+      <p class="mt-3 leading-relaxed text-charcoal">A borrower may expect to use future support income to purchase immediately after divorce, only to learn that the applicable loan program requires a documented history of receipt first. Current conventional guidelines can require six months, although requirements vary by loan program and scenario.</p>
+    </div>
+  </Section>
+
+  <Section bg="offwhite">
+    <SectionHeading eyebrow="Before & After" title="Model the Financial Picture on Both Sides of the Divorce" subtitle="Knowing what works today is not enough. We also need to understand what the proposed settlement does to the next mortgage decision." align="center" class="mb-10" />
+    <div class="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
+      <div class="rounded-card border border-silver-light bg-white p-7 shadow-card">
+        <p class="text-eyebrow font-heading font-semibold uppercase tracking-wide text-brandblue">Today</p>
+        <h3 class="mt-2 font-heading text-h3 text-navy">Current Financial Position</h3>
+        <ul class="mt-5 space-y-3 text-graytext"><li>Current mortgage and joint debts</li><li>Current income and assets</li><li>Existing housing payment</li><li>Current credit profile</li></ul>
+      </div>
+      <div class="rounded-card border border-brandblue/20 bg-brandblue-soft p-7 shadow-card">
+        <p class="text-eyebrow font-heading font-semibold uppercase tracking-wide text-brandblue">After the Proposed Terms</p>
+        <h3 class="mt-2 font-heading text-h3 text-navy">Expected Financial Position</h3>
+        <ul class="mt-5 space-y-3 text-graytext"><li>Support paid or received</li><li>Mortgage retained or released</li><li>Equity received or financed</li><li>Ability to refinance or buy another home</li></ul>
+      </div>
+    </div>
+  </Section>
+
+  <Section bg="white">
+    <SectionHeading eyebrow="Real Client Scenario" title="California: Keeping the Home vs. Buying Again" align="left" />
+    <div class="mt-7 grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-start">
+      <div class="space-y-4 leading-relaxed text-graytext">
+        <p>A California client was involved in a lengthy divorce and needed to compare two very different outcomes: buying out the other spouse and keeping the marital home, or selling and purchasing another property.</p>
+        <p>We modeled both scenarios, including the equity buyout, resulting mortgage payment, and the cost of purchasing a comparable replacement home.</p>
+        <p>In that case, completing the equity buyout and keeping the existing home resulted in a lower monthly housing payment. It also allowed the client’s children to remain in the same schools.</p>
+      </div>
+      <div class="rounded-card bg-navy p-7 text-white shadow-card">
+        <p class="text-eyebrow font-heading font-semibold uppercase tracking-wide text-gold">The Takeaway</p>
+        <p class="mt-4 font-heading text-h3 leading-snug text-white">The mortgage analysis did not make the decision.</p>
+        <p class="mt-4 leading-relaxed text-silver-light">It gave the client the numbers needed to make an educated decision.</p>
+      </div>
+    </div>
+  </Section>
+
+  <Section bg="offwhite">
+    <div class="grid gap-12 lg:grid-cols-2 lg:gap-16">
+      <div>
+        <SectionHeading eyebrow="Texas Homesteads" title="Texas Divorce & the Owelty of Partition" align="left" />
+        <p class="mt-5 leading-relaxed text-graytext">Texas has unique homestead rules. An owelty of partition can arise when one spouse receives the family homestead and owes the other spouse money as part of the property division.</p>
+        <p class="mt-4 leading-relaxed text-graytext">The divorce decree, deed, title, lien structure, loan program, and closing structure all need to work together. Attorneys and title professionals handle the legal documents; I evaluate the mortgage feasibility based on that structure.</p>
+      </div>
+      <div>
+        <SectionHeading eyebrow="State-Specific Timing" title="Plan Early. Close When the Legal Structure Is Ready." align="left" />
+        <p class="mt-5 leading-relaxed text-graytext">Mortgage qualification should happen early, while the actual transaction timing depends on state law, title requirements, and divorce documentation.</p>
+        <p class="mt-4 leading-relaxed text-graytext">Texas and California handle property-transfer documentation differently. The goal is to understand the financing before you commit, then complete the mortgage when the legal structure is ready.</p>
+      </div>
+    </div>
+  </Section>
+
+  <Section bg="white">
+    <SectionHeading eyebrow="Complex Scenario" title="Texas VA Equity Buyout: When Other Lenders Said It Could Not Be Done" align="left" />
+    <div class="mt-7 grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
+      <div class="space-y-4 leading-relaxed text-graytext">
+        <p>In one Texas case, the husband was the Veteran and wanted to retain the homestead. The property already had a VA mortgage, and the settlement required the departing spouse to receive her equity.</p>
+        <p>An owelty lien was created as part of the divorce-related property division. The new financing paid off the existing mortgage and the owelty obligation. The Veteran retaining the home did not personally receive the equity proceeds; the departing former spouse received the amount required by the settlement.</p>
+        <p>Multiple lenders had previously said the transaction could not be completed. With the appropriate legal, title, and mortgage structure in place, the financing was completed.</p>
+      </div>
+      <div class="rounded-card border border-silver-light bg-offwhite p-7 shadow-card">
+        <p class="text-eyebrow font-heading font-semibold uppercase tracking-wide text-brandblue">Second Opinion</p>
+        <h3 class="mt-3 font-heading text-h3 text-navy">Complex scenarios deserve a complete review before accepting “it can’t be done.”</h3>
+        <p class="mt-4 text-sm leading-relaxed text-graytext">Not every VA/owelty transaction will qualify. The point is to evaluate the actual structure before assuming there are no options.</p>
+        <Button href="/schedule" variant="primary" class="mt-6" icon="arrow-right" track="schedule" fullWidth>Get a Second Mortgage Opinion</Button>
+      </div>
+    </div>
+  </Section>
+
+  <Section bg="navy" padding="sm">
+    <div class="grid items-center gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-14">
+      <div class="mx-auto max-w-xs">
+        <img src={guideCover} alt="Cover of Divorce & the Mortgage, a homeowner's guide from The Herbert Team" width="1103" height="1426" loading="lazy" class="w-full rounded-lg shadow-2xl" />
+      </div>
+      <div>
+        <p class="text-eyebrow font-heading font-semibold uppercase tracking-wide text-gold">Free Client Guide</p>
+        <h2 class="mt-3 text-h2 text-white">Divorce & the Mortgage</h2>
+        <p class="mt-2 font-heading text-xl text-silver-light">A Homeowner’s Guide to Keeping the House, Buying Out a Spouse & Buying Again</p>
+        <p class="mt-5 max-w-2xl leading-relaxed text-silver-light">Use the guide to understand title versus mortgage liability, equity buyouts, support income, Texas owelty considerations, VA scenarios, and the questions to answer before finalizing the housing terms.</p>
+        <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+          <Button href={guidePdf} variant="primary" icon="book-open" external>Download the Free Guide</Button>
+          <Button href="/schedule" variant="secondary" track="schedule">Request a Feasibility Review</Button>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <Section bg="offwhite">
+    <SectionHeading eyebrow="Questions" title="Divorce Mortgage Planning FAQs" subtitle="Clear answers to the questions that come up most often when a home and mortgage are part of the divorce." align="center" class="mb-10" />
+    <div class="mx-auto max-w-4xl">
+      <Accordion singleOpen={false}>
+        {faqs.map((item, index) => <AccordionItem question={item.q} answer={item.a} id={`divorce-faq-${index}`} />)}
+      </Accordion>
+    </div>
+  </Section>
+
+  <Section bg="white">
+    <div class="mx-auto max-w-5xl rounded-card bg-navy p-8 text-center shadow-card md:p-12">
+      <p class="text-eyebrow font-heading font-semibold uppercase tracking-wide text-gold">Qualify Before You Commit</p>
+      <h2 class="mt-3 text-h2 text-white">Do Not Commit to the Housing Terms Until You Understand the Mortgage Behind Them</h2>
+      <p class="mx-auto mt-5 max-w-3xl text-body-lg leading-relaxed text-silver-light">Whether you are considering keeping the home, completing an equity buyout, purchasing another property, or simply trying to understand your options, the first step is to run the numbers.</p>
+      <div class="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+        <Button href="/schedule" variant="primary" icon="arrow-right" track="schedule">Request My Mortgage Feasibility Review</Button>
+        <Button href={guidePdf} variant="secondary" icon="book-open" external>Download the Divorce & Mortgage Guide</Button>
+      </div>
+      <div class="mt-8 border-t border-white/15 pt-6 text-sm leading-relaxed text-silver-light">
+        <p class="font-heading font-semibold text-white">Jason Herbert · Mortgage Loan Officer · {site.nmls}</p>
+        <p class="mt-1"><a href={site.phoneHref} class="hover:text-white">{site.phone}</a> · <a href={site.emailHref} class="hover:text-white">{site.email}</a> · TheHerbertTeam.com</p>
+      </div>
+    </div>
+    <p class="mx-auto mt-8 max-w-5xl text-xs leading-relaxed text-graytext">Mortgage information and feasibility analyses are provided for educational and mortgage-planning purposes and are not legal, tax, or financial advice. Mortgage eligibility is subject to applicable loan-program requirements, documentation, underwriting, property eligibility, and other conditions. Attorneys and qualified title professionals should prepare and review divorce, property-division, deed, title, and owelty documents.</p>
+  </Section>
+</PageLayout>
