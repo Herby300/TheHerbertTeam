@@ -6,10 +6,11 @@ import Button from '../components/Button.astro';
 import Icon from '../components/ui/Icon.astro';
 import Accordion from '../components/ui/Accordion.astro';
 import AccordionItem from '../components/ui/AccordionItem.astro';
-import { site } from '../data/site';
+import { site, divorceGuide, formBase } from '../data/site';
+import DivorceGuideModal from '../components/forms/DivorceGuideModal.astro';
 import { breadcrumbSchema, faqSchema, serviceSchema, combineSchema } from '../utils/seo';
 
-const guidePdf = '/downloads/divorce-and-the-mortgage-guide.pdf';
+const guideFormUrl = `${formBase}${divorceGuide.formId}`;
 const guideCover = '/images/lead-magnets/divorce-mortgage-guide-cover.webp';
 
 const crumbs = [
@@ -82,7 +83,7 @@ const schema = combineSchema(
       </p>
       <div class="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
         <Button href="/schedule" variant="primary" icon="arrow-right" track="schedule">Request a Mortgage Feasibility Review</Button>
-        <Button href={guidePdf} variant="secondary" icon="book-open" external>Download the Free Guide</Button>
+        <Button href={guideFormUrl} class="divorce-guide-trigger" variant="secondary" icon="book-open">Download the Free Guide</Button>
       </div>
     </div>
   </Section>
@@ -317,7 +318,7 @@ const schema = combineSchema(
         <p class="mt-2 font-heading text-xl text-silver-light">A Homeowner’s Guide to Keeping the House, Buying Out a Spouse & Buying Again</p>
         <p class="mt-5 max-w-2xl leading-relaxed text-silver-light">Use the guide to understand title versus mortgage liability, equity buyouts, support income, Texas owelty considerations, VA scenarios, and the questions to answer before finalizing the housing terms.</p>
         <div class="mt-7 flex flex-col gap-3 sm:flex-row">
-          <Button href={guidePdf} variant="primary" icon="book-open" external>Download the Free Guide</Button>
+          <Button href={guideFormUrl} class="divorce-guide-trigger" variant="primary" icon="book-open">Download the Free Guide</Button>
           <Button href="/schedule" variant="secondary" track="schedule">Request a Feasibility Review</Button>
         </div>
       </div>
@@ -340,7 +341,7 @@ const schema = combineSchema(
       <p class="mx-auto mt-5 max-w-3xl text-body-lg leading-relaxed text-silver-light">Whether you are considering keeping the home, completing an equity buyout, purchasing another property, or simply trying to understand your options, the first step is to run the numbers.</p>
       <div class="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
         <Button href="/schedule" variant="primary" icon="arrow-right" track="schedule">Request My Mortgage Feasibility Review</Button>
-        <Button href={guidePdf} variant="secondary" icon="book-open" external>Download the Divorce & Mortgage Guide</Button>
+        <Button href={guideFormUrl} class="divorce-guide-trigger" variant="secondary" icon="book-open">Download the Divorce & Mortgage Guide</Button>
       </div>
       <div class="mt-8 border-t border-white/15 pt-6 text-sm leading-relaxed text-silver-light">
         <p class="font-heading font-semibold text-white">Jason Herbert · Mortgage Loan Officer · {site.nmls}</p>
@@ -349,4 +350,5 @@ const schema = combineSchema(
     </div>
     <p class="mx-auto mt-8 max-w-5xl text-xs leading-relaxed text-graytext">Mortgage information and feasibility analyses are provided for educational and mortgage-planning purposes and are not legal, tax, or financial advice. Mortgage eligibility is subject to applicable loan-program requirements, documentation, underwriting, property eligibility, and other conditions. Attorneys and qualified title professionals should prepare and review divorce, property-division, deed, title, and owelty documents.</p>
   </Section>
+  <DivorceGuideModal />
 </PageLayout>
