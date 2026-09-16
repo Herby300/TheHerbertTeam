@@ -24,12 +24,14 @@ export const loanProgramLinks: NavChild[] = [
 ];
 
 export const solutionLinks: NavChild[] = [
+  { label: 'Divorce Mortgage Planning', href: '/divorce-mortgage-planning', description: 'Keep the home, buy out a spouse, or buy again' },
   { label: 'Buy Now. Sell Later.', href: '/solutions/buy-before-you-sell', description: 'Make a non-contingent offer' },
   { label: 'Down Payment Assistance', href: '/solutions/down-payment-assistance', description: 'Shrink the cash you need to close' },
   { label: 'First-Time Homebuyers', href: '/solutions/first-time-homebuyers', description: 'From preapproval to keys, guided' },
 ];
 
 export const resourceLinks: NavChild[] = [
+  { label: 'Divorce & Mortgage Guide', href: '/divorce-mortgage-planning', description: 'Explore your options and download the free guide' },
   { label: 'Free Guides', href: '/resources', description: 'Downloadable homebuying playbooks' },
   { label: 'Mortgage Calculator', href: '/resources/calculator', description: 'Run your real monthly numbers' },
   { label: 'Blog', href: '/blog', description: 'Plain-English mortgage education' },
