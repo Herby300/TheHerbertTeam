@@ -1,0 +1,141 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Section from '../../components/Section.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import Button from '../../components/Button.astro';
+import GhlForm from '../../components/forms/GhlForm.astro';
+import Accordion from '../../components/ui/Accordion.astro';
+import AccordionItem from '../../components/ui/AccordionItem.astro';
+import { site, formIds, formBase } from '../../data/site';
+import { breadcrumbSchema, faqSchema, combineSchema } from '../../utils/seo';
+
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'Partners', href: '/partners' }, { label: 'Divorce Attorneys & Mediators', href: '/divorce-mortgage-planning/attorneys' }];
+const scenarios = [
+  ['Keeping the Home', 'Review independent qualification, the proposed payment, available assets, and the financing needed to retain the property.'],
+  ['Completing an Equity Buyout', 'Evaluate whether the proposed buyout can be financed and how the resulting mortgage affects the retaining spouse’s budget.'],
+  ['Selling and Buying Again', 'Compare replacement-home qualification with retaining the marital home, including expected proceeds and ongoing obligations.'],
+  ['Resolving Mortgage Liability', 'Identify which refinance, assumption, or release questions need to be answered by the lender or servicer before a timeline is set.'],
+];
+const faqs = [
+  { q: 'When should I involve a mortgage professional?', a: 'Before the housing terms are finalized, especially when a client expects to refinance, finance an equity buyout, use support income, or purchase another home. Early review creates time to address financing obstacles.' },
+  { q: 'What will the Mortgage Feasibility Summary include?', a: 'A written overview of the scenarios reviewed, key assumptions, available mortgage paths, unresolved documentation or qualification issues, and recommended next steps. It is intended to support informed discussions with your client.' },
+  { q: 'Is the summary a loan approval?', a: 'No. The summary reflects the information reviewed at that time. A loan approval depends on the applicable program, documentation, underwriting, property review, and other conditions. Changes to the proposed terms can change the analysis.' },
+  { q: 'Can we discuss a scenario before referring a client?', a: 'Yes. Start with a general discussion without identifying client information. We can identify the mortgage questions to investigate and decide what a client-specific review would require.' },
+  { q: 'Can you compare both spouses’ housing options?', a: 'The review can consider the mortgage implications of keeping the home and selling or buying again. The scope of any individual borrower review, information sharing, and communication is agreed with the clients and their professional team.' },
+  { q: 'Do you provide legal advice or draft settlement language?', a: 'No. Your legal team determines the settlement terms and legal structure. My role is to assess the mortgage implications, identify financing questions, and coordinate with the appropriate professionals.' },
+];
+---
+
+<PageLayout title="Divorce Mortgage Planning for Attorneys & Mediators" description="Help clients evaluate refinance feasibility, equity buyouts, and buying again before finalizing divorce housing terms. Request a written Mortgage Feasibility Summary from Jason Herbert." heroEyebrow="For Divorce Attorneys & Mediators" heroTitle="Qualify Before You Commit." heroSubtitle="Before a housing agreement becomes a financing deadline, find out whether the mortgage plan can work. Give your client clear numbers to support the next decision." crumbs={crumbs} showHeroCtas={false} showCta={false} schema={combineSchema(breadcrumbSchema(crumbs), faqSchema(faqs))}>
+  <Section bg="white" padding="sm">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="text-body-lg text-graytext">A settlement can establish what a client must do with the home. A mortgage review helps determine whether the financing needed to carry out that plan is achievable.</p>
+      <div class="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+        <Button href="/schedule" track="schedule" icon="arrow-right">Discuss a Client Scenario</Button>
+        <Button href="#request-review" variant="secondary">Request a Mortgage Feasibility Review</Button>
+      </div>
+      <p class="mt-5 text-sm text-graytext">{site.advisor} · {site.nmls} · Licensed in California &amp; Texas · Lending available nationwide through Planet Home Lending</p>
+    </div>
+  </Section>
+
+  <Section bg="offwhite">
+    <SectionHeading eyebrow="Before the Terms Are Final" title="Identify the Financing Questions While There Is Time to Address Them" align="center" class="mb-10" />
+    <div class="grid gap-5 md:grid-cols-2">
+      {[
+        ['Before setting a refinance deadline', 'Understand the qualification requirements, outstanding documentation, and timing dependencies before relying on a specific completion date.'],
+        ['Before agreeing to the equity buyout', 'Test the proposed amount against available financing and the resulting monthly payment.'],
+        ['Before relying on support income', 'Review whether the proposed support arrangement can be used for mortgage qualification and what documentation or receipt history may be needed.'],
+        ['Before planning the next purchase', 'Consider existing mortgage obligations, support paid or received, available cash, and the expected post-divorce financial position.'],
+      ].map(([title, text]) => <div class="rounded-card border border-silver-light bg-white p-7 shadow-card"><h3 class="font-heading text-xl font-bold text-navy">{title}</h3><p class="mt-3 leading-relaxed text-graytext">{text}</p></div>)}
+    </div>
+  </Section>
+
+  <Section bg="white">
+    <SectionHeading eyebrow="Compare the Options" title="One Housing Decision. Several Mortgage Paths." subtitle="Model the alternatives so your client can compare the financial consequences of each proposed arrangement." align="center" class="mb-10" />
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {scenarios.map(([title, text], index) => <div class="rounded-card border border-silver-light p-6 shadow-card"><p class="font-heading text-3xl font-bold text-brandblue">0{index + 1}</p><h3 class="mt-4 font-heading text-xl font-bold text-navy">{title}</h3><p class="mt-3 text-sm leading-relaxed text-graytext">{text}</p></div>)}
+    </div>
+  </Section>
+
+  <Section bg="navy">
+    <div class="grid gap-10 lg:grid-cols-2 lg:gap-16">
+      <div>
+        <p class="text-eyebrow font-heading font-semibold uppercase tracking-wide text-gold">A Written Resource for the Discussion</p>
+        <h2 class="mt-3 text-h2 text-white">The Mortgage Feasibility Summary</h2>
+        <p class="mt-5 text-body-lg leading-relaxed text-silver-light">A branded, written summary that brings the mortgage analysis into a format you and your client can use when discussing housing options.</p>
+        <p class="mt-4 leading-relaxed text-silver-light">The purpose is to make the assumptions, obstacles, and next steps clear before the client commits to a financing obligation.</p>
+        <Button href="#request-review" class="mt-7" variant="white">Request a Feasibility Review</Button>
+      </div>
+      <div class="rounded-card bg-white p-7 md:p-9">
+        <h3 class="font-heading text-xl font-bold text-navy">What the summary covers</h3>
+        <ul class="mt-5 list-disc space-y-4 pl-5 text-graytext">
+          <li>Housing scenarios and proposed terms reviewed</li>
+          <li>Key income, debt, asset, and mortgage assumptions</li>
+          <li>Estimated payments and financing needs, when enough information is available</li>
+          <li>Qualification obstacles and documentation still needed</li>
+          <li>Timing dependencies and questions for legal, title, or servicing professionals</li>
+          <li>Next steps and items that could change the outcome</li>
+        </ul>
+        <p class="mt-6 border-t border-silver-light pt-5 text-xs leading-relaxed text-graytext">A feasibility summary is not a loan approval, appraisal, legal opinion, or guarantee of closing. Findings depend on the information available and remain subject to applicable loan requirements.</p>
+      </div>
+    </div>
+  </Section>
+
+  <Section bg="offwhite">
+    <SectionHeading eyebrow="Working Together" title="Start With the Scenario. Build Toward a Workable Plan." align="center" class="mb-10" />
+    <ol class="grid gap-6 md:grid-cols-3">
+      {[
+        ['Discuss the Housing Question', 'Share the proposed outcome and timing in a general conversation. Identify what must be confirmed before the client commits.'],
+        ['Review the Client’s Mortgage Position', 'With the client’s participation, review the relevant financial information, compare scenarios, and identify missing documentation.'],
+        ['Summarize and Coordinate', 'Provide the written findings and next steps. Agree on what can be shared with the professional team and revisit the analysis if the terms change.'],
+      ].map(([title, text], index) => <li class="rounded-card bg-white p-7 shadow-card"><p class="font-heading font-semibold text-brandblue">Step {index + 1}</p><h3 class="mt-3 font-heading text-xl font-bold text-navy">{title}</h3><p class="mt-3 leading-relaxed text-graytext">{text}</p></li>)}
+    </ol>
+  </Section>
+
+  <Section bg="white">
+    <SectionHeading eyebrow="Complex Scenarios" title="A Closer Look Before Ruling Out an Option" align="left" class="mb-10" />
+    <div class="grid gap-6 md:grid-cols-2">
+      {[
+        ['Support Income & Obligations', 'Evaluate the mortgage impact of support received or paid, including the documentation and timing questions that affect qualification.'],
+        ['Texas Owelty & Equity Buyouts', 'Evaluate financing based on the proposed property-division structure, coordinating with attorneys and title professionals who prepare and review the legal documents.'],
+        ['VA Loans During Divorce', 'Review the current VA mortgage and identify entitlement, assumption, release-of-liability, and refinance questions that need individual analysis.'],
+        ['California Housing Transitions', 'Compare retaining the home with selling and buying again, and coordinate financing timing with the legal and title requirements of the transaction.'],
+      ].map(([title, text]) => <div class="rounded-card border border-silver-light p-7"><h3 class="font-heading text-xl font-bold text-navy">{title}</h3><p class="mt-3 leading-relaxed text-graytext">{text}</p></div>)}
+    </div>
+    <p class="mt-7 text-sm text-graytext">Every scenario requires its own review. Your team directs the legal strategy; I focus on mortgage qualification and financing.</p>
+  </Section>
+
+  <Section bg="offwhite">
+    <div class="grid items-center gap-10 lg:grid-cols-[0.65fr_1.35fr]">
+      <img src="/images/lead-magnets/divorce-mortgage-guide-cover.webp" alt="Divorce & the Mortgage homeowner guide from The Herbert Team" width="1103" height="1426" loading="lazy" class="mx-auto w-full max-w-xs rounded-lg shadow-card" />
+      <div>
+        <SectionHeading eyebrow="Education for Your Clients" title="Give Clients a Clear Starting Point" align="left" />
+        <p class="mt-5 text-body-lg text-graytext">See the same consumer resources your clients receive: plain-English explanations of keeping the home, buying out a spouse, mortgage liability, and buying again.</p>
+        <p class="mt-4 text-graytext">The consumer page includes the free <em>Divorce &amp; the Mortgage</em> guide, available through a short request form.</p>
+        <Button href="/divorce-mortgage-planning" class="mt-7" icon="book-open">View the Client Page &amp; Guide</Button>
+      </div>
+    </div>
+  </Section>
+
+  <Section bg="white">
+    <SectionHeading eyebrow="Common Questions" title="For Attorneys & Mediators" align="center" class="mb-10" />
+    <div class="mx-auto max-w-4xl"><Accordion singleOpen={false}>{faqs.map((item, index) => <AccordionItem question={item.q} answer={item.a} id={`attorney-faq-${index}`} />)}</Accordion></div>
+  </Section>
+
+  <Section bg="offwhite" id="request-review">
+    <div class="grid gap-10 lg:grid-cols-2 lg:gap-16">
+      <div>
+        <SectionHeading eyebrow="Let’s Review the Mortgage Question" title="Request a Mortgage Feasibility Review" align="left" />
+        <p class="mt-5 text-body-lg text-graytext">Tell me how to reach you and the general housing question you would like to discuss. We will determine the next step together.</p>
+        <p class="mt-4 text-sm leading-relaxed text-graytext">Please use your professional contact details. Save client financial documents and identifying information for the appropriate intake process.</p>
+        <div class="mt-7"><Button href="/schedule" variant="secondary" track="schedule">Discuss a Client Scenario</Button></div>
+        <p class="mt-6 text-graytext"><a href={site.phoneHref} class="underline">{site.phone}</a> · <a href={site.emailHref} class="underline">{site.email}</a></p>
+      </div>
+      <div class="rounded-card border border-silver-light bg-white p-4 shadow-card md:p-6">
+        <h3 class="mb-4 font-heading text-xl font-bold text-navy">Attorney &amp; Mediator Inquiry</h3>
+        <GhlForm formId={formIds.divorceAttorney} title="Divorce Attorney & Mediator Inquiry" formType="divorce_attorney" height="700" />
+        <p class="mt-4 text-sm text-graytext">Form not loading? <a href={`${formBase}${formIds.divorceAttorney}`} target="_blank" rel="noopener noreferrer" class="underline">Open the inquiry form</a>.</p>
+      </div>
+    </div>
+  </Section>
+</PageLayout>

@@ -150,6 +150,9 @@ const tracks = [
             </span>
             <h2 class="mt-5 text-h2 text-navy">{track.title}</h2>
             <p class="mt-4 text-body-lg text-graytext">{track.intro}</p>
+            {track.id === 'divorce-attorneys' && (
+              <p class="mt-5"><a href="/divorce-mortgage-planning/attorneys" class="font-heading font-semibold text-brandblue-text underline underline-offset-4">Explore Mortgage Planning for Attorneys &amp; Mediators</a></p>
+            )}
             <ul class="mt-7 space-y-3.5">
               {track.benefits.map((benefit) => (
                 <li class="flex items-start gap-3">
