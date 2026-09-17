@@ -29,7 +29,8 @@ const {
 const base = Astro.site ?? new URL(site.url);
 const canonicalUrl = canonical ? new URL(canonical, base).toString() : new URL(Astro.url.pathname, base).toString();
 const imageUrl = new URL(image, base).toString();
-const fullTitle = `${title} | ${site.name}`;
+// Titles with an explicit suffix are already complete search-result titles.
+const fullTitle = title.includes(' | ') ? title : `${title} | ${site.name}`;
 const resolvedWidth =
   typeof imageWidth === 'number' && imageWidth > 0
     ? imageWidth
