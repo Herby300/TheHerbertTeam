@@ -22,7 +22,6 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
 );
 
 const featured = allPosts[0];
-const rest = allPosts.filter((post) => post.slug !== featured?.slug);
 
 const categories = ['All', ...Array.from(new Set(allPosts.map((post) => post.data.category)))];
 ---
@@ -87,8 +86,8 @@ const categories = ['All', ...Array.from(new Set(allPosts.map((post) => post.dat
 
     <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-post-grid>
       {
-        rest.map((post) => (
-          <li data-post-category={post.data.category}>
+        allPosts.map((post) => (
+          <li data-post-category={post.data.category} data-post-featured={String(post.slug === featured?.slug)} class:list={[{ hidden: post.slug === featured?.slug }]}>
             <BlogCard
               title={post.data.title}
               description={post.data.description}
@@ -150,7 +149,10 @@ const categories = ['All', ...Array.from(new Set(allPosts.map((post) => post.dat
 
       let visible = 0;
       items.forEach((item) => {
-        const show = selected === 'All' || item.dataset.postCategory === selected;
+        // Keep the featured post out of All, but include it in matching topics.
+        const show = selected === 'All'
+          ? item.dataset.postFeatured !== 'true'
+          : item.dataset.postCategory === selected;
         item.classList.toggle('hidden', !show);
         if (show) visible += 1;
       });

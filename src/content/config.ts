@@ -13,6 +13,7 @@ const blog = defineCollection({
     category: z.enum([
       'Buying',
       'Refinancing',
+      'Divorce',
       'VA',
       'Self-Employed',
       'Investing',
