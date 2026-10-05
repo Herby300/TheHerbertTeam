@@ -46,17 +46,21 @@ const credentials = [
   { label: 'Licensed mortgage advisor', value: site.nmls, href: site.nmlsLookup },
   { label: 'Institution', value: `${site.institution} · ${site.institutionNmls}`, href: site.institutionNmlsLookup },
   { label: 'Experience', value: '20+ years originating residential mortgages' },
-  { label: 'Licensed to serve', value: 'Texas and clients nationwide' },
-  { label: 'Based in', value: 'Georgetown, Texas — Williamson County' },
+  { label: 'Licensed to serve', value: 'California and Texas' },
+  { label: 'Based in', value: site.address },
+  { label: site.licensingOffice.name, value: `${site.licensingOffice.streetAddress}, ${site.licensingOffice.city}, ${site.licensingOffice.state} ${site.licensingOffice.postalCode}` },
+  { label: 'Other states', value: 'Referrals to fellow Planet Home Lending loan officers' },
   { label: 'Regulatory standing', value: 'Equal Housing Lender' },
 ];
 
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': `${site.url}/#jason-herbert`,
   name: site.advisor,
+  identifier: { '@type': 'PropertyValue', propertyID: 'NMLS', value: site.nmlsId },
   jobTitle: 'Mortgage Advisor',
-  description: `${site.advisor} is a licensed mortgage advisor with more than 20 years of experience, serving Texas and clients nationwide through ${site.institution}.`,
+  description: `${site.advisor} is a licensed mortgage advisor with more than 20 years of experience, licensed in California and Texas through ${site.institution}, based in Cedar Park. Clients in other states can be referred to fellow Planet Home Lending loan officers.`,
   url: new URL('/about', site.url).toString(),
   image: new URL('/images/jason-headshot-large.webp', site.url).toString(),
   telephone: '+1-760-715-3434',
@@ -64,6 +68,7 @@ const personSchema = {
   worksFor: {
     '@type': 'Organization',
     name: site.institution,
+    identifier: { '@type': 'PropertyValue', propertyID: 'NMLS', value: site.institutionNmlsId },
   },
   address: {
     '@type': 'PostalAddress',
@@ -78,12 +83,12 @@ const schema = combineSchema(personSchema, breadcrumbSchema(crumbs));
 
 <PageLayout
   title="About Jason Herbert, Mortgage Advisor"
-  description="Meet Jason Herbert, a Georgetown, TX mortgage advisor solving financing problems for self-employed buyers, veterans, investors, and first-time homeowners."
+  description="Meet Jason Herbert, a Cedar Park, TX mortgage advisor solving financing problems for self-employed buyers, veterans, investors, and first-time homeowners."
   heroEyebrow="About"
   heroTitle="20 Years of Saying “Here’s How We Do It” Instead of “No.”"
   heroSubtitle="I am not the lender with the flashiest rate ad. I am the one people call after somebody else turned them down — and the one smart buyers call first so they never hear no in the first place."
   heroImage="/images/hero/about-hero.webp"
-  heroImageAlt="Jason Herbert meeting with clients in Georgetown, Texas"
+  heroImageAlt="Jason Herbert meeting with clients in Cedar Park, Texas"
   crumbs={crumbs}
   schema={schema}
 >
@@ -252,10 +257,10 @@ const schema = combineSchema(personSchema, breadcrumbSchema(crumbs));
   <Section bg="offwhite">
     <div class="grid gap-12 lg:grid-cols-2 lg:gap-16">
       <div>
-        <SectionHeading eyebrow="Beyond the Loan" title="Life in Georgetown" align="left" class="mb-7" />
+        <SectionHeading eyebrow="Beyond the Loan" title="Life in Cedar Park" align="left" class="mb-7" />
         <div class="space-y-5 text-body-lg text-graytext">
           <p>
-            Georgetown is home. It is the kind of place where you run into your clients at the grocery store, which is
+            Cedar Park is home. It is the kind of place where you run into your clients at the grocery store, which is
             an excellent accountability system for anyone in a service business. I have financed homes for neighbors,
             for their kids, and in a few cases for their parents.
           </p>

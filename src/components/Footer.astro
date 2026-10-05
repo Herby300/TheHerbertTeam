@@ -31,8 +31,9 @@ const socials = [
         />
         <p class="mt-5 text-sm leading-relaxed text-silver-light">
           {site.advisor} is a mortgage advisor with more than 20 years of experience, helping buyers and homeowners
-          across Texas and nationwide find financing solutions other lenders miss.
+          in California and Texas find financing solutions. Based in {site.address}.
         </p>
+        <p class="mt-3 text-sm leading-relaxed text-silver-light">{site.referralStatement}</p>
         <p class="mt-5 font-heading text-sm font-semibold text-white">Follow {site.socialHandle}</p>
         <ul class="mt-3 flex flex-wrap gap-2">
           {
@@ -169,15 +170,6 @@ const socials = [
           loading="lazy"
           decoding="async"
         />
-        <img
-          src="/images/badges/google-reviews.svg"
-          alt="5 star Google Reviews rating"
-          width="120"
-          height="48"
-          class="h-11 w-auto"
-          loading="lazy"
-          decoding="async"
-        />
       </div>
 
       <div class="mt-6 space-y-3 text-[0.8125rem] leading-relaxed text-silver">
@@ -196,6 +188,8 @@ const socials = [
             class="underline underline-offset-2 hover:text-brandblue">{site.institutionNmls}</a
           >
         </p>
+        <p>{site.licensingStatement}</p>
+        <p>{site.licensingOffice.name}: {site.licensingOffice.streetAddress}, {site.licensingOffice.city}, {site.licensingOffice.state} {site.licensingOffice.postalCode}.</p>
         <p>Equal Housing Lender</p>
         <p>
           This is not a commitment to lend. All loans subject to credit approval, income verification, and property

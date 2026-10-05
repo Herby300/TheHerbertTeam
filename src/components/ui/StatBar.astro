@@ -1,5 +1,4 @@
 ---
-import Icon from './Icon.astro';
 
 interface Props {
   invert?: boolean;
@@ -11,7 +10,6 @@ const {
   invert = false,
   class: className = '',
   stats = [
-    { value: '5.0', label: 'Google Rating' },
     { value: '20+', label: 'Years of Experience' },
     { value: 'Thousands', label: 'of Families Served' },
   ],
@@ -20,21 +18,15 @@ const {
 
 <div
   class:list={[
-    'grid gap-6 rounded-card border p-6 sm:grid-cols-3 md:p-8',
+    'grid gap-6 rounded-card border p-6 sm:grid-cols-2 md:p-8',
     invert ? 'border-white/15 bg-white/5' : 'border-silver-light bg-white shadow-card',
     className,
   ]}
 >
   {
-    stats.map((stat, index) => (
+    stats.map((stat) => (
       <div class="text-center">
-        {index === 0 && (
-          <div class="mb-2 flex items-center justify-center gap-1 text-gold" aria-hidden="true">
-            {[0, 1, 2, 3, 4].map(() => (
-              <Icon name="star" size={18} class="fill-current" strokeWidth={0} />
-            ))}
-          </div>
-        )}
+
         <p class:list={['font-heading text-3xl font-extrabold tabular md:text-4xl', invert ? 'text-white' : 'text-navy']}>
           {stat.value}
         </p>

@@ -24,7 +24,7 @@ const socials = [
 
 <PageLayout
   title="Contact Jason Herbert"
-  description="Call, email, or book a free mortgage strategy consultation with Jason Herbert in Georgetown, TX. Every message is answered personally, usually within a day."
+  description="Call, email, or book a free mortgage strategy consultation with Jason Herbert in Cedar Park, TX. Every message is answered personally, usually within a day."
   heroEyebrow="Get in Touch"
   heroTitle="Let’s Talk."
   heroSubtitle="Tell me your situation — even the messy version. There is no obligation, no pressure, and no cost to find out whether there is a path."
@@ -87,7 +87,7 @@ const socials = [
               <span>
                 <span class="block font-heading font-semibold text-navy">Based in</span>
                 <span class="mt-0.5 block text-charcoal">{site.address}</span>
-                <span class="mt-0.5 block text-sm text-graytext">Serving Texas and clients nationwide</span>
+                <span class="mt-0.5 block text-sm text-graytext">Licensed in California and Texas</span>
               </span>
             </li>
           </ul>
@@ -155,16 +155,22 @@ const socials = [
   <Section bg="offwhite">
     <div class="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-14">
       <div>
-        <SectionHeading eyebrow="Where I Am" title="Georgetown, Texas" align="left" class="mb-6" />
+        <SectionHeading eyebrow="Where I Am" title="Cedar Park, Texas" align="left" class="mb-6" />
         <p class="text-body-lg text-graytext">
-          Home base is Georgetown in Williamson County, just north of Austin. Most of my clients never need to meet in
+          Home base is Cedar Park, Texas. Most of my clients never need to meet in
           person — applications, documents, and closings are handled digitally — but if you would rather sit down with
           someone, I am happy to do that.
         </p>
         <p class="mt-5 text-body-lg text-graytext">
-          I regularly work with buyers throughout Round Rock, Cedar Park, Leander, Liberty Hill, Hutto, Pflugerville,
+          I regularly work with buyers throughout Round Rock, Georgetown, Leander, Liberty Hill, Hutto, Pflugerville,
           Austin, and across Texas, plus relocation clients moving in from out of state.
         </p>
+        <p class="mt-5 text-body-lg text-graytext">{site.referralStatement}</p>
+        <div class="mt-7 rounded-card border border-silver-light bg-white p-6">
+          <h2 class="font-heading text-lg font-bold text-navy">{site.licensingOffice.name}</h2>
+          <address class="mt-3 not-italic text-graytext">{site.licensingOffice.streetAddress}<br />{site.licensingOffice.city}, {site.licensingOffice.state} {site.licensingOffice.postalCode}</address>
+          <p class="mt-3 text-sm text-graytext">My home base is Cedar Park; this is my licensing office address.</p>
+        </div>
         <div class="mt-7 rounded-card border border-silver-light bg-white p-6">
           <p class="text-sm leading-relaxed text-graytext">
             {site.advisor} · {site.nmls} · {site.institution} · {site.institutionNmls}. Equal Housing Lender. This is not a commitment to lend. All loans subject to credit approval, income verification, and
@@ -175,8 +181,8 @@ const socials = [
 
       <div class="overflow-hidden rounded-card border border-silver-light shadow-card">
         <iframe
-          title="Map of Georgetown, Texas"
-          src="https://www.google.com/maps?q=Georgetown,+Texas&output=embed"
+          title="Map of Cedar Park, Texas"
+          src="https://www.google.com/maps?q=Cedar Park,+Texas&output=embed"
           width="100%"
           height="460"
           style="border:0; display:block;"

@@ -1,4 +1,3 @@
-import type { Testimonial } from './testimonials';
 
 export type Program = {
   slug: string;
@@ -19,7 +18,6 @@ export type Program = {
   glance: { label: string; value: string }[];
   myths: { myth: string; truth: string }[];
   faqs: { q: string; a: string }[];
-  testimonial: Testimonial;
   related: string[];
 };
 
@@ -127,11 +125,6 @@ export const programs: Program[] = [
         a: 'For 2026 the one-unit conforming limit is $832,750 in most Texas counties. Above that you are in jumbo territory, which has its own guidelines — and options that include 5% down and no monthly mortgage insurance for qualified borrowers.',
       },
     ],
-    testimonial: {
-      quote: 'Jason made the mortgage process incredibly easy and was always available to answer our questions.',
-      author: 'Homebuyer',
-      role: 'Austin, TX',
-    },
     related: ['fha', 'jumbo', 'refinance'],
   },
 
@@ -238,11 +231,6 @@ export const programs: Program[] = [
         a: 'Yes, and many clients do. Once you have around 20% equity and a solid credit profile, a conventional refinance eliminates the mortgage insurance entirely. FHA also offers a streamline refinance that requires minimal documentation when rates drop.',
       },
     ],
-    testimonial: {
-      quote: 'Jason made the mortgage process incredibly easy and was always available to answer our questions.',
-      author: 'First-Time Buyer',
-      role: 'Round Rock, TX',
-    },
     related: ['conventional', 'down-payment-assistance', 'first-time-homebuyers'],
   },
 
@@ -349,11 +337,6 @@ export const programs: Program[] = [
         a: 'The VA sets no minimum score. Most lenders want to see around 580 to 620, and I have programs that work at the lower end of that range. Residual income and payment history often matter more than the score itself.',
       },
     ],
-    testimonial: {
-      quote: 'The best mortgage experience we have ever had.',
-      author: 'Veteran Homebuyer',
-      role: 'Killeen, TX',
-    },
     related: ['conventional', 'refinance', 'first-time-homebuyers'],
   },
 
@@ -460,11 +443,6 @@ export const programs: Program[] = [
         a: 'Yes. Jumbo financing covers primary residences, second homes, and in some cases investment properties. Down payment and reserve requirements step up for non-primary occupancy.',
       },
     ],
-    testimonial: {
-      quote: 'The best mortgage experience we have ever had.',
-      author: 'Move-Up Buyer',
-      role: 'Georgetown, TX',
-    },
     related: ['conventional', 'self-employed', 'construction'],
   },
 
@@ -571,11 +549,6 @@ export const programs: Program[] = [
         a: 'We build a contingency into the loan amount at the outset, typically 5% to 10%. Change orders beyond that generally come out of pocket, which is why an accurate initial budget from your builder matters so much.',
       },
     ],
-    testimonial: {
-      quote: 'The best mortgage experience we have ever had.',
-      author: 'Custom Home Client',
-      role: 'Liberty Hill, TX',
-    },
     related: ['jumbo', 'conventional', 'refinance'],
   },
 
@@ -682,11 +655,6 @@ export const programs: Program[] = [
         a: 'Some programs go below a 1.0 ratio with a larger down payment or higher reserves. We can also look at a shorter-term bridge while you stabilize the property, then refinance into permanent DSCR financing once rents support it.',
       },
     ],
-    testimonial: {
-      quote: 'We thought we could not qualify because we were self-employed. Jason found a solution and got us into our dream home.',
-      author: 'Real Estate Investor',
-      role: 'Austin, TX',
-    },
     related: ['self-employed', 'conventional', 'refinance'],
   },
 
@@ -697,13 +665,13 @@ export const programs: Program[] = [
     icon: 'briefcase',
     tagline: 'Bank statement, 1099, P&L, and no-ratio loans for business owners.',
     blurb:
-      'You did not do anything wrong. Your accountant did their job, your tax return shows a modest net income, and a lender who only knows one way to read income told you no. There are four other ways to read it.',
+      'Your Tax Return Is Not Your Income Statement. I help business owners compare mortgage options that fit how they earn, including bank statement programs when eligible.',
     image: '/images/programs/self-employed.webp',
     heroImage: '/images/programs/self-employed.webp',
-    seoTitle: 'Bank Statement Loans in Texas',
+    seoTitle: 'Bank Statement Loans | The Herbert Team',
     seoDescription:
-      'Self-employed mortgage options in Texas: bank statement loans, 1099 loans, P&L-only programs, and no-ratio financing for business owners with write-offs.',
-    heroHeading: 'Your Tax Return Is Not Your Income Statement.',
+      'Explore bank statement mortgage options with Jason Herbert. Licensed in California and Texas. Compare requirements and discuss your next step.',
+    heroHeading: 'Self-Employed Mortgages and Bank Statement Loans',
     intro:
       'This is the work I am known for. A business owner nets $60,000 on paper after equipment, mileage, home office, and depreciation, while $30,000 a month moves through the business account. Conventional underwriting sees the $60,000. Bank statement, 1099, P&L, and no-ratio programs see the rest of the picture. If someone has already told you no, that conversation is usually the beginning, not the end.',
     forWho: [
@@ -793,11 +761,6 @@ export const programs: Program[] = [
         a: 'Usually not. Most denials I see are program mismatches, not borrower problems. Send me the denial reasons and the last two years of business bank statements, and I will tell you within a day whether there is a path.',
       },
     ],
-    testimonial: {
-      quote: 'We thought we could not qualify because we were self-employed. Jason found a solution and got us into our dream home.',
-      author: 'Self-Employed Buyer',
-      role: 'Business Owner',
-    },
     related: ['investor-dscr', 'jumbo', 'conventional'],
   },
 
@@ -904,11 +867,6 @@ export const programs: Program[] = [
         a: 'There is a small, temporary dip from the credit inquiry and the new account. Multiple mortgage inquiries within a 45-day window count as one. Most borrowers see scores recover within a few months of on-time payments.',
       },
     ],
-    testimonial: {
-      quote: 'The best mortgage experience we have ever had.',
-      author: 'Refinance Client',
-      role: 'Cedar Park, TX',
-    },
     related: ['conventional', 'va-loans'],
   },
 ];

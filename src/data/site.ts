@@ -10,9 +10,19 @@ export const site = {
   phone: '(760) 715-3434',
   phoneHref: 'tel:+17607153434',
 
-  city: 'Georgetown',
+  city: 'Cedar Park',
   state: 'TX',
-  address: 'Georgetown, Texas',
+  address: 'Cedar Park, Texas',
+  licensedStates: ['California', 'Texas'],
+  licensingStatement: 'Licensed in California and Texas.',
+  referralStatement: 'For clients in other states, I can connect you with a fellow loan officer within Planet Home Lending.',
+  licensingOffice: {
+    name: 'Planet Home Lending licensing office',
+    streetAddress: '6333 North State Highway 161, Suites 500 and 600',
+    city: 'Irving',
+    state: 'TX',
+    postalCode: '75038',
+  },
 
   nmls: 'NMLS #633039',
   nmlsId: '633039',

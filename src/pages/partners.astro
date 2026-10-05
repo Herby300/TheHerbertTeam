@@ -3,7 +3,6 @@ import PageLayout from '../layouts/PageLayout.astro';
 import Section from '../components/Section.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import GhlForm from '../components/forms/GhlForm.astro';
-import TestimonialCard from '../components/ui/TestimonialCard.astro';
 import Icon from '../components/ui/Icon.astro';
 import { formIds } from '../data/site';
 import { breadcrumbSchema } from '../utils/seo';
@@ -92,8 +91,8 @@ const tracks = [
 ---
 
 <PageLayout
-  title="Partner With The Herbert Team"
-  description="Referral partnerships for realtors, financial advisors, divorce attorneys, and builders in Texas. Fast preapprovals, creative structuring, and reliable updates."
+  title="Mortgage Referral Partnerships | The Herbert Team"
+  description="Connect with Jason Herbert on mortgage scenarios for your clients. Referral partnerships for real estate, financial, legal and building professionals."
   heroEyebrow="Referral Partners"
   heroTitle="I Make My Partners Look Good."
   heroSubtitle="Every referral you send is a bet on your own reputation. I take that seriously, which mostly means I answer the phone, tell the truth early, and close when I said I would."
@@ -177,29 +176,5 @@ const tracks = [
     ))
   }
 
-  <Section bg="navy">
-    <SectionHeading
-      eyebrow="From Partners"
-      title="What Referral Partners Say"
-      align="center"
-      invert
-      eyebrowColor="gold"
-      class="mb-10"
-    />
-    <div class="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
-      <TestimonialCard
-        quote="Jason answers the phone. That sounds like a low bar until you have had three deals nearly fall apart because a lender went dark during the option period."
-        author="Real Estate Agent"
-        role="Williamson County"
-      />
-      <TestimonialCard
-        quote="I refer clients to Jason when the financing question is complicated. He explains the options to them clearly enough that they come back to me able to make a decision."
-        author="Financial Advisor"
-        role="Austin, TX"
-      />
-    </div>
-    <p class="mx-auto mt-8 max-w-3xl text-center text-sm text-silver">
-      Testimonials reflect individual experiences. Results vary and are not a guarantee of future outcomes.
-    </p>
-  </Section>
+
 </PageLayout>

@@ -15,18 +15,15 @@ function isActive(href: string): boolean {
 
 <header id="site-header" class="sticky top-0 z-50 w-full">
   <div class="hidden bg-navy text-white lg:block">
-    <Container class="flex items-center justify-center gap-3 py-2 text-[0.8125rem] font-medium">
+    <Container class="flex flex-wrap items-center justify-center gap-3 py-2 text-[0.8125rem] font-medium">
       <span>20+ Years Experience</span>
       <span aria-hidden="true" class="text-brandblue">·</span>
       <span>Licensed in California &amp; Texas</span>
       <span aria-hidden="true" class="text-brandblue">·</span>
-      <span>Lending available nationwide</span>
+      <span>Other-state referrals through Planet</span>
       <span aria-hidden="true" class="text-brandblue">·</span>
       <span class="flex items-center gap-1.5">
-        <span class="flex text-gold" aria-hidden="true">
-          {[0, 1, 2, 3, 4].map(() => <Icon name="star" size={13} class="fill-current" strokeWidth={0} />)}
-        </span>
-        <span>Google Reviews</span>
+        <a href="/reviews" class="underline underline-offset-2">Google Reviews</a>
       </span>
     </Container>
   </div>

@@ -57,11 +57,6 @@ export const solutions: Solution[] = [
       { q: 'Do I automatically qualify?', a: 'No. Your property, location, financing, and program terms require review. The corporate page does not establish a universal credit score, equity minimum, or approval turnaround.' },
       { q: 'What should I send you to get started?', a: 'Your current home address, approximate mortgage balance, desired purchase price, and expected move date are a useful starting point. We can discuss documents through the application process.' },
     ],
-    testimonial: {
-      quote: 'The best mortgage experience we have ever had.',
-      author: 'Move-Up Buyer',
-      role: 'Georgetown, TX',
-    },
     related: ['conventional', 'refinance'],
   },
 
@@ -168,11 +163,6 @@ export const solutions: Solution[] = [
         a: 'Sometimes yes, sometimes no. Assistance programs occasionally carry a marginally higher rate in exchange for the funds. If the assistance is what makes buying possible now rather than in three years, it usually wins. I run both scenarios so you can see the difference.',
       },
     ],
-    testimonial: {
-      quote: 'Jason made the mortgage process incredibly easy and was always available to answer our questions.',
-      author: 'First-Time Buyer',
-      role: 'Hutto, TX',
-    },
     related: ['fha', 'first-time-homebuyers', 'conventional'],
   },
 
@@ -291,11 +281,6 @@ export const solutions: Solution[] = [
         a: 'Absolutely. Touring homes without knowing your numbers wastes your time and risks falling for something out of reach. It also means that when you find the right house, your offer goes out the same day instead of a week later.',
       },
     ],
-    testimonial: {
-      quote: 'Jason made the mortgage process incredibly easy and was always available to answer our questions.',
-      author: 'Homebuyer',
-      role: 'Austin, TX',
-    },
     related: ['fha', 'down-payment-assistance', 'conventional'],
   },
 ];

@@ -1,18 +1,16 @@
 ---
 import Container from '../Container.astro';
-import TestimonialCard from '../ui/TestimonialCard.astro';
+import GoogleReviews from '../ui/GoogleReviews.astro';
 import Icon from '../ui/Icon.astro';
-import { testimonials, testimonialDisclaimer, type Testimonial } from '../../data/testimonials';
+import { testimonialDisclaimer } from '../../data/testimonials';
 
 interface Props {
-  items?: Testimonial[];
   title?: string;
   bg?: 'white' | 'offwhite' | 'navy';
   class?: string;
 }
 
 const {
-  items = testimonials,
   title = 'What Clients Say',
   bg = 'offwhite',
   class: className = '',
@@ -39,9 +37,7 @@ const invert = bg === 'navy';
         <Icon name="arrow-right" size={16} />
       </a>
     </div>
-    <div class="mt-8 grid gap-6 md:grid-cols-3">
-      {items.slice(0, 3).map((item) => <TestimonialCard {...item} class="reveal" />)}
-    </div>
+    <div class="mt-8 rounded-card bg-white p-4 md:p-6"><GoogleReviews /></div>
     <p class:list={['mt-6 text-sm', invert ? 'text-silver' : 'text-graytext']}>{testimonialDisclaimer}</p>
   </Container>
 </section>

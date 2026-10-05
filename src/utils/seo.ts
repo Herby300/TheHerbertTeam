@@ -3,6 +3,8 @@ import { site, socialProfiles } from '../data/site';
 export const financialServiceSchema = {
   '@context': 'https://schema.org',
   '@type': 'FinancialService',
+  '@id': `${site.url}/#business`,
+  description: `Mortgage guidance in California and Texas, based in ${site.address}. Referrals to fellow Planet Home Lending loan officers for clients in other states.`,
   name: site.name,
   alternateName: `${site.advisor} - ${site.positioning}`,
   url: site.url,
@@ -14,8 +16,25 @@ export const financialServiceSchema = {
     addressRegion: site.state,
     addressCountry: 'US',
   },
-  areaServed: ['Texas', 'United States'],
-  priceRange: '$$',
+  areaServed: site.licensedStates,
+  location: {
+    '@type': 'Place',
+    name: site.licensingOffice.name,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: site.licensingOffice.streetAddress,
+      addressLocality: site.licensingOffice.city,
+      addressRegion: site.licensingOffice.state,
+      postalCode: site.licensingOffice.postalCode,
+      addressCountry: 'US',
+    },
+  },
+  openingHoursSpecification: [{
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '08:00',
+    closes: '18:00',
+  }],
   sameAs: socialProfiles,
 };
 
@@ -65,6 +84,7 @@ export function articleSchema(options: {
     dateModified: options.dateModified ?? options.datePublished,
     author: {
       '@type': 'Person',
+      '@id': `${site.url}/#jason-herbert`,
       name: site.advisor,
       url: new URL('/about', site.url).toString(),
     },
@@ -92,10 +112,11 @@ export function serviceSchema(options: { name: string; description: string; url:
     serviceType: 'Mortgage lending',
     provider: {
       '@type': 'FinancialService',
+      '@id': `${site.url}/#business`,
       name: site.name,
       url: site.url,
     },
-    areaServed: ['Texas', 'United States'],
+    areaServed: site.licensedStates,
     url: new URL(options.url, site.url).toString(),
   };
 }

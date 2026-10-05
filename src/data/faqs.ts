@@ -56,8 +56,8 @@ export const faqs: Faq[] = [
     category: 'Getting Started',
     homepage: true,
     homepageOrder: 7,
-    q: 'Do you only work in Texas?',
-    a: 'Texas is home base, but I\u2019m licensed to serve clients across the country. Relocations are a regular part of what I do.',
+    q: 'Do you work with clients outside California and Texas?',
+    a: 'My mortgage licenses are in California and Texas. For clients in other states, I can provide a referral to a fellow loan officer within Planet Home Lending. Program availability varies by state and borrower eligibility.',
   },
   {
     category: 'Getting Started',

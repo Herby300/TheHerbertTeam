@@ -38,4 +38,23 @@ const title = 'Schedule a Free Mortgage Strategy Consultation';
   </p>
 </div>
 
+<style is:global>
+  /*
+    The booking script pins this iframe to position:absolute and a viewport-wide
+    width. Inside a padded column that spills past the screen and creates a
+    horizontal scrollbar. Keep it in normal flow at the container width.
+  */
+  .ghl-booking-wrap {
+    position: relative;
+    max-width: 100%;
+  }
+  .ghl-booking-wrap iframe {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+</style>
+
 <GhlEmbedScript />

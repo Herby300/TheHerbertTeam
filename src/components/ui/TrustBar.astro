@@ -25,10 +25,8 @@ const items = [
   ]}
 >
   <li class="flex items-center gap-2">
-    <span class="flex text-gold" aria-hidden="true">
-      {[0, 1, 2, 3, 4].map(() => <Icon name="star" size={15} class="fill-current" strokeWidth={0} />)}
-    </span>
-    <span class={invert ? 'text-white' : 'text-navy'}>Google Reviews</span>
+
+    <a href="/reviews" class={invert ? 'text-white underline underline-offset-2' : 'text-navy underline underline-offset-2'}>Google Reviews</a>
   </li>
   {
     items.map((item) => (
