@@ -20,6 +20,20 @@ const blog = defineCollection({
       'Austin Market',
       'Rates',
     ]),
+    additionalCategories: z
+      .array(
+        z.enum([
+          'Buying',
+          'Refinancing',
+          'Divorce',
+          'VA',
+          'Self-Employed',
+          'Investing',
+          'Austin Market',
+          'Rates',
+        ])
+      )
+      .default([]),
     image: z.string().default('/images/blog/placeholder.webp'),
     imageAlt: z.string().default(''),
     author: z.string().default('Jason Herbert'),
