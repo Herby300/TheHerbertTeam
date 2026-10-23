@@ -3,7 +3,7 @@ import '../styles/global.css';
 import SEO from '../components/SEO.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { site } from '../data/site';
+import DeferredThirdParty from '../components/DeferredThirdParty.astro';
 import { financialServiceSchema } from '../utils/seo';
 
 interface Props {
@@ -32,8 +32,6 @@ const {
   schema,
   bodyClass = '',
 } = Astro.props;
-
-const { metaPixel, ga4, gtm } = site.analytics;
 ---
 
 <!doctype html>
@@ -55,82 +53,8 @@ const { metaPixel, ga4, gtm } = site.analytics;
       schema={schema}
     />
 
-    {
-      metaPixel && (
-        <Fragment>
-          {/* Async Pixel bootstrap — keeps PageView early without a sync network request. */}
-          <script is:inline define:vars={{ pixelId: metaPixel }}>
-            !(function (f, b, e, v, n, t, s) {
-              if (f.fbq) return;
-              n = f.fbq = function () {
-                n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-              };
-              if (!f._fbq) f._fbq = n;
-              n.push = n;
-              n.loaded = !0;
-              n.version = '2.0';
-              n.queue = [];
-              t = b.createElement(e);
-              t.async = !0;
-              t.src = v;
-              s = b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t, s);
-            })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', pixelId);
-            // Standard PageView once per load — never trackCustom('PageView').
-            if (!window.__herbertMetaPageView) {
-              window.__herbertMetaPageView = true;
-              fbq('track', 'PageView');
-            }
-          </script>
-          <noscript>
-            <img
-              height="1"
-              width="1"
-              style="display:none"
-              alt=""
-              src={`https://www.facebook.com/tr?id=${metaPixel}&ev=PageView&noscript=1`}
-            />
-          </noscript>
-        </Fragment>
-      )
-    }
+    <DeferredThirdParty />
 
-    {
-      ga4 && (
-        <Fragment>
-          <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`} />
-          <script is:inline define:vars={{ ga4Id: ga4 }}>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-              dataLayer.push(arguments);
-            }
-            window.gtag = gtag;
-            gtag('js', new Date());
-            gtag('config', ga4Id);
-          </script>
-        </Fragment>
-      )
-    }
-
-    {
-      gtm && (
-        <script is:inline define:vars={{ gtmId: gtm }}>
-          (function (w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-            var f = d.getElementsByTagName(s)[0],
-              j = d.createElement(s),
-              dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-          })(window, document, 'script', 'dataLayer', gtmId);
-        </script>
-      )
-    }
-
-    {/* Self-hosted Inter (body). Single primary preload — Sora loads via @font-face. */}
     <link
       rel="preload"
       href="/fonts/inter-latin.woff2"
@@ -138,6 +62,7 @@ const { metaPixel, ga4, gtm } = site.analytics;
       type="font/woff2"
       crossorigin
     />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/sora-latin.woff2" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

@@ -1,0 +1,128 @@
+---
+import { site } from '../data/site';
+
+const { ga4, metaPixel, gtm } = site.analytics;
+const elfsightSrc = 'https://elfsightcdn.com/platform.js';
+---
+
+{
+  /* Stubs queue events immediately. External tags inject on first gesture or 3.5s after load. */
+}
+{
+  metaPixel && (
+    <Fragment>
+      <script is:inline define:vars={{ pixelId: metaPixel }}>
+        !(function (f, b, n) {
+          if (f.fbq) return;
+          n = f.fbq = function () {
+            n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+          };
+          if (!f._fbq) f._fbq = n;
+          n.push = n;
+          n.loaded = !0;
+          n.version = '2.0';
+          n.queue = [];
+        })(window, document);
+        fbq('init', pixelId);
+        if (!window.__herbertMetaPageView) {
+          window.__herbertMetaPageView = true;
+          fbq('track', 'PageView');
+        }
+      </script>
+      <noscript>
+        <img
+          height="1"
+          width="1"
+          style="display:none"
+          alt=""
+          src={`https://www.facebook.com/tr?id=${metaPixel}&ev=PageView&noscript=1`}
+        />
+      </noscript>
+    </Fragment>
+  )
+}
+
+{
+  ga4 && (
+    <script is:inline define:vars={{ ga4Id: ga4 }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', ga4Id);
+    </script>
+  )
+}
+
+{
+  gtm && (
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    </script>
+  )
+}
+
+<script
+  is:inline
+  define:vars={{
+    ga4Id: ga4 || '',
+    gtmId: gtm || '',
+    loadPixel: Boolean(metaPixel),
+    elfsightSrc,
+  }}
+>
+  (function () {
+    var loaded = false;
+    var idleTimer = 0;
+    var events = ['scroll', 'pointerdown', 'keydown', 'touchstart'];
+
+    function inject(src, id) {
+      if (!src) return;
+      if (id && document.getElementById(id)) return;
+      var s = document.createElement('script');
+      if (id) s.id = id;
+      s.async = true;
+      s.src = src;
+      document.head.appendChild(s);
+    }
+
+    function loadDeferredThirdParty() {
+      if (loaded) return;
+      loaded = true;
+      if (idleTimer) window.clearTimeout(idleTimer);
+      for (var i = 0; i < events.length; i++) {
+        window.removeEventListener(events[i], loadDeferredThirdParty, true);
+      }
+      if (ga4Id) {
+        inject('https://www.googletagmanager.com/gtag/js?id=' + ga4Id, 'ga4-gtag');
+      }
+      if (gtmId) {
+        inject('https://www.googletagmanager.com/gtm.js?id=' + gtmId, 'gtm-script');
+      }
+      if (loadPixel) {
+        inject('https://connect.facebook.net/en_US/fbevents.js', 'meta-pixel');
+      }
+      // Only pages that render the reviews widget need Elfsight.
+      if (document.querySelector('.google-reviews-embed')) {
+        inject(elfsightSrc, 'elfsight-platform');
+      }
+    }
+
+    for (var j = 0; j < events.length; j++) {
+      window.addEventListener(events[j], loadDeferredThirdParty, {
+        capture: true,
+        passive: true,
+      });
+    }
+
+    function armIdle() {
+      idleTimer = window.setTimeout(loadDeferredThirdParty, 3500);
+    }
+
+    if (document.readyState === 'complete') armIdle();
+    else window.addEventListener('load', armIdle);
+  })();
+</script>

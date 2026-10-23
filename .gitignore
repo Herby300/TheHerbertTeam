@@ -5,6 +5,9 @@ dist/
 # contact sheets, regenerated on demand from public/images
 design-assets/previews/
 
+# local scratch files (screenshots, one-off scripts)
+tmp/
+
 # generated types
 .astro/
 
