@@ -11,8 +11,8 @@ import { breadcrumbSchema, faqSchema, combineSchema } from '../../utils/seo';
 
 const crumbs = [
   { label: 'Home', href: '/' },
-  { label: 'Resources', href: '/resources' },
-  { label: 'Mortgage Calculator', href: '/resources/calculator' },
+  { label: 'Resources', href: '/resources/' },
+  { label: 'Mortgage Calculator', href: '/resources/calculator/' },
 ];
 
 const calculatorFaqs = [
@@ -37,10 +37,10 @@ const calculatorFaqs = [
 const schema = combineSchema(breadcrumbSchema(crumbs), faqSchema(calculatorFaqs));
 
 const relatedPrograms = [
-  { title: 'Conventional Loans', text: 'Down payments from 3% with mortgage insurance that cancels.', href: '/loan-programs/conventional', icon: 'home' },
-  { title: 'FHA Loans', text: '3.5% down with more forgiving credit guidelines.', href: '/loan-programs/fha', icon: 'key-round' },
-  { title: 'VA Loans', text: 'Zero down and no monthly mortgage insurance at all.', href: '/loan-programs/va-loans', icon: 'shield-check' },
-  { title: 'Refinance', text: 'Run your break-even before you refinance anything.', href: '/loan-programs/refinance', icon: 'refresh-cw' },
+  { title: 'Conventional Loans', text: 'Down payments from 3% with mortgage insurance that cancels.', href: '/loan-programs/conventional/', icon: 'home' },
+  { title: 'FHA Loans', text: '3.5% down with more forgiving credit guidelines.', href: '/loan-programs/fha/', icon: 'key-round' },
+  { title: 'VA Loans', text: 'Zero down and no monthly mortgage insurance at all.', href: '/loan-programs/va-loans/', icon: 'shield-check' },
+  { title: 'Refinance', text: 'Run your break-even before you refinance anything.', href: '/loan-programs/refinance/', icon: 'refresh-cw' },
 ];
 ---
 
@@ -95,7 +95,7 @@ const relatedPrograms = [
         >
           Get My Real Number
         </Button>
-        <Button href="/schedule" variant="outline-white" size="lg" fullWidth track="schedule">
+        <Button href="/schedule/" variant="outline-white" size="lg" fullWidth track="schedule">
           Book a Free Strategy Call
         </Button>
       </div>

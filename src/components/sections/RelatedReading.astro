@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import Section from '../Section.astro';
+import BlogCard from '../ui/BlogCard.astro';
+
+interface Props {
+  /** Blog post slugs to show, in order. Missing or draft posts are skipped. */
+  slugs?: string[];
+  /** Alternatively, show the newest posts in a category. */
+  category?: string;
+  title?: string;
+  limit?: number;
+  bg?: 'white' | 'offwhite';
+}
+
+const { slugs, category, title = 'Related Reading', limit = 3, bg = 'white' } = Astro.props;
+
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+const bySlug = new Map<string, (typeof posts)[number]>(posts.map((post) => [post.slug, post]));
+
+const picked = slugs
+  ? slugs.map((slug) => bySlug.get(slug)).filter((post): post is NonNullable<typeof post> => Boolean(post))
+  : posts
+      .filter((post) => post.data.category === category || post.data.additionalCategories.includes(category as never))
+      .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const items = picked.slice(0, limit);
+---
+
+{
+  items.length > 0 && (
+    <Section bg={bg} padding="sm">
+      <h2 class="font-heading text-h3 text-navy">{title}</h2>
+      <div class="mt-6 grid gap-6 md:grid-cols-3">
+        {items.map((post) => (
+          <BlogCard
+            title={post.data.title}
+            description={post.data.description}
+            image={post.data.image}
+            slug={post.slug}
+            category={post.data.category}
+            date={post.data.pubDate}
+          />
+        ))}
+      </div>
+    </Section>
+  )
+}

@@ -9,7 +9,7 @@ import { breadcrumbSchema, faqSchema, combineSchema } from '../utils/seo';
 
 const crumbs = [
   { label: 'Home', href: '/' },
-  { label: 'FAQ', href: '/faq' },
+  { label: 'FAQ', href: '/faq/' },
 ];
 
 const schema = combineSchema(
@@ -91,7 +91,7 @@ const grouped = faqCategories.map((category) => ({
 
     <p class="mx-auto mt-10 hidden max-w-3xl rounded-card border border-silver-light bg-white p-6 text-center text-graytext" data-faq-empty>
       No questions match that search. Try a different word, or just
-      <a href="/contact" class="text-brandblue-text underline underline-offset-2 hover:text-brandblue-text-hover">ask me directly</a>.
+      <a href="/contact/" class="text-brandblue-text underline underline-offset-2 hover:text-brandblue-text-hover">ask me directly</a>.
     </p>
   </Section>
 
