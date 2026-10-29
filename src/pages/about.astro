@@ -10,7 +10,7 @@ import { breadcrumbSchema, combineSchema } from '../utils/seo';
 
 const crumbs = [
   { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
+  { label: 'About', href: '/about/' },
 ];
 
 const philosophy = [
@@ -61,7 +61,7 @@ const personSchema = {
   identifier: { '@type': 'PropertyValue', propertyID: 'NMLS', value: site.nmlsId },
   jobTitle: 'Mortgage Advisor',
   description: `${site.advisor} is a licensed mortgage advisor with more than 20 years of experience, licensed in California and Texas through ${site.institution}, based in Cedar Park. Clients in other states can be referred to fellow Planet Home Lending loan officers.`,
-  url: new URL('/about', site.url).toString(),
+  url: new URL('/about/', site.url).toString(),
   image: new URL('/images/jason-headshot-large.webp', site.url).toString(),
   telephone: '+1-760-715-3434',
   email: site.email,
@@ -158,7 +158,7 @@ const schema = combineSchema(personSchema, breadcrumbSchema(crumbs));
           <p class="mt-1 text-sm text-graytext">{site.positioning}</p>
           <p class="mt-4 text-sm text-graytext">{site.nmls} · {site.institution}</p>
           <div class="mt-5 flex flex-col gap-3">
-            <Button href="/schedule" variant="primary" size="sm" icon="arrow-right" fullWidth track="schedule">
+            <Button href="/schedule/" variant="primary" size="sm" icon="arrow-right" fullWidth track="schedule">
               Book a Free Strategy Call
             </Button>
             <Button href={site.phoneHref} variant="secondary" size="sm" fullWidth>
@@ -279,7 +279,7 @@ const schema = combineSchema(personSchema, breadcrumbSchema(crumbs));
           <Button href={site.social.youtube} variant="secondary" external icon="play" iconPosition="left">
             Watch on YouTube
           </Button>
-          <Button href="/contact" variant="tertiary" icon="arrow-right">Get in touch</Button>
+          <Button href="/contact/" variant="tertiary" icon="arrow-right">Get in touch</Button>
         </div>
       </div>
 

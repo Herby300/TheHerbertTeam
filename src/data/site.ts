@@ -78,15 +78,15 @@ export const bookingUrl = site.calendlyUrl;
 /** Dedicated CRM form: require name, email, and phone; redirect after success. */
 export const divorceGuide = {
   formId: '9unzlrGXk9VQ2ghj04H7',
-  thankYouHref: '/divorce-mortgage-planning/thank-you',
+  thankYouHref: '/divorce-mortgage-planning/thank-you/',
   pdfHref: '/downloads/divorce-and-the-mortgage-guide.pdf',
 } as const;
 
 /** First-Time Home Buyer’s Playbook lead magnet. */
 export const playbook = {
   title: 'First-Time Home Buyer’s Playbook',
-  href: '/first-time-home-buyer-playbook',
-  thankYouHref: '/first-time-home-buyer-playbook/thank-you',
+  href: '/first-time-home-buyer-playbook/',
+  thankYouHref: '/first-time-home-buyer-playbook/thank-you/',
   pdfHref: '/downloads/first-time-home-buyer-playbook.pdf',
   coverImage: '/images/lead-magnets/first-time-home-buyer-playbook-cover.webp',
   coverImageAlt: 'Cover of The Herbert Team First-Time Home Buyer’s Playbook',

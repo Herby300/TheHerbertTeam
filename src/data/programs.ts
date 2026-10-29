@@ -25,7 +25,7 @@ export const programs: Program[] = [
   {
     slug: 'conventional',
     name: 'Conventional Loans',
-    href: '/loan-programs/conventional',
+    href: '/loan-programs/conventional/',
     icon: 'home',
     tagline: 'Flexible down payments and strong terms for well-qualified buyers.',
     blurb:
@@ -131,7 +131,7 @@ export const programs: Program[] = [
   {
     slug: 'fha',
     name: 'FHA Loans',
-    href: '/loan-programs/fha',
+    href: '/loan-programs/fha/',
     icon: 'key-round',
     tagline: 'Lower down payment and more forgiving credit requirements.',
     blurb:
@@ -237,7 +237,7 @@ export const programs: Program[] = [
   {
     slug: 'va-loans',
     name: 'VA Loans',
-    href: '/loan-programs/va-loans',
+    href: '/loan-programs/va-loans/',
     icon: 'shield-check',
     tagline: 'Zero down and no monthly MI — let\u2019s use every benefit you earned.',
     blurb:
@@ -343,7 +343,7 @@ export const programs: Program[] = [
   {
     slug: 'jumbo',
     name: 'Jumbo Loans',
-    href: '/loan-programs/jumbo',
+    href: '/loan-programs/jumbo/',
     icon: 'gem',
     tagline: 'Luxury financing with 5%-down and no-MI options available.',
     blurb:
@@ -449,7 +449,7 @@ export const programs: Program[] = [
   {
     slug: 'construction',
     name: 'Construction Loans',
-    href: '/loan-programs/construction',
+    href: '/loan-programs/construction/',
     icon: 'hammer',
     tagline: 'Financing for custom builds and new construction.',
     blurb:
@@ -555,7 +555,7 @@ export const programs: Program[] = [
   {
     slug: 'investor-dscr',
     name: 'Investor & DSCR',
-    href: '/loan-programs/investor-dscr',
+    href: '/loan-programs/investor-dscr/',
     icon: 'trending-up',
     tagline: 'Qualify on rental income and scale your portfolio.',
     blurb:
@@ -661,7 +661,7 @@ export const programs: Program[] = [
   {
     slug: 'self-employed',
     name: 'Self-Employed Programs',
-    href: '/loan-programs/self-employed',
+    href: '/loan-programs/self-employed/',
     icon: 'briefcase',
     tagline: 'Bank statement, 1099, P&L, and no-ratio loans for business owners.',
     blurb:
@@ -767,7 +767,7 @@ export const programs: Program[] = [
   {
     slug: 'refinance',
     name: 'Refinance',
-    href: '/loan-programs/refinance',
+    href: '/loan-programs/refinance/',
     icon: 'refresh-cw',
     tagline: 'Rate-and-term, cash-out, and no-lender-fee options.',
     blurb:

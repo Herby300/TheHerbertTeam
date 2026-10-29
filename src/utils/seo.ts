@@ -86,7 +86,7 @@ export function articleSchema(options: {
       '@type': 'Person',
       '@id': `${site.url}/#jason-herbert`,
       name: site.advisor,
-      url: new URL('/about', site.url).toString(),
+      url: new URL('/about/', site.url).toString(),
     },
     publisher: {
       '@type': 'Organization',
@@ -98,7 +98,7 @@ export function articleSchema(options: {
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': new URL(`/blog/${options.slug}`, site.url).toString(),
+      '@id': new URL(`/blog/${options.slug}/`, site.url).toString(),
     },
   };
 }
