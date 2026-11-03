@@ -12,7 +12,7 @@ import { breadcrumbSchema } from '../../utils/seo';
 
 const crumbs = [
   { label: 'Home', href: '/' },
-  { label: 'Resources', href: '/resources' },
+  { label: 'Resources', href: '/resources/' },
 ];
 ---
 
@@ -45,7 +45,7 @@ const crumbs = [
             image={resource.image}
             slug={resource.slug}
             icon={resource.icon}
-            href={resource.slug === 'mortgage-calculator' ? '/resources/calculator' : undefined}
+            href={resource.slug === 'mortgage-calculator' ? '/resources/calculator/' : undefined}
             class="reveal"
           />
         ))
@@ -65,7 +65,7 @@ const crumbs = [
           schedule so you can see exactly how much interest you pay over the life of the loan.
         </p>
       </div>
-      <Button href="/resources/calculator" variant="primary" size="lg" icon="arrow-right" fullWidth>
+      <Button href="/resources/calculator/" variant="primary" size="lg" icon="arrow-right" fullWidth>
         Open the Calculator
       </Button>
     </div>
@@ -82,7 +82,7 @@ const crumbs = [
           The blog covers bank statement loans, VA entitlement, DSCR math, the Austin market, and whether buying points
           is worth it — all in plain English, all written by me rather than by a content agency.
         </p>
-        <Button href="/blog" variant="secondary" class="mt-6" icon="arrow-right">Read the Blog</Button>
+        <Button href="/blog/" variant="secondary" class="mt-6" icon="arrow-right">Read the Blog</Button>
       </div>
 
       <div class="rounded-card border border-silver-light bg-white p-7 shadow-card md:p-9">

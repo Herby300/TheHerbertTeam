@@ -9,7 +9,8 @@ const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
 
 function isActive(href: string): boolean {
   if (href === '/') return pathname === '/';
-  return pathname === href || pathname.startsWith(`${href}/`);
+  const target = href.replace(/\/+$/, '');
+  return pathname === target || pathname.startsWith(`${target}/`);
 }
 ---
 
@@ -23,7 +24,7 @@ function isActive(href: string): boolean {
       <span>Other-state referrals through Planet</span>
       <span aria-hidden="true" class="text-brandblue">·</span>
       <span class="flex items-center gap-1.5">
-        <a href="/reviews" class="underline underline-offset-2">Google Reviews</a>
+        <a href="/reviews/" class="underline underline-offset-2">Google Reviews</a>
       </span>
     </Container>
   </div>
