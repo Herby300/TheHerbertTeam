@@ -47,6 +47,7 @@ function heroSrcset(src: string): string | undefined {
 }
 
 const srcset = heroSrcset(image);
+const secondaryTrack = secondaryHref.replace(/\/+$/, '') === '/schedule' ? 'schedule_click' : undefined;
 ---
 
 <section class="relative isolate overflow-hidden bg-navy">
@@ -89,7 +90,7 @@ const srcset = heroSrcset(image);
             >
               {primaryLabel}
             </Button>
-            <Button href={secondaryHref} variant="outline-white" size="lg" track="schedule">
+            <Button href={secondaryHref} variant="outline-white" size="lg" track={secondaryTrack}>
               {secondaryLabel}
             </Button>
           </div>
