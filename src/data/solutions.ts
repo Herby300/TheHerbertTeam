@@ -6,7 +6,7 @@ export const solutions: Solution[] = [
   {
     slug: 'buy-before-you-sell',
     name: 'Buy Now. Sell Later.',
-    href: '/solutions/buy-before-you-sell',
+    href: '/solutions/buy-before-you-sell/',
     icon: 'arrow-up-right',
     tagline: 'Two options to help coordinate your next purchase and current home sale.',
     blurb:
@@ -63,7 +63,7 @@ export const solutions: Solution[] = [
   {
     slug: 'down-payment-assistance',
     name: 'Down Payment Assistance',
-    href: '/solutions/down-payment-assistance',
+    href: '/solutions/down-payment-assistance/',
     icon: 'wallet',
     tagline: 'Programs that shrink the cash you need to close.',
     blurb:
@@ -169,7 +169,7 @@ export const solutions: Solution[] = [
   {
     slug: 'first-time-homebuyers',
     name: 'First-Time Homebuyers',
-    href: '/solutions/first-time-homebuyers',
+    href: '/solutions/first-time-homebuyers/',
     icon: 'graduation-cap',
     tagline: 'Education, budgeting, and offer strategy from preapproval to keys.',
     blurb:
