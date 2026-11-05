@@ -27,8 +27,8 @@ const showPlaybookCta = playbookCtaSlugs.includes(post.slug);
 
 const crumbs = [
   { label: 'Home', href: '/' },
-  { label: 'Blog', href: '/blog' },
-  { label: title, href: `/blog/${post.slug}` },
+  { label: 'Blog', href: '/blog/' },
+  { label: title, href: `/blog/${post.slug}/` },
 ];
 
 const schema = combineSchema(
@@ -120,10 +120,10 @@ const schema = combineSchema(
                   scenario, the fastest way to get a real answer is to ask him directly. For clients in other states, Jason can connect you with a fellow loan officer within Planet Home Lending.
                 </p>
                 <div class="mt-5 flex flex-col gap-3 sm:flex-row">
-                  <Button href="/schedule" variant="primary" size="sm" icon="arrow-right" track="schedule">
+                  <Button href="/schedule/" variant="primary" size="sm" icon="arrow-right" track="schedule">
                     Book a Free Strategy Call
                   </Button>
-                  <Button href="/contact" variant="secondary" size="sm">Send a Question</Button>
+                  <Button href="/contact/" variant="secondary" size="sm">Send a Question</Button>
                 </div>
               </div>
             </div>
@@ -150,7 +150,7 @@ const schema = combineSchema(
             >
               Apply Online
             </Button>
-            <Button href="/schedule" variant="secondary" size="sm" class="mt-3" fullWidth track="schedule">
+            <Button href="/schedule/" variant="secondary" size="sm" class="mt-3" fullWidth track="schedule">
               Book a Call
             </Button>
             <a
@@ -165,11 +165,11 @@ const schema = combineSchema(
           <div class="mt-6 rounded-card border border-silver-light bg-offwhite p-6">
             <h2 class="font-heading text-base font-bold text-navy">Popular programs</h2>
             <ul class="mt-3 space-y-2 text-sm">
-              <li><a href="/loan-programs/self-employed" class="text-brandblue-text hover:text-brandblue-text-hover hover:underline">Self-Employed &amp; Bank Statement Loans</a></li>
-              <li><a href="/loan-programs/va-loans" class="text-brandblue-text hover:text-brandblue-text-hover hover:underline">VA Loans</a></li>
-              <li><a href="/loan-programs/investor-dscr" class="text-brandblue-text hover:text-brandblue-text-hover hover:underline">Investor &amp; DSCR</a></li>
-              <li><a href="/solutions/buy-before-you-sell" class="text-brandblue-text hover:text-brandblue-text-hover hover:underline">Buy Now. Sell Later.</a></li>
-              <li><a href="/resources/calculator" class="text-brandblue-text hover:text-brandblue-text-hover hover:underline">Mortgage Calculator</a></li>
+              <li><a href="/loan-programs/self-employed/" class="text-brandblue-text hover:text-brandblue-text-hover hover:underline">Self-Employed &amp; Bank Statement Loans</a></li>
+              <li><a href="/loan-programs/va-loans/" class="text-brandblue-text hover:text-brandblue-text-hover hover:underline">VA Loans</a></li>
+              <li><a href="/loan-programs/investor-dscr/" class="text-brandblue-text hover:text-brandblue-text-hover hover:underline">Investor &amp; DSCR</a></li>
+              <li><a href="/solutions/buy-before-you-sell/" class="text-brandblue-text hover:text-brandblue-text-hover hover:underline">Buy Now. Sell Later.</a></li>
+              <li><a href="/resources/calculator/" class="text-brandblue-text hover:text-brandblue-text-hover hover:underline">Mortgage Calculator</a></li>
             </ul>
           </div>
         </aside>

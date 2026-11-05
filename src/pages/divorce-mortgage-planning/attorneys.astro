@@ -9,7 +9,7 @@ import AccordionItem from '../../components/ui/AccordionItem.astro';
 import { site, formIds, formBase } from '../../data/site';
 import { breadcrumbSchema, faqSchema, combineSchema } from '../../utils/seo';
 
-const crumbs = [{ label: 'Home', href: '/' }, { label: 'Partners', href: '/partners' }, { label: 'Divorce Attorneys & Mediators', href: '/divorce-mortgage-planning/attorneys' }];
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'Partners', href: '/partners/' }, { label: 'Divorce Attorneys & Mediators', href: '/divorce-mortgage-planning/attorneys/' }];
 const scenarios = [
   ['Keeping the Home', 'Review independent qualification, the proposed payment, available assets, and the financing needed to retain the property.'],
   ['Completing an Equity Buyout', 'Evaluate whether the proposed buyout can be financed and how the resulting mortgage affects the retaining spouse’s budget.'],
@@ -31,7 +31,7 @@ const faqs = [
     <div class="mx-auto max-w-4xl text-center">
       <p class="text-body-lg text-graytext">A settlement can establish what a client must do with the home. A mortgage review helps determine whether the financing needed to carry out that plan is achievable.</p>
       <div class="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-        <Button href="/schedule" track="schedule" icon="arrow-right">Discuss a Client Scenario</Button>
+        <Button href="/schedule/" track="schedule" icon="arrow-right">Discuss a Client Scenario</Button>
         <Button href="#request-review" variant="secondary">Request a Mortgage Feasibility Review</Button>
       </div>
       <p class="mt-5 text-sm text-graytext">{site.advisor} · {site.nmls} · Licensed in California &amp; Texas · Referrals in other states to fellow Planet Home Lending loan officers</p>
@@ -112,7 +112,7 @@ const faqs = [
         <SectionHeading eyebrow="Education for Your Clients" title="Give Clients a Clear Starting Point" align="left" />
         <p class="mt-5 text-body-lg text-graytext">See the same consumer resources your clients receive: plain-English explanations of keeping the home, buying out a spouse, mortgage liability, and buying again.</p>
         <p class="mt-4 text-graytext">The consumer page includes the free <em>Divorce &amp; the Mortgage</em> guide, available through a short request form.</p>
-        <Button href="/divorce-mortgage-planning" class="mt-7" icon="book-open">View the Client Page &amp; Guide</Button>
+        <Button href="/divorce-mortgage-planning/" class="mt-7" icon="book-open">View the Client Page &amp; Guide</Button>
       </div>
     </div>
   </Section>
@@ -128,7 +128,7 @@ const faqs = [
         <SectionHeading eyebrow="Let’s Review the Mortgage Question" title="Request a Mortgage Feasibility Review" align="left" />
         <p class="mt-5 text-body-lg text-graytext">Tell me how to reach you and the general housing question you would like to discuss. We will determine the next step together.</p>
         <p class="mt-4 text-sm leading-relaxed text-graytext">Please use your professional contact details. Save client financial documents and identifying information for the appropriate intake process.</p>
-        <div class="mt-7"><Button href="/schedule" variant="secondary" track="schedule">Discuss a Client Scenario</Button></div>
+        <div class="mt-7"><Button href="/schedule/" variant="secondary" track="schedule">Discuss a Client Scenario</Button></div>
         <p class="mt-6 text-graytext"><a href={site.phoneHref} class="underline">{site.phone}</a> · <a href={site.emailHref} class="underline">{site.email}</a></p>
       </div>
       <div class="rounded-card border border-silver-light bg-white p-4 shadow-card md:p-6">
