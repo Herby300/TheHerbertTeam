@@ -6,17 +6,35 @@ import { readTime } from '../../utils/format';
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
 
+  // Pick 3 related posts per article: shared category first, then spread the
+  // links so every post is recommended from several others (not just the
+  // newest three site-wide), which helps Google discover and index them.
+  const categories = (p: (typeof posts)[number]) => [p.data.category, ...p.data.additionalCategories];
+  const inbound = new Map(posts.map((p) => [p.slug, 0]));
+  const ordered = [...posts].sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  const relatedBySlug = new Map<string, typeof posts>();
+
+  for (const post of ordered) {
+    const mine = categories(post);
+    const score = (other: (typeof posts)[number]) => {
+      if (other.data.category === post.data.category) return 2;
+      return categories(other).some((c) => mine.includes(c)) ? 1 : 0;
+    };
+    const picks = posts
+      .filter((other) => other.slug !== post.slug)
+      .sort(
+        (a, b) =>
+          score(b) - score(a) ||
+          (inbound.get(a.slug) ?? 0) - (inbound.get(b.slug) ?? 0) ||
+          b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+      )
+      .slice(0, 3);
+    picks.forEach((p) => inbound.set(p.slug, (inbound.get(p.slug) ?? 0) + 1));
+    relatedBySlug.set(post.slug, picks);
+  }
+
   return posts.map((post) => {
-    const sameCategory = posts.filter(
-      (other) => other.slug !== post.slug && other.data.category === post.data.category
-    );
-    const others = posts.filter(
-      (other) => other.slug !== post.slug && other.data.category !== post.data.category
-    );
-    const related = [...sameCategory, ...others]
-      .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-      .slice(0, 3)
-      .map((entry) => ({ slug: entry.slug, data: entry.data }));
+    const related = (relatedBySlug.get(post.slug) ?? []).map((entry) => ({ slug: entry.slug, data: entry.data }));
 
     return {
       params: { slug: post.slug },
