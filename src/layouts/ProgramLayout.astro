@@ -5,6 +5,8 @@ import Section from '../components/Section.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import PageHero from '../components/sections/PageHero.astro';
 import CtaBand from '../components/sections/CtaBand.astro';
+import RelatedReading from '../components/sections/RelatedReading.astro';
+import { relatedReading } from '../data/relatedReading';
 import FaqSection from '../components/sections/FaqSection.astro';
 import BenefitCard from '../components/ui/BenefitCard.astro';
 import Icon from '../components/ui/Icon.astro';
@@ -23,7 +25,7 @@ interface Props {
 
 const { program, kind = 'program' } = Astro.props;
 
-const hubHref = kind === 'solution' ? '/solutions' : '/loan-programs';
+const hubHref = kind === 'solution' ? '/solutions/' : '/loan-programs/';
 const hubLabel = kind === 'solution' ? 'Solutions' : 'Loan Programs';
 
 const crumbs = [
@@ -79,7 +81,7 @@ const schema = combineSchema(
           >
             Start Your Application
           </Button>
-          <Button href="/schedule" variant="secondary" track="schedule">Ask Me a Question First</Button>
+          <Button href="/schedule/" variant="secondary" track="schedule">Ask Me a Question First</Button>
         </div>
       </div>
 
@@ -217,7 +219,7 @@ const schema = combineSchema(
           That is what the free strategy call is for. Twenty minutes, no obligation, and you leave knowing which
           financing path actually fits your situation.
         </p>
-        <Button href="/schedule" variant="primary" class="mt-6" icon="arrow-right" track="schedule" fullWidth>
+        <Button href="/schedule/" variant="primary" class="mt-6" icon="arrow-right" track="schedule" fullWidth>
           Book a Free Strategy Call
         </Button>
       </div>
@@ -234,6 +236,9 @@ const schema = combineSchema(
     idPrefix={program.slug}
     bg="offwhite"
   />
+
+  <!-- ------------------------------------------------------------ reading -->
+  <RelatedReading slugs={relatedReading[program.slug] ?? []} />
 
   <!-- ------------------------------------------------------------ related -->
   {

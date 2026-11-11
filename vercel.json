@@ -1,9 +1,41 @@
 {
+  "trailingSlash": true,
   "redirects": [
-    { "source": "/privacy-policy", "destination": "https://www.planethomelending.com/privacy-policy", "permanent": true },
-    { "source": "/terms", "destination": "https://www.planethomelending.com/terms-of-use", "permanent": true },
-    { "source": "/licensing", "destination": "https://www.planethomelending.com/licensing", "permanent": true },
-    { "source": "/solutions/atm-mortgage", "destination": "/solutions", "permanent": true }
+    {
+      "source": "/privacy-policy",
+      "destination": "https://www.planethomelending.com/privacy-policy",
+      "permanent": true
+    },
+    {
+      "source": "/terms",
+      "destination": "https://www.planethomelending.com/terms-of-use",
+      "permanent": true
+    },
+    {
+      "source": "/licensing",
+      "destination": "https://www.planethomelending.com/licensing",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/atm-mortgage",
+      "destination": "/solutions/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/divorce-decree-remove-spouse-from-mortgage",
+      "destination": "/blog/divorce-decree-remove-ex-from-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/divorce-decree-remove-spouse-from-mortgage/",
+      "destination": "/blog/divorce-decree-remove-ex-from-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/images/blog/divorce-decree-remove-spouse-from-mortgage.:ext(webp|png)",
+      "destination": "/images/blog/divorce-decree-remove-ex-from-mortgage.webp",
+      "permanent": true
+    }
   ],
   "headers": [
     {
